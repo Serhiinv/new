@@ -129,7 +129,7 @@ export default function Layout({
               transition: "all 0.3s ease",
             }}
           >
-            Contact US
+            Contact us
           </Button>
         )}
 
