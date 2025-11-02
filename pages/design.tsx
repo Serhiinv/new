@@ -29,8 +29,8 @@ export default function DesignPage() {
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 4,
-            padding: { xs: "100px 25px", md: "50px 70px" },
+            gap: 2,
+            padding: { xs: "145px 25px", md: "50px 70px" },
           }}
         >
           {/* Left half - Image */}
@@ -46,8 +46,6 @@ export default function DesignPage() {
               sx={{
                 maxWidth: "670px",
                 width: "100%",
-                mx: "auto",
-                mt: 2,
                 position: "relative",
               }}
             >
@@ -73,7 +71,8 @@ export default function DesignPage() {
               textAlign: { xs: "center", md: "left" },
               display: "flex",
               flexDirection: "column",
-              gap: 3,
+              gap: 2,
+                paddingTop: { xs: "0px" },
             }}
           >
             <Typography
@@ -100,9 +99,13 @@ export default function DesignPage() {
                 From the first online query to a seamless customer experience on your new website, Auction Fusion drives consignment and sales at every step.
                 <br />
                 <br />
+                <Box component="span" sx={{
+                    display: { xs: "none", md: "inline" },
+                }}>
                 And with your upcoming lots visible on Google in hours, Auction Fusion is beating the biggest and best in the auction world.
                 <br />
                 <br />
+                </Box>
                 <strong>That&apos;s why our auction clients are seeing conversions per customer up by over 500%.</strong>
             </Typography>
           </Box>
