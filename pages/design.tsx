@@ -92,7 +92,7 @@ export default function DesignPage() {
             <Typography
               variant="body1"
               sx={{
-                  ...theme.typography.heading5,
+                  ...theme.typography.body2,
                 color: theme.palette.bg.light,
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
               }}

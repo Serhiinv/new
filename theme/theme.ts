@@ -585,13 +585,13 @@ const getTheme = (client: string): any => {
                 body1: {
                     letterSpacing: 0.15,
                     fontWeight: 400,
-                    fontSize: 16,
+                    fontSize: 21,
                     lineHeight: 1.3,
                 },
                 body2: {
                     letterSpacing: 0.15,
                     fontWeight: 400,
-                    fontSize: 15,
+                    fontSize: 18,
                     lineHeight: 1.3,
                 },
                 body3: {
@@ -745,7 +745,7 @@ const getTheme = (client: string): any => {
         theme.typography.body1 = {
             ...theme.typography.body1,
             [theme.breakpoints.down('sm')]: {
-                fontSize: 17,
+                fontSize: 18,
             },
         };
 

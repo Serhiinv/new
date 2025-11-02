@@ -75,13 +75,13 @@ export default function ImprovementPage() {
               paddingBottom: { xs: "20px", md: "30px" }
             }}>
               <Typography component="p" sx={{
-                  ...theme.typography.heading3,
+                  ...theme.typography.body1,
                   m: 0 }}>
                 To Auction Fusion&apos;s credit <strong>our improvement in SEO has been nothing less than stratospheric.</strong> Coupled with much improved functionality in critical areas like searching, image rendering, and lot alerts we are in a much better position to compete for consignments and bidders.
               </Typography>
 
               <Typography component="p" sx={{
-                  ...theme.typography.heading3,
+                  ...theme.typography.body1,
                   mt: 2, mb: 0 }}>
                 The exciting results continue with <strong>100% sold</strong> in our following 2 auctions. Thanks for all the hard work behind the scenes to make this auction a success.
               </Typography>
@@ -89,7 +89,7 @@ export default function ImprovementPage() {
               <br />
 
               <Typography component="p" sx={{
-                ...theme.typography.heading5,
+                ...theme.typography.body2,
                 mt: 2,
                 paddingTop: { xs: "20px", md: "100px" }
               }}>

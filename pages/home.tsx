@@ -74,10 +74,10 @@ export default function HomePage() {
 
             <Typography
               sx={{
-                ...theme.typography.heading3,
+                ...theme.typography.body1,
                 color: theme.palette.bg.contrastText,
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
-                marginTop: { xs: "200px", md: "140px" },
+                marginTop: { xs: "185px", md: "140px" },
               }}
             >
               Auction Fusion is a next-generation auction website platform built for
@@ -98,6 +98,7 @@ export default function HomePage() {
               justifyContent: "center",
               alignItems: "center",
               order: { xs: 2, md: 2 },
+                mt: { xs: 2, md: 0 },
             }}
           >
             <Box
@@ -105,7 +106,7 @@ export default function HomePage() {
                 maxWidth: "670px",
                 width: "100%",
                 mx: "auto",
-                mt: { xs: -7, md: 2 },
+                mt: { xs: -3, md: 2 },
                 position: "relative",
               }}
             >

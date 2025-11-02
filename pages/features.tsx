@@ -123,14 +123,18 @@ export default function FeaturesPage() {
                                 borderRadius: 2,
                                 animation: `fadeInUp 0.8s ease-out ${index * 0.1}s backwards`
                             }}>
-                                <Box sx={{flexShrink: 0, width: 80, height: 80}}>
+                                <Box sx={{
+                                    flexShrink: 0,
+                                    width: {xs: 60, md: 90},
+                                    height: {xs: 60, md: 90},
+                                }}>
                                     <svg viewBox={feature.svgViewBox} aria-label={feature.ariaLabel}
                                          style={{width: "100%", height: "100%"}}>
                                         {feature.svgPaths}
                                     </svg>
                                 </Box>
-                                <Typography variant="body1" sx={{
-                                    ...theme.typography.heading4,
+                                <Typography sx={{
+                                    ...theme.typography.body1,
                                     color: theme.palette.primary.main,
                                 }}>{feature.text}</Typography>
                             </Box>

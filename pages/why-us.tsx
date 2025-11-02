@@ -50,7 +50,7 @@ export default function WhyUsPage() {
           <Typography
             sx={{
               color: theme.palette.bg.light,
-                ...theme.typography.heading5,
+                ...theme.typography.body2,
               mb: 6,
               animation: "fadeInUp 0.8s ease-out 0.2s backwards",
             }}
@@ -81,7 +81,7 @@ export default function WhyUsPage() {
                 </Typography>
                 <Typography
                   sx={{
-                      ...theme.typography.heading4,
+                      ...theme.typography.body1,
                     color: theme.palette.bg.light,
                   }}
                 >
