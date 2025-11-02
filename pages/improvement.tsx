@@ -29,6 +29,8 @@ export default function ImprovementPage() {
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
             paddingTop: { xs: "140px", md: "200px" },
+            maxWidth: { xs: "100%", md: "1800px"},
+            margin: "0 auto",
           }}
         >
           {/* Container so SVG quotes can be absolutely positioned over the text */}

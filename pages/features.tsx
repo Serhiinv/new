@@ -95,6 +95,8 @@ export default function FeaturesPage() {
                     flexDirection: "column",
                     gap: { xs: 3, md: 7 },
                     paddingTop: { xs: "140px", md: "140px" },
+                    maxWidth: { xs: "100%", md: "1800px"},
+                    margin: "0 auto",
                 }}>
                     <Typography
                         sx={{

@@ -31,6 +31,8 @@ export default function WhyUsPage() {
             background: themeStyle,
             textAlign: "center",
             padding: { xs: "250px 25px", md: "20% 70px" },
+            maxWidth: { xs: "100%", md: "1800px"},
+            margin: "0 auto",
         }}>
           <Typography
             sx={{

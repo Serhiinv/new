@@ -31,6 +31,8 @@ export default function DesignPage() {
             justifyContent: "space-between",
             gap: 2,
             padding: { xs: "145px 25px", md: "50px 70px" },
+            maxWidth: { xs: "100%", md: "1800px"},
+            margin: "0 auto",
           }}
         >
           {/* Left half - Image */}

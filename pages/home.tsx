@@ -41,6 +41,8 @@ export default function HomePage() {
             gap: 4,
             padding: { xs: "30px 25px", md: "50px 70px" },
             animation: "slideIn 0.6s ease-out",
+            maxWidth: { xs: "100%", md: "1800px"},
+            margin: "0 auto",
           }}
         >
           {/* Left half - Text content */}

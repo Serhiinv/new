@@ -581,13 +581,13 @@ const getTheme = (client: string): any => {
             },
             typography: {
                 fontFamily: 'sans-serif',
-                body1: {
+                body1: {                     // in use as main text on all pages
                     letterSpacing: 0.15,
                     fontWeight: 400,
                     fontSize: 21,
                     lineHeight: 1.3,
                 },
-                body2: {
+                body2: {                    // in use as secondary text on all pages
                     letterSpacing: 0.15,
                     fontWeight: 400,
                     fontSize: 18,
@@ -689,7 +689,7 @@ const getTheme = (client: string): any => {
         });
 
         //add responsive font sizes
-        theme.typography.heading1 = {
+        theme.typography.heading1 = {             // in use as heading on all pages
             ...theme.typography.heading1,
             [theme.breakpoints.down('md')]: {
                 fontSize: 45,
@@ -741,14 +741,14 @@ const getTheme = (client: string): any => {
             },
         };
 
-        theme.typography.body1 = {
+        theme.typography.body1 = {                // in use as main text on all pages
             ...theme.typography.body1,
             [theme.breakpoints.down('sm')]: {
                 fontSize: 18,
             },
         };
 
-        theme.typography.body2 = {
+        theme.typography.body2 = {                // in use as secondary text on all pages
             ...theme.typography.body2,
             [theme.breakpoints.down('sm')]: {
                 fontSize: 16,
