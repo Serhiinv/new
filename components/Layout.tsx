@@ -61,7 +61,8 @@ export default function Layout({
         left: 0,
         width: "100%",
         height: "100%",
-        background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 100%)`,
+        background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 100%)`, //TODO
+        // background: theme.palette.primary.light, //TODO
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -73,6 +74,7 @@ export default function Layout({
         sx={{
           width: "100%",
           height: "100%",
+          maxWidth: { xs: "100%", md: "1600px" },
           background: backgroundColor || theme.palette.bg.main,
           display: "flex",
           flexDirection: "column",
@@ -121,6 +123,8 @@ export default function Layout({
               padding: "0 10px",
               zIndex: 10,
               pointerEvents: "none",
+                maxWidth: { xs: "100%", md: "1600px" },
+                margin: "0 auto",
             }}
           >
             {prevPage ? (
