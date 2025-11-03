@@ -26,6 +26,8 @@ export default function ContactPage() {
             flexDirection: "column",
             alignItems: "center",
             padding: { xs: "250px 25px", md: "20% 70px" },
+            maxWidth: { xs: "100%", md: "1200px"},
+            margin: "0 auto",
           }}
         >
           <Typography
@@ -60,7 +62,7 @@ export default function ContactPage() {
 
           <Box sx={{ mt: 6, display: "flex", gap: 3, flexWrap: "wrap", justifyContent: "center" }}>
             <PrimaryButton href="/home" variant="outlined">
-              Back to Home
+              Back Home
             </PrimaryButton>
           </Box>
         </Box>

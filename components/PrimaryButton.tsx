@@ -30,7 +30,7 @@ export default function PrimaryButton({
       : "transparent",
     color: variant === 'contained' ? theme.palette.whites.main : btnStyleColor,
     borderRadius: "50px",
-    border: variant === 'outlined' ? `1px solid ${btnStyleColor}` : "none",
+    border: variant === 'outlined' ? `1px solid ${btnStyleColor}` : `1px solid transparent`,
     boxShadow: "none",
     textTransform: "none" as const,
     "&:hover": {
