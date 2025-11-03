@@ -19,19 +19,19 @@ export default function DesignPage() {
           showContactButton={true} prevPage="/features"
           nextPage="/improvement"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
+          backgroundColor={themeStyle}
       >
         <Box
           sx={{
             width: "100%",
             height: "100%",
             display: "flex",
-            background: themeStyle,
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
             gap: 2,
             padding: { xs: "145px 25px", md: "50px 70px" },
-            maxWidth: { xs: "100%", md: "1800px"},
+            maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
           }}
         >

@@ -28,20 +28,20 @@ export default function HomePage() {
         showContactButton={true}
         nextPage="/features"
         logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
+        backgroundColor={themeStyle}
       >
         <Box
           sx={{
             width: "100%",
             height: "100%",
             display: "flex",
-            background: themeStyle,
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
             gap: 4,
             padding: { xs: "30px 25px", md: "50px 70px" },
             animation: "slideIn 0.6s ease-out",
-            maxWidth: { xs: "100%", md: "1800px"},
+            maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
           }}
         >

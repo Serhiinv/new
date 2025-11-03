@@ -85,6 +85,7 @@ export default function FeaturesPage() {
                 prevPage="/home"
                 nextPage="/design"
                 logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
+                backgroundColor={themeStyle}
             >
                 <Box sx={{
                     width: "100%",
@@ -95,7 +96,7 @@ export default function FeaturesPage() {
                     flexDirection: "column",
                     gap: { xs: 3, md: 7 },
                     paddingTop: { xs: "140px", md: "140px" },
-                    maxWidth: { xs: "100%", md: "1800px"},
+                    maxWidth: { xs: "100%", md: "1600px"},
                     margin: "0 auto",
                 }}>
                     <Typography

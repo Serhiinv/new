@@ -18,18 +18,18 @@ export default function ImprovementPage() {
           showContactButton={true}
           prevPage="/design" nextPage="/why-us"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
+          backgroundColor={themeStyle}
       >
         <Box
           sx={{
             width: "100%",
             height: "100%",
             display: "flex",
-            background: themeStyle,
             padding: { xs: "100px 25px 25px", md: "200px 110px 50px" },
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
             paddingTop: { xs: "140px", md: "200px" },
-            maxWidth: { xs: "100%", md: "1800px"},
+            maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
           }}
         >

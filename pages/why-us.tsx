@@ -24,14 +24,14 @@ export default function WhyUsPage() {
           showContactButton={true}
           prevPage="/improvement" nextPage="/contact"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
+          backgroundColor={themeStyle}
       >
         <Box sx={{
             width: "100%",
             height: "100%",
-            background: themeStyle,
             textAlign: "center",
             padding: { xs: "250px 25px", md: "20% 70px" },
-            maxWidth: { xs: "100%", md: "1800px"},
+            maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
         }}>
           <Typography
