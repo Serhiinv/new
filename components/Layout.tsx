@@ -167,6 +167,7 @@ export default function Layout({
                   component={Link}
                   href={prevPage}
                   sx={{
+                    display: { xs: "none", md: "inline-flex" }, //hide on mobile always
                     width: 40,
                     height: 40,
                     borderRadius: 2,
@@ -189,7 +190,8 @@ export default function Layout({
                   component={Link}
                   href={nextPage}
                   sx={{
-                    display: hideNextOnHomeMobile ? { xs: "none", md: "inline-flex" } : undefined,
+                    // display: hideNextOnHomeMobile ? { xs: "none", md: "inline-flex" } : undefined,
+                    display: { xs: "none", md: "inline-flex" }, //hide on mobile always
                     width: 40,
                     height: 40,
                     borderRadius: 2,
