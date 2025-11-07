@@ -78,7 +78,7 @@ export default function FeaturesPage() {
         // Hide hand animation after it completes (2 swipes = ~4 seconds)
         const timer = setTimeout(() => {
             setShowHandAnimation(false);
-        }, 5000);
+        }, 7000);
         return () => clearTimeout(timer);
     }, []);
 
@@ -107,7 +107,8 @@ export default function FeaturesPage() {
                             transform: "translateY(50%)",
                             zIndex: 1000,
                             pointerEvents: "none",
-                            animation: "handSwipe 2.5s ease-in-out 2",
+                            animation: "handSwipe 2.5s ease-in-out 2s 2",
+                            opacity: 0,
                             "@keyframes handSwipe": {
                                 "0%": {
                                     right: "10%",
