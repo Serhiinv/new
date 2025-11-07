@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -40,6 +40,37 @@ export default function Layout({
   const theme = useTheme();
   const hideNextOnHomeMobile = currentPath === "/home";
 
+  // Swipe handler
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && nextPage) {
+      router.push(nextPage);
+    }
+    if (isRightSwipe && prevPage) {
+      router.push(prevPage);
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight" && nextPage) {
@@ -55,6 +86,9 @@ export default function Layout({
 
   return (
     <Box
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
       sx={{
         position: "fixed",
         top: 0,
@@ -123,8 +157,8 @@ export default function Layout({
               padding: "0 10px",
               zIndex: 10,
               pointerEvents: "none",
-                maxWidth: { xs: "100%", md: "1600px" },
-                margin: "0 auto",
+              maxWidth: { xs: "100%", md: "1600px" },
+              margin: "0 auto",
             }}
           >
             {prevPage ? (
