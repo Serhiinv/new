@@ -167,7 +167,7 @@ export default function HomePage() {
           {/* Button - visible on mobile only (after monitor) */}
           <Box sx={{
             position: "absolute",
-            bottom: { xs: "3.5%", md: "3%" },
+            bottom: { xs: "5%", md: "3%" },
             display: { xs: "block", md: "none" },
             order: { xs: 3 },
             '@media (max-width: 380px)': {
