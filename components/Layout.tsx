@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -22,7 +22,7 @@ const pages = [
   { path: "/home", label: "Home" },
   { path: "/features", label: "Features" },
   { path: "/design", label: "Design" },
-  { path: "/improvement", label: "Improvement" },
+  { path: "/testimonials", label: "Testimonials" },
   { path: "/why-us", label: "Why Us" },
   { path: "/contact", label: "Contact" },
 ];
@@ -38,7 +38,38 @@ export default function Layout({
   const router = useRouter();
   const currentPath = router.pathname;
   const theme = useTheme();
-  const hideNextOnHomeMobile = currentPath === "/home";
+  // const hideNextOnHomeMobile = currentPath === "/home";
+
+  // Swipe handler
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && nextPage) {
+      router.push(nextPage);
+    }
+    if (isRightSwipe && prevPage) {
+      router.push(prevPage);
+    }
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -55,6 +86,9 @@ export default function Layout({
 
   return (
     <Box
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
       sx={{
         position: "fixed",
         top: 0,
@@ -101,7 +135,7 @@ export default function Layout({
           <Box
             sx={{
               position: "absolute",
-              top: { xs: 80, md: 45 },
+              top: { xs: 65, md: 45 },
               right: { xs: 20, md: 40 },
               zIndex: 100,
             }}
@@ -123,8 +157,8 @@ export default function Layout({
               padding: "0 10px",
               zIndex: 10,
               pointerEvents: "none",
-                maxWidth: { xs: "100%", md: "1600px" },
-                margin: "0 auto",
+              maxWidth: { xs: "100%", md: "1600px" },
+              margin: "0 auto",
             }}
           >
             {prevPage ? (
@@ -133,6 +167,7 @@ export default function Layout({
                   component={Link}
                   href={prevPage}
                   sx={{
+                    display: { xs: "none", md: "inline-flex" }, //hide on mobile always
                     width: 40,
                     height: 40,
                     borderRadius: 2,
@@ -155,7 +190,8 @@ export default function Layout({
                   component={Link}
                   href={nextPage}
                   sx={{
-                    display: hideNextOnHomeMobile ? { xs: "none", md: "inline-flex" } : undefined,
+                    // display: hideNextOnHomeMobile ? { xs: "none", md: "inline-flex" } : undefined,
+                    display: { xs: "none", md: "inline-flex" }, //hide on mobile always
                     width: 40,
                     height: 40,
                     borderRadius: 2,
@@ -181,12 +217,15 @@ export default function Layout({
         <Box
           sx={{
             position: "absolute",
-            bottom: { xs: 20, md: 30 },
+            bottom: { xs: "2%", md: 30 },
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",
             gap: 2,
             zIndex: 100,
+              '@media (max-width: 380px)': {
+                  bottom: "1%",
+              },
           }}
         >
           {pages.map((page) => {

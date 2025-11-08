@@ -17,7 +17,7 @@ export default function DesignPage() {
 
       <Layout
           showContactButton={true} prevPage="/features"
-          nextPage="/improvement"
+          nextPage="/testimonials"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
           backgroundColor={themeStyle}
       >
@@ -29,10 +29,18 @@ export default function DesignPage() {
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 2,
-            padding: { xs: "145px 25px", md: "50px 70px" },
+            gap: { xs: 1, md: 4 },
+            padding: { xs: "3% 4%", md: "3% 4.5%" },
+            paddingTop: { xs: "32%", md: "0" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
+            '@media (max-width: 380px)': {
+              padding: "0 3%",
+              paddingTop: "12%",
+            },
+            '@media (min-width: 470px) and (max-width: 820px)': {
+              paddingTop: "18%",
+            },
           }}
         >
           {/* Left half - Image */}
@@ -42,12 +50,17 @@ export default function DesignPage() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              order: { xs: 1, md: 1 },
+                '@media (max-width: 380px)': {
+                    position: "absolute",
+                    paddingTop: "21%",
+                },
             }}
           >
             <Box
               sx={{
                 maxWidth: "670px",
-                width: "100%",
+                width: "90%",
                 position: "relative",
               }}
             >
@@ -73,8 +86,14 @@ export default function DesignPage() {
               textAlign: { xs: "center", md: "left" },
               display: "flex",
               flexDirection: "column",
-              gap: 2,
-                paddingTop: { xs: "0px" },
+              gap: { xs: 2, md: 2 },
+              order: { xs: 2, md: 2 },
+                maxWidth: "670px",
+                padding: {xs: 0, md: "0 0px"},
+                '@media (max-width: 380px)': {
+                  position: "absolute",
+                    paddingTop: "83%",
+                },
             }}
           >
             <Typography
@@ -83,6 +102,10 @@ export default function DesignPage() {
                 color: theme.palette.primary.main,
                 overflowWrap: "break-word",
                 animation: "fadeInUp 0.8s ease-out",
+                "@keyframes fadeInUp": {
+                  from: { opacity: 0, transform: "translateY(20px)" },
+                  to: { opacity: 1, transform: "translateY(0)" },
+                },
               }}
             >
               Designed for clicks.
@@ -91,23 +114,25 @@ export default function DesignPage() {
             </Typography>
 
             <Typography
-              variant="body1"
               sx={{
-                  ...theme.typography.body2,
+                  ...theme.typography.body1,
                 color: theme.palette.bg.light,
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
+                "@keyframes fadeInUp": {
+                  from: { opacity: 0, transform: "translateY(20px)" },
+                  to: { opacity: 1, transform: "translateY(0)" },
+                },
               }}
             >
                 From the first online query to a seamless customer experience on your new website, Auction Fusion drives consignment and sales at every step.
-                <br />
                 <br />
                 <Box component="span" sx={{
                     display: { xs: "none", md: "inline" },
                 }}>
                 And with your upcoming lots visible on Google in hours, Auction Fusion is beating the biggest and best in the auction world.
                 <br />
-                <br />
                 </Box>
+                <br />
                 <strong>That&apos;s why our auction clients are seeing conversions per customer up by over 500%.</strong>
             </Typography>
           </Box>

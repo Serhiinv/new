@@ -21,6 +21,7 @@ export default function ContactPage() {
           backgroundColor={themeStyle}>
         <Box
           sx={{
+              justifyContent: "center",
             width: "100%",
             height: "100%",
             display: "flex",
@@ -51,8 +52,12 @@ export default function ContactPage() {
             sx={{
                 ...theme.typography.heading5,
               color: theme.palette.bg.light,
-              mb: 5,
+              mb: { xs: 3, md: 5 },
               animation: "fadeInUp 0.8s ease-out 0.2s backwards",
+              "@keyframes fadeInUp": {
+                from: { opacity: 0, transform: "translateY(20px)" },
+                to: { opacity: 1, transform: "translateY(0)" },
+              },
             }}
           >
             Transform your auction business with our comprehensive platform

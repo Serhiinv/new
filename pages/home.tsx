@@ -38,11 +38,19 @@ export default function HomePage() {
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 4,
-            padding: { xs: "30px 25px", md: "50px 70px" },
+            gap: { xs: 2, md: 4 },
+            padding: { xs: "3% 4%", md: "3% 4.5%" },
             animation: "slideIn 0.6s ease-out",
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
+            '@media (max-width: 380px)': {
+              padding: "2% 3%",
+              gap: 1,
+            },
+            '@media (min-width: 470px) and (max-width: 820px)': {
+              padding: "5% 6%",
+              gap: 3,
+            },
           }}
         >
           {/* Left half - Text content */}
@@ -52,7 +60,7 @@ export default function HomePage() {
               textAlign: { xs: "center", md: "left" },
               display: "flex",
               flexDirection: "column",
-              gap: 3,
+              gap: { xs: 2, md: 3 },
               order: { xs: 1, md: 1 },
             }}
           >
@@ -60,15 +68,26 @@ export default function HomePage() {
               sx={{
                 ...theme.typography.heading1,
                 position: "absolute",
-                width: { xs: "90%", md: "556.961px" },
-                height: { xs: "auto", md: "96.59px" },
+                width: { xs: "calc(100% - 30px)", md: "570px" },
+                height: { xs: "auto", md: "auto" },
                 opacity: 1,
                 color: theme.palette.primary.main,
-                padding: { xs: "15px", md: 0 },
-                paddingTop: { xs: "120px", md: 0 },
+                padding: { xs: "2% 3%", md: 0 },
+                paddingTop: { xs: "30%", md: 0 },
                 overflowWrap: "break-word",
                 margin: 0,
                 animation: "fadeInUp 0.8s ease-out",
+                "@keyframes fadeInUp": {
+                  from: { opacity: 0, transform: "translateY(20px)" },
+                  to: { opacity: 1, transform: "translateY(0)" },
+                },
+                '@media (max-width: 380px)': {
+                  paddingTop: "30%",
+                },
+                '@media (min-width: 470px) and (max-width: 820px)': {
+                  paddingTop: "15%",
+                  width: "calc(100% - 60px)",
+                },
               }}
             >
                 Creating the finest auction websites
@@ -79,7 +98,17 @@ export default function HomePage() {
                 ...theme.typography.body1,
                 color: theme.palette.bg.contrastText,
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
-                marginTop: { xs: "185px", md: "140px" },
+                "@keyframes fadeInUp": {
+                  from: { opacity: 0, transform: "translateY(20px)" },
+                  to: { opacity: 1, transform: "translateY(0)" },
+                },
+                marginTop: { xs: "52%", md: "140px" },
+                '@media (max-width: 380px)': {
+                  marginTop: "50%",
+                },
+                '@media (min-width: 470px) and (max-width: 820px)': {
+                  marginTop: "33%",
+                },
               }}
             >
               Auction Fusion is a next-generation auction website platform built for
@@ -100,16 +129,25 @@ export default function HomePage() {
               justifyContent: "center",
               alignItems: "center",
               order: { xs: 2, md: 2 },
-                mt: { xs: 2, md: 0 },
+              mt: { xs: "-45%", md: 0 },
+              '@media (min-width: 470px) and (max-width: 820px)': {
+                mt: "-55%",
+              },
             }}
           >
             <Box
               sx={{
                 maxWidth: "670px",
-                width: "100%",
+                width: "90%",
                 mx: "auto",
-                mt: { xs: -3, md: 2 },
+                mt: { xs: "-20%", md: 2 },
                 position: "relative",
+                '@media (max-width: 380px)': {
+                  mt: "-10%",
+                },
+                '@media (min-width: 470px) and (max-width: 820px)': {
+                  mt: "-5%",
+                },
               }}
             >
               <Box
@@ -145,9 +183,16 @@ export default function HomePage() {
 
           {/* Button - visible on mobile only (after monitor) */}
           <Box sx={{
+            position: "absolute",
+            bottom: { xs: "5.5%", md: "3%" },
             display: { xs: "block", md: "none" },
             order: { xs: 3 },
-            marginBottom: { xs: "50px", md: 0 },
+            '@media (max-width: 380px)': {
+              bottom: "4%",
+            },
+            '@media (min-width: 470px) and (max-width: 820px)': {
+              bottom: "6%",
+            },
           }}>
             {startButton}
           </Box>
