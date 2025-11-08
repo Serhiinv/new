@@ -38,7 +38,7 @@ export default function Layout({
   const router = useRouter();
   const currentPath = router.pathname;
   const theme = useTheme();
-  const hideNextOnHomeMobile = currentPath === "/home";
+  // const hideNextOnHomeMobile = currentPath === "/home";
 
   // Swipe handler
   const [touchStart, setTouchStart] = useState<number | null>(null);

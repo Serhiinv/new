@@ -47,6 +47,10 @@ export default function HomePage() {
               padding: "2% 3%",
               gap: 1,
             },
+            '@media (min-width: 470px) and (max-width: 820px)': {
+              padding: "5% 6%",
+              gap: 3,
+            },
           }}
         >
           {/* Left half - Text content */}
@@ -80,6 +84,10 @@ export default function HomePage() {
                 '@media (max-width: 380px)': {
                   paddingTop: "30%",
                 },
+                '@media (min-width: 470px) and (max-width: 820px)': {
+                  paddingTop: "15%",
+                  width: "calc(100% - 60px)",
+                },
               }}
             >
                 Creating the finest auction websites
@@ -97,6 +105,9 @@ export default function HomePage() {
                 marginTop: { xs: "52%", md: "140px" },
                 '@media (max-width: 380px)': {
                   marginTop: "50%",
+                },
+                '@media (min-width: 470px) and (max-width: 820px)': {
+                  marginTop: "33%",
                 },
               }}
             >
@@ -119,6 +130,9 @@ export default function HomePage() {
               alignItems: "center",
               order: { xs: 2, md: 2 },
               mt: { xs: "-45%", md: 0 },
+              '@media (min-width: 470px) and (max-width: 820px)': {
+                mt: "-55%",
+              },
             }}
           >
             <Box
@@ -130,6 +144,9 @@ export default function HomePage() {
                 position: "relative",
                 '@media (max-width: 380px)': {
                   mt: "-10%",
+                },
+                '@media (min-width: 470px) and (max-width: 820px)': {
+                  mt: "-5%",
                 },
               }}
             >
@@ -172,6 +189,9 @@ export default function HomePage() {
             order: { xs: 3 },
             '@media (max-width: 380px)': {
               bottom: "4%",
+            },
+            '@media (min-width: 470px) and (max-width: 820px)': {
+              bottom: "6%",
             },
           }}>
             {startButton}
