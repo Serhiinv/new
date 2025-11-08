@@ -3,15 +3,15 @@ import {Box, Typography} from "@mui/material";
 import Layout from "@/components/Layout";
 import { useTheme } from "@mui/material/styles";
 
-export default function ImprovementPage() {
+export default function TestimonialsPage() {
   const theme = useTheme();
   const themeStyle = theme.palette.primary.light;
 
   return (
     <>
       <Head>
-        <title>Improvement - Auction Fusion</title>
-        <meta name="description" content="Discover the powerful features of Auction Fusion platform" />
+        <title>Testimonials - Auction Fusion</title>
+        <meta name="description" content="Client testimonials and success stories from Auction Fusion platform" />
       </Head>
 
       <Layout

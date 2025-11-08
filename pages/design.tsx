@@ -17,7 +17,7 @@ export default function DesignPage() {
 
       <Layout
           showContactButton={true} prevPage="/features"
-          nextPage="/improvement"
+          nextPage="/testimonials"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
           backgroundColor={themeStyle}
       >
