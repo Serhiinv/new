@@ -31,13 +31,15 @@ export default function DesignPage() {
             justifyContent: "space-between",
             gap: { xs: 1, md: 4 },
             padding: { xs: "3% 4%", md: "3% 4.5%" },
-              paddingTop: { xs: "32%", md: "0" },
+            paddingTop: { xs: "32%", md: "0" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
             '@media (max-width: 380px)': {
-              padding: "2% 3%",
-                paddingTop: { xs: "33%", md: "0" },
-              gap: 0.5,
+              padding: "0 3%",
+              paddingTop: "12%",
+            },
+            '@media (min-width: 470px) and (max-width: 820px)': {
+              paddingTop: "18%",
             },
           }}
         >
@@ -49,6 +51,10 @@ export default function DesignPage() {
               justifyContent: "center",
               alignItems: "center",
               order: { xs: 1, md: 1 },
+                '@media (max-width: 380px)': {
+                    position: "absolute",
+                    paddingTop: "21%",
+                },
             }}
           >
             <Box
@@ -80,8 +86,14 @@ export default function DesignPage() {
               textAlign: { xs: "center", md: "left" },
               display: "flex",
               flexDirection: "column",
-              gap: { xs: 2, md: 3 },
+              gap: { xs: 2, md: 2 },
               order: { xs: 2, md: 2 },
+                maxWidth: "670px",
+                padding: {xs: 0, md: "0 0px"},
+                '@media (max-width: 380px)': {
+                  position: "absolute",
+                    paddingTop: "83%",
+                },
             }}
           >
             <Typography
@@ -102,9 +114,8 @@ export default function DesignPage() {
             </Typography>
 
             <Typography
-              variant="body1"
               sx={{
-                  ...theme.typography.body2,
+                  ...theme.typography.body1,
                 color: theme.palette.bg.light,
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
                 "@keyframes fadeInUp": {
@@ -115,14 +126,13 @@ export default function DesignPage() {
             >
                 From the first online query to a seamless customer experience on your new website, Auction Fusion drives consignment and sales at every step.
                 <br />
-                <br />
                 <Box component="span" sx={{
                     display: { xs: "none", md: "inline" },
                 }}>
                 And with your upcoming lots visible on Google in hours, Auction Fusion is beating the biggest and best in the auction world.
                 <br />
-                <br />
                 </Box>
+                <br />
                 <strong>That&apos;s why our auction clients are seeing conversions per customer up by over 500%.</strong>
             </Typography>
           </Box>
