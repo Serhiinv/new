@@ -64,8 +64,8 @@ export default function HomePage() {
                 height: { xs: "auto", md: "96.59px" },
                 opacity: 1,
                 color: theme.palette.primary.main,
-                padding: { xs: "15px", md: 0 },
-                paddingTop: { xs: "120px", md: 0 },
+                padding: { xs: "10px", md: 0 },
+                paddingTop: { xs: "100px", md: 0 },
                 overflowWrap: "break-word",
                 margin: 0,
                 animation: "fadeInUp 0.8s ease-out",
@@ -79,7 +79,7 @@ export default function HomePage() {
                 ...theme.typography.body1,
                 color: theme.palette.bg.contrastText,
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
-                marginTop: { xs: "185px", md: "140px" },
+                marginTop: { xs: "170px", md: "140px" },
               }}
             >
               Auction Fusion is a next-generation auction website platform built for
@@ -106,9 +106,9 @@ export default function HomePage() {
             <Box
               sx={{
                 maxWidth: "670px",
-                width: "100%",
+                width: "90%",
                 mx: "auto",
-                mt: { xs: -3, md: 2 },
+                mt: { xs: -12, md: 2 },
                 position: "relative",
               }}
             >
@@ -145,9 +145,11 @@ export default function HomePage() {
 
           {/* Button - visible on mobile only (after monitor) */}
           <Box sx={{
+              position: "absolute",
+              bottom: { xs: 27, md: 30 },
             display: { xs: "block", md: "none" },
             order: { xs: 3 },
-            marginBottom: { xs: "50px", md: 0 },
+            // marginBottom: { xs: "30px", md: 0 },
           }}>
             {startButton}
           </Box>

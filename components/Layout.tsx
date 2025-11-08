@@ -135,7 +135,7 @@ export default function Layout({
           <Box
             sx={{
               position: "absolute",
-              top: { xs: 80, md: 45 },
+              top: { xs: 65, md: 45 },
               right: { xs: 20, md: 40 },
               zIndex: 100,
             }}
@@ -217,7 +217,7 @@ export default function Layout({
         <Box
           sx={{
             position: "absolute",
-            bottom: { xs: 20, md: 30 },
+            bottom: { xs: 7, md: 30 },
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",
