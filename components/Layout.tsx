@@ -217,7 +217,7 @@ export default function Layout({
         <Box
           sx={{
             position: "absolute",
-            bottom: { xs: 10, md: 30 },
+            bottom: { xs: "2%", md: 30 },
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",

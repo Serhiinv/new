@@ -584,7 +584,7 @@ const getTheme = (client: string): any => {
                 body1: {                     // in use as main text on all pages
                     letterSpacing: 0.15,
                     fontWeight: 400,
-                    fontSize: 21,
+                    fontSize: 27,
                     lineHeight: 1.3,
                 },
                 body2: {                    // in use as secondary text on all pages

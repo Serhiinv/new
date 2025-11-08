@@ -155,11 +155,12 @@ export default function FeaturesPage() {
                     height: "100%",
                     display: "flex",
                     background: themeStyle,
-                    padding: {xs: "3% 4%", md: "3% 4.5%"},
+                    padding: {xs: "3% 4%", md: "3% 5.5%"},
                     flexDirection: "column",
-                    gap: { xs: 3, md: 7 },
-                    paddingTop: { xs: "34%", md: "12%" },
+                    gap: { xs: 3, md: 10 },
+                    paddingTop: { xs: "34%", md: "0" },
                     maxWidth: { xs: "100%", md: "1600px"},
+                    justifyContent: {md: "center"},
                     margin: "0 auto",
                     '@media (max-width: 380px)': {
                         padding: "2% 3%",
@@ -177,7 +178,7 @@ export default function FeaturesPage() {
                           to: { opacity: 1, transform: "translateY(0)" },
                         },
                     }}>
-                        Why Auction Fusion
+                        Why Auction Fusion?
                     </Typography>
 
                     <Box sx={{
@@ -194,10 +195,10 @@ export default function FeaturesPage() {
                             <Box key={feature.id} sx={{
                                 display: "flex",
                                 alignItems: "center",
-                                gap: { xs: 1.5, md: 2 },
-                                padding: { xs: 1.5, md: 2 },
-                                background: theme.palette.whites.main,
-                                borderRadius: 2,
+                                gap: { xs: 1.5, md: 3 },
+                                padding: { xs: 1.5, md: 3 },
+                                background: theme.palette.whites.dark,
+                                borderRadius: 3,
                                 animation: `fadeInUp 0.8s ease-out ${index * 0.1}s backwards`,
                                 "@keyframes fadeInUp": {
                                   from: { opacity: 0, transform: "translateY(20px)" },
@@ -210,8 +211,8 @@ export default function FeaturesPage() {
                             }}>
                                 <Box sx={{
                                     flexShrink: 0,
-                                    width: {xs: 60, md: 90},
-                                    height: {xs: 60, md: 90},
+                                    width: {xs: 60, md: 100},
+                                    height: {xs: 60, md: 100},
                                 }}>
                                     <svg viewBox={feature.svgViewBox} aria-label={feature.ariaLabel}
                                          style={{width: "100%", height: "100%"}}>
