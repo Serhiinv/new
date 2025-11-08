@@ -168,6 +168,10 @@ export default function FeaturesPage() {
                         color: theme.palette.whites.main,
                         textAlign: "center",
                         animation: "fadeInUp 0.8s ease-out",
+                        "@keyframes fadeInUp": {
+                          from: { opacity: 0, transform: "translateY(20px)" },
+                          to: { opacity: 1, transform: "translateY(0)" },
+                        },
                     }}>
                         Why Auction Fusion
                     </Typography>
@@ -175,19 +179,30 @@ export default function FeaturesPage() {
                     <Box sx={{
                         display: "grid",
                         gridTemplateColumns: {xs: "1fr", md: "repeat(2, 1fr)"},
-                        gap: { xs: 3, md: 10 },
+                        gap: { xs: 2, md: 10 },
                         maxWidth: "1100px",
-                        margin: "0 auto"
+                        margin: "0 auto",
+                        '@media (max-width: 380px)': {
+                          gap: 1.5,
+                        },
                     }}>
                         {features.map((feature, index) => (
                             <Box key={feature.id} sx={{
                                 display: "flex",
                                 alignItems: "center",
-                                gap: 2,
-                                padding: 2,
+                                gap: { xs: 1.5, md: 2 },
+                                padding: { xs: 1.5, md: 2 },
                                 background: theme.palette.whites.main,
                                 borderRadius: 2,
-                                animation: `fadeInUp 0.8s ease-out ${index * 0.1}s backwards`
+                                animation: `fadeInUp 0.8s ease-out ${index * 0.1}s backwards`,
+                                "@keyframes fadeInUp": {
+                                  from: { opacity: 0, transform: "translateY(20px)" },
+                                  to: { opacity: 1, transform: "translateY(0)" },
+                                },
+                                '@media (max-width: 380px)': {
+                                  padding: 1.2,
+                                  gap: 1,
+                                },
                             }}>
                                 <Box sx={{
                                     flexShrink: 0,

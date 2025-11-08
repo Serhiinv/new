@@ -53,14 +53,26 @@ export default function WhyUsPage() {
             sx={{
               color: theme.palette.bg.light,
                 ...theme.typography.body2,
-              mb: 6,
+              mb: { xs: 4, md: 6 },
               animation: "fadeInUp 0.8s ease-out 0.2s backwards",
+              "@keyframes fadeInUp": {
+                from: { opacity: 0, transform: "translateY(20px)" },
+                to: { opacity: 1, transform: "translateY(0)" },
+              },
             }}
           >
             Industry-leading solutions backed by years of experience
           </Typography>
 
-          <Box sx={{ display: "flex", gap: 5, justifyContent: "center", flexWrap: "wrap" }}>
+          <Box sx={{
+            display: "flex",
+            gap: { xs: 3, md: 5 },
+            justifyContent: "center",
+            flexWrap: "wrap",
+            '@media (max-width: 380px)': {
+              gap: 2,
+            },
+          }}>
             {stats.map((stat, index) => (
               <Paper
                 key={index}
@@ -68,7 +80,14 @@ export default function WhyUsPage() {
                 sx={{
                   background: "transparent",
                   animation: `fadeInUp 0.8s ease-out ${stat.delay}s backwards`,
-                  minWidth: "150px",
+                  "@keyframes fadeInUp": {
+                    from: { opacity: 0, transform: "translateY(20px)" },
+                    to: { opacity: 1, transform: "translateY(0)" },
+                  },
+                  minWidth: { xs: "120px", md: "150px" },
+                  '@media (max-width: 380px)': {
+                    minWidth: "100px",
+                  },
                 }}
               >
                 <Typography

@@ -83,6 +83,10 @@ export default function DesignPage() {
                 color: theme.palette.primary.main,
                 overflowWrap: "break-word",
                 animation: "fadeInUp 0.8s ease-out",
+                "@keyframes fadeInUp": {
+                  from: { opacity: 0, transform: "translateY(20px)" },
+                  to: { opacity: 1, transform: "translateY(0)" },
+                },
               }}
             >
               Designed for clicks.
@@ -96,6 +100,10 @@ export default function DesignPage() {
                   ...theme.typography.body2,
                 color: theme.palette.bg.light,
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
+                "@keyframes fadeInUp": {
+                  from: { opacity: 0, transform: "translateY(20px)" },
+                  to: { opacity: 1, transform: "translateY(0)" },
+                },
               }}
             >
                 From the first online query to a seamless customer experience on your new website, Auction Fusion drives consignment and sales at every step.
