@@ -25,6 +25,7 @@ export default function TestimonialsPage() {
             width: "100%",
             height: "100%",
             display: "flex",
+              justifyContent: "center",
             padding: { xs: "100px 25px 25px", md: "200px 110px 50px" },
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
@@ -47,7 +48,13 @@ export default function TestimonialsPage() {
           }}>
 
             {/* Opening quote - top-left */}
-            <Box sx={{ position: "absolute", top: { xs: 8, md:-30 }, left: { xs: 8, md: 10 }, width: { xs: 36, md: 80 }, height: { xs: 36, md: 80 }, transform: "rotate(180deg)", zIndex: 1 }} aria-hidden>
+            <Box sx={{ position: "absolute", top: { xs: 8, md:-30 }, left: { xs: 8, md: 10 }, width: { xs: 36, md: 80 }, height: { xs: 36, md: 80 },
+                '@media (min-width: 470px) and (max-width: 820px)': {
+                    width: 80,
+                    height: 80,
+                    top: -20, left: 0,
+                },
+                transform: "rotate(180deg)", zIndex: 1 }} aria-hidden>
               <svg viewBox="-1 -2 600 100" style={{ width: "100%", height: "100%" }}>
                 <g style={{ fill: "#E91E63" }}>
                   <path d="M438.21,35.94C417,12.09,391.22,0,361.63,0c-26.59,0-49.13,9.47-67,28.14s-26.76,41.59-26.76,68.49c0,25.42,9.09,48.06,27,67.32,15.82,17,35.75,27.79,59.35,32.19-4.13,31.28-31.78,59.6-82.36,84.27l-9.11,4.44,37.34,68.94,8.43-4.27c107-54.22,161.2-130.84,161.2-227.74C469.75,88.34,459.14,59.46,438.21,35.94Z" />
@@ -57,7 +64,15 @@ export default function TestimonialsPage() {
             </Box>
 
             {/* Closing quote - bottom-right (rotated) */}
-            <Box sx={{ position: "absolute", bottom: { xs: 150, md: 180 }, right: { xs: 8, md: 30 }, width: { xs: 36, md: 80 }, height: { xs: 36, md: 80 }, zIndex: 1 }} aria-hidden>
+            <Box sx={{ position: "absolute", bottom: { xs: 150, md: 180 }, right: { xs: 8, md: 30 },
+                width: { xs: 36, md: 80 },
+                height: { xs: 36, md: 80 },
+                '@media (min-width: 470px) and (max-width: 820px)': {
+                    width: 80,
+                    height: 80,
+                    bottom: 120, right: "0",
+                },
+                zIndex: 1 }} aria-hidden>
               <svg viewBox="-1 -2 600 100" style={{ width: "100%", height: "100%" }}>
                 <g style={{ fill: "#E91E63" }}>
                   <path d="M438.21,35.94C417,12.09,391.22,0,361.63,0c-26.59,0-49.13,9.47-67,28.14s-26.76,41.59-26.76,68.49c0,25.42,9.09,48.06,27,67.32,15.82,17,35.75,27.79,59.35,32.19-4.13,31.28-31.78,59.6-82.36,84.27l-9.11,4.44,37.34,68.94,8.43-4.27c107-54.22,161.2-130.84,161.2-227.74C469.75,88.34,459.14,59.46,438.21,35.94Z" />
@@ -68,12 +83,12 @@ export default function TestimonialsPage() {
 
             {/* Text content sits above SVGs */}
             <Box sx={{
-
               color: theme.palette.whites.main,
               position: "relative",
               zIndex: 2,
               fontWeight: 200,
               paddingTop: { xs: "20px", md: "20px" },
+              padding: { xs: "20px 4%", md: "20px 7%" },
               paddingBottom: { xs: "20px", md: "30px" }
             }}>
               <Typography component="p" sx={{
@@ -93,7 +108,12 @@ export default function TestimonialsPage() {
               <Typography component="p" sx={{
                 ...theme.typography.body2,
                 mt: 2,
-                paddingTop: { xs: "20px", md: "100px" }
+                paddingTop: { xs: "8%", md: "7%" },
+                  '@media (max-width: 380px)':{
+                  paddingTop: "3%",
+                      mt: 1,
+                      marginBottom: "25px",
+                  },
               }}>
                 - Edward Barrow, Auction Manager at Stanley Gibbons Baldwin&apos;s
               </Typography>
