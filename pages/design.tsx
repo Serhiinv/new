@@ -29,10 +29,16 @@ export default function DesignPage() {
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 2,
-            padding: { xs: "145px 25px", md: "50px 70px" },
+            gap: { xs: 1, md: 4 },
+            padding: { xs: "3% 4%", md: "3% 4.5%" },
+              paddingTop: { xs: "32%", md: "0" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
+            '@media (max-width: 380px)': {
+              padding: "2% 3%",
+                paddingTop: { xs: "33%", md: "0" },
+              gap: 0.5,
+            },
           }}
         >
           {/* Left half - Image */}
@@ -42,12 +48,13 @@ export default function DesignPage() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              order: { xs: 1, md: 1 },
             }}
           >
             <Box
               sx={{
                 maxWidth: "670px",
-                width: "100%",
+                width: "90%",
                 position: "relative",
               }}
             >
@@ -73,8 +80,8 @@ export default function DesignPage() {
               textAlign: { xs: "center", md: "left" },
               display: "flex",
               flexDirection: "column",
-              gap: 2,
-                paddingTop: { xs: "0px" },
+              gap: { xs: 2, md: 3 },
+              order: { xs: 2, md: 2 },
             }}
           >
             <Typography

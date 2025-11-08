@@ -217,12 +217,15 @@ export default function Layout({
         <Box
           sx={{
             position: "absolute",
-            bottom: { xs: 7, md: 30 },
+            bottom: { xs: 10, md: 30 },
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",
             gap: 2,
             zIndex: 100,
+              '@media (max-width: 380px)': {
+                  bottom: "1%",
+              },
           }}
         >
           {pages.map((page) => {
