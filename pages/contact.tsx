@@ -36,7 +36,7 @@ export default function ContactPage() {
           <Typography
             sx={{
                 ...theme.typography.heading1,
-              color: theme.palette.primary.main,
+              color: theme.palette.primary.light,
               mb: 2,
               animation: "fadeInUp 0.8s ease-out",
               "@keyframes fadeInUp": {
