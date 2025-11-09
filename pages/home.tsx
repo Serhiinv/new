@@ -71,7 +71,7 @@ export default function HomePage() {
                 width: { xs: "calc(100% - 30px)", md: "570px" },
                 height: { xs: "auto", md: "auto" },
                 opacity: 1,
-                color: theme.palette.primary.main,
+                color: theme.palette.primary.light,
                 padding: { xs: "2% 3%", md: 0 },
                 paddingTop: { xs: "30%", md: 0 },
                 overflowWrap: "break-word",
@@ -116,7 +116,9 @@ export default function HomePage() {
             </Typography>
 
             {/* Button - visible on desktop only */}
-            <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Box sx={{
+              display: { xs: "none", md: "block" },
+            }}>
               {startButton}
             </Box>
           </Box>
@@ -201,3 +203,4 @@ export default function HomePage() {
     </>
   );
 }
+
