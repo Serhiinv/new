@@ -39,7 +39,7 @@ export default function WhyUsPage() {
             }}>
               <Typography
                 sx={{
-                  color: theme.palette.primary.main,
+                  color: theme.palette.primary.light,
                     ...theme.typography.heading1,
                   mb: 2,
                   animation: "fadeInUp 0.8s ease-out",

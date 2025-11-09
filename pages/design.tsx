@@ -99,7 +99,7 @@ export default function DesignPage() {
             <Typography
               sx={{
                   ...theme.typography.heading1,
-                color: theme.palette.primary.main,
+                color: theme.palette.primary.light,
                 overflowWrap: "break-word",
                 animation: "fadeInUp 0.8s ease-out",
                 "@keyframes fadeInUp": {
