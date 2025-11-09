@@ -613,8 +613,8 @@ const getTheme = (client: string): any => {
                     lineHeight: 1,
                 },
                 heading2: {
-                    fontSize: 35,
-                    fontWeight: '400',
+                    fontSize: 32,
+                    fontWeight: '600',
                     lineHeight: 1,
                 },
                 heading3: {

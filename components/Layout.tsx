@@ -23,6 +23,7 @@ const pages = [
   { path: "/features", label: "Features" },
   { path: "/design", label: "Design" },
   { path: "/testimonials", label: "Testimonials" },
+  { path: "/reason", label: "Reason" },
   { path: "/why-us", label: "Why Us" },
   { path: "/contact", label: "Contact" },
 ];

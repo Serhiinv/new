@@ -16,7 +16,7 @@ export default function TestimonialsPage() {
 
       <Layout
           showContactButton={true}
-          prevPage="/design" nextPage="/why-us"
+          prevPage="/design" nextPage="/reason"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
           backgroundColor={themeStyle}
       >
@@ -30,6 +30,7 @@ export default function TestimonialsPage() {
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
             paddingTop: { xs: "140px", md: "200px" },
+            // paddingBottom: { xs: "5%", md: "80px" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
               '@media (max-width: 380px)': {
