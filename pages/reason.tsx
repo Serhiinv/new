@@ -96,8 +96,7 @@ export default function FeaturesPage() {
                     justifyContent: {md: "center"},
                     margin: "0 auto",
                     '@media (max-width: 380px)': {
-                        padding: "2% 3%",
-                        paddingTop: "33%",
+                        paddingTop: "34%",
                     },
                     '@media (min-width: 900px) and (max-width: 1180px)': {
                         pt: 5,
@@ -111,7 +110,7 @@ export default function FeaturesPage() {
                         margin: "0 auto",
                         paddingTop: { xs: "0%", md: "5%" },
                         '@media (max-width: 380px)': {
-                          gap: 1.5,
+                          gap: 1.2,
                         },
                     }}>
                         {features.map((feature, index) => (
@@ -132,13 +131,12 @@ export default function FeaturesPage() {
                                   to: { opacity: 1, transform: "translateY(0)" },
                                 },
                                 '@media (max-width: 380px)': {
-                                  padding: 1.2,
+                                  padding: 0.5,
                                   gap: 1,
                                 },
                                 '@media (min-width: 900px) and (max-width: 1180px)': {
                                     width: {xs: "100%", md: 300},
                                     height: {xs: "auto", md: 240},
-                                    // gap: 1,
                                 },
                             }}>
                                 <Typography sx={{
@@ -146,6 +144,11 @@ export default function FeaturesPage() {
                                     color: theme.palette.primary.light,
                                     textAlign: {xs: "left", md: "center"},
                                     width: "100%",
+                                    '@media (max-width: 380px)': {
+                                        pl: 1,
+                                        pt: 0.6,
+                                        lineHeight: 0.6,
+                                    },
                                     animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
                                     "@keyframes slideInRight": {
                                       from: { opacity: 0, transform: "translateX(100px)" },
@@ -163,6 +166,10 @@ export default function FeaturesPage() {
                                     mt: {xs: 1, md: 2},
                                     mb: {xs: 1, md: 2},
                                     color: "#E91E63",
+                                    '@media (max-width: 380px)': {
+                                        pl: 1,
+                                        lineHeight: 0.7,
+                                    },
                                     animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
                                     "@keyframes slideInRight": {
                                         from: { opacity: 0, transform: "translateX(100px)" },
@@ -174,6 +181,11 @@ export default function FeaturesPage() {
                                     color: theme.palette.primary.main,
                                     lineHeight: 1,
                                     pl: {xs: 2, md: 1.5},
+                                    '@media (max-width: 380px)': {
+                                        pl: 1,
+                                        ...theme.typography.body2,
+                                        lineHeight: 1,
+                                    },
                                     '@media (min-width: 900px) and (max-width: 1180px)': {
                                         ...theme.typography.body2,
                                     },
