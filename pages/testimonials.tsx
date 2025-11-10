@@ -16,7 +16,7 @@ export default function TestimonialsPage() {
 
       <Layout
           showContactButton={true}
-          prevPage="/design" nextPage="/why-us"
+          prevPage="/design" nextPage="/reason"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
           backgroundColor={themeStyle}
       >
@@ -30,6 +30,7 @@ export default function TestimonialsPage() {
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
             paddingTop: { xs: "140px", md: "200px" },
+            // paddingBottom: { xs: "5%", md: "80px" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
               '@media (max-width: 380px)': {
@@ -61,7 +62,7 @@ export default function TestimonialsPage() {
               padding: { xs: "0 7%", md: "0 9%" },
               paddingTop: { xs: "5%", md: "80px" },
               paddingBottom: { xs: "5%", md: "80px" },
-                backgroundColor: {xs: theme.palette.greys.light, md: themeStyle},
+                backgroundColor: {xs: theme.palette.primary.dark, md: themeStyle},
                 borderRadius: 3,
             }}>
 
@@ -104,8 +105,6 @@ export default function TestimonialsPage() {
                     </svg>
                 </Box>
 
-
-
               <Typography component="p" sx={{
                   ...theme.typography.body1,
                   m: 0 }}>
@@ -127,7 +126,7 @@ export default function TestimonialsPage() {
                   height: 0,
                   borderLeft: "28px solid transparent",
                   borderRight: "28px solid transparent",
-                  borderTop: { xs: `28px solid ${theme.palette.greys.light}`, md: `28px solid ${themeStyle}` },
+                  borderTop: { xs: `28px solid ${theme.palette.primary.dark}`, md: `28px solid ${themeStyle}` },
               }} />
             <Box>
                 <Typography component="p" sx={{
@@ -158,10 +157,7 @@ export default function TestimonialsPage() {
                         , Auction Manager at Stanley Gibbons Baldwin&apos;s
                     </Box>
                 </Typography>
-
             </Box>
-
-
           </Box>
         </Box>
       </Layout>
