@@ -21,7 +21,6 @@ export default function HomePage() {
       <Head>
         <title>Auction Fusion - Creating the Finest Auction Websites</title>
         <meta name="description" content="Auction Fusion is a next-generation auction website platform built for unparalleled AI / search performance and customer experience" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <Layout
@@ -203,4 +202,3 @@ export default function HomePage() {
     </>
   );
 }
-
