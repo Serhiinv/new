@@ -11,9 +11,8 @@ export default function Index() {
 
     return (
         <Head>
-            <title>Auction Fusion</title>
-            <meta name="description" content="Creating the finest auction websites" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Welcome to Auction Fusion</title>
+            <meta name="description" content="Welcome to Auction Fusion - Creating the Finest Auction Websites" />
         </Head>
     );
 }

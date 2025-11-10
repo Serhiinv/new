@@ -41,6 +41,8 @@ export default function TestimonialsPage() {
         >
           {/* Container for all content */}
           <Box sx={{
+              maxWidth: { xs: "100%", md: "1250px"},
+              margin: "0 auto",
             position: "relative",
             width: "100%",
             boxSizing: "border-box",

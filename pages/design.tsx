@@ -31,7 +31,7 @@ export default function DesignPage() {
             justifyContent: "space-between",
             gap: { xs: 1, md: 4 },
             padding: { xs: "3% 4%", md: "3% 4.5%" },
-            paddingTop: { xs: "32%", md: "0" },
+            paddingTop: { xs: "30%", md: "0" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
             '@media (max-width: 380px)': {

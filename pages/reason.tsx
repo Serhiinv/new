@@ -101,6 +101,9 @@ export default function FeaturesPage() {
                     '@media (min-width: 900px) and (max-width: 1180px)': {
                         pt: 5,
                     },
+                    '@media (min-width: 470px) and (max-width: 820px)': {
+                        mb: "20%",
+                    },
                 }}>
 
                     <Box sx={{

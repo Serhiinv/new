@@ -9,12 +9,56 @@ export default function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1500);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Prevent zoom on double tap
+    let lastTouchEnd = 0;
+    const preventZoom = (e: TouchEvent) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    };
+
+    // Prevent pinch zoom
+    const preventPinchZoom = (e: TouchEvent) => {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    };
+
+    // Prevent keyboard zoom (Ctrl +/-)
+    const preventKeyboardZoom = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=')) {
+        e.preventDefault();
+      }
+    };
+
+    // Prevent wheel zoom (Ctrl + scroll)
+    const preventWheelZoom = (e: WheelEvent) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('touchend', preventZoom, { passive: false });
+    document.addEventListener('touchmove', preventPinchZoom, { passive: false });
+    document.addEventListener('keydown', preventKeyboardZoom);
+    document.addEventListener('wheel', preventWheelZoom, { passive: false });
+
+    return () => {
+      document.removeEventListener('touchend', preventZoom);
+      document.removeEventListener('touchmove', preventPinchZoom);
+      document.removeEventListener('keydown', preventKeyboardZoom);
+      document.removeEventListener('wheel', preventWheelZoom);
+    };
   }, []);
 
   return (
