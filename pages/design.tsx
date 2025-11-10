@@ -89,7 +89,8 @@ export default function DesignPage() {
               gap: { xs: 2, md: 2 },
               order: { xs: 2, md: 2 },
                 maxWidth: "670px",
-                padding: {xs: 0, md: "0 0px"},
+                padding: {xs: 0, md: "0"},
+                pr: {xs: 0, md: "3%"},
                 '@media (max-width: 380px)': {
                   position: "absolute",
                     paddingTop: "83%",
@@ -102,6 +103,10 @@ export default function DesignPage() {
                 color: theme.palette.primary.light,
                 overflowWrap: "break-word",
                 animation: "fadeInUp 0.8s ease-out",
+                  '@media (min-width: 900px) and (max-width: 1180px)': {
+                      ...theme.typography.heading2,
+                      fontSize: "38px",
+                  },
                 "@keyframes fadeInUp": {
                   from: { opacity: 0, transform: "translateY(20px)" },
                   to: { opacity: 1, transform: "translateY(0)" },

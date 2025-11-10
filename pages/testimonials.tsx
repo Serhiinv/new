@@ -30,7 +30,6 @@ export default function TestimonialsPage() {
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
             paddingTop: { xs: "140px", md: "200px" },
-            // paddingBottom: { xs: "5%", md: "80px" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
               '@media (max-width: 380px)': {
@@ -41,13 +40,16 @@ export default function TestimonialsPage() {
         >
           {/* Container for all content */}
           <Box sx={{
-              maxWidth: { xs: "100%", md: "1250px"},
+              maxWidth: { xs: "100%", md: "1320px"},
               margin: "0 auto",
             position: "relative",
             width: "100%",
             boxSizing: "border-box",
             padding: { xs: "28px 0px", md: "48px 60px" },
             animation: "fadeInUp 0.8s ease-out",
+              '@media (min-width: 900px) and (max-width: 1180px)': {
+                    padding: "30px 15px",
+              },
             "@keyframes fadeInUp": {
               from: { opacity: 0, transform: "translateY(20px)" },
               to: { opacity: 1, transform: "translateY(0)" },
