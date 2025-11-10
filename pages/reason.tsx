@@ -119,12 +119,13 @@ export default function FeaturesPage() {
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: {xs: "flex-start", md: "center"},
-                                width: {xs: "100%", md: 320},
-                                height: {xs: "auto", md: 320},
-                                padding: { xs: 0.7, md: 3 },
+                                width: {xs: "100%", md: 310},
+                                height: {xs: "auto", md: 270},
+                                padding: { xs: 0.7, md: 1.5 },
                                 background: theme.palette.whites.dark,
                                 borderRadius: 3,
-                                pl: {xs: 1, md: 0},
+                                pl: {xs: 1, md: 1.5},
+                                pt: {xs: 0.7, md: 2},
                                 animation: `fadeInUp 0.8s ease-out ${index * 0.4}s backwards`,
                                 "@keyframes fadeInUp": {
                                   from: { opacity: 0, transform: "translateY(20px)" },
@@ -135,8 +136,9 @@ export default function FeaturesPage() {
                                   gap: 1,
                                 },
                                 '@media (min-width: 900px) and (max-width: 1180px)': {
-                                    width: {xs: "100%", md: 240},
+                                    width: {xs: "100%", md: 300},
                                     height: {xs: "auto", md: 240},
+                                    // gap: 1,
                                 },
                             }}>
                                 <Typography sx={{
@@ -171,7 +173,10 @@ export default function FeaturesPage() {
                                     ...theme.typography.body1,
                                     color: theme.palette.primary.main,
                                     lineHeight: 1,
-                                    pl: {xs: 2, md: 0},
+                                    pl: {xs: 2, md: 1.5},
+                                    '@media (min-width: 900px) and (max-width: 1180px)': {
+                                        ...theme.typography.body2,
+                                    },
                                     animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
                                     "@keyframes slideInRight": {
                                         from: { opacity: 0, transform: "translateX(100px)" },

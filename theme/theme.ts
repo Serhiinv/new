@@ -548,6 +548,7 @@ const getTheme = (client: string): any => {
                     main: '#262028',
                     contrastText: '#fff',
                     light: '#26334c',
+                    dark: '#424b5e',
                 },
                 secondary: {
                     main: '#F5F5F5',
