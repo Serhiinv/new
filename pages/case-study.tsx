@@ -9,7 +9,7 @@ export default function CaseStudyPage() {
   const theme = useTheme();
 
   const startButton = (
-    <PrimaryButton href="/features">
+    <PrimaryButton href="https://www.lyonandturnbull.com/">
       Lion & Turnbull website
     </PrimaryButton>
   );
@@ -49,8 +49,8 @@ export default function CaseStudyPage() {
                       textAlign: "center",
                       opacity: 1,
                       color: theme.palette.primary.light,
-                      paddingTop: { xs: "25%", md: "8%" },
-                      paddingBottom: { xs: "0", md: "3%" },
+                      paddingTop: { xs: "25%", md: "0" },
+                      paddingBottom: { xs: "0", md: "4%" },
                       margin: 0,
                       animation: "fadeInUp 0.8s ease-out",
                       "@keyframes fadeInUp": {
@@ -72,6 +72,7 @@ export default function CaseStudyPage() {
                       display: "flex",
                       flexDirection: { xs: "column", md: "row" },
                       alignItems: "center",
+                      paddingBottom: { xs: "0", md: "7%" },
                       gap: { xs: 3, md: 4 },
                       '@media (max-width: 380px)': {
                           gap: 2,
@@ -91,7 +92,7 @@ export default function CaseStudyPage() {
                   >
                       <Typography
                           sx={{
-                              ...theme.typography.body2,
+                              ...theme.typography.body1,
                               color: theme.palette.bg.contrastText,
                               animation: "fadeInUp 0.8s ease-out 0.4s backwards",
                               "@keyframes fadeInUp": {
@@ -109,18 +110,6 @@ export default function CaseStudyPage() {
                           <br /><br />
                           The site also features automated and personalised content and cross-links, thematic pages (e.g. Artists and makers) and a host of customer-friendly auction features - all delivered by Auction Fusion, with a customisation layer to make the site uniquely L&T.
                       </Typography>
-
-                      {/* Button - visible on desktop only */}
-                      <Box sx={{
-                          display: { xs: "none", md: "block" },
-                          animation: "fadeInUp 0.8s ease-out 0.6s backwards",
-                          "@keyframes fadeInUp": {
-                              from: { opacity: 0, transform: "translateY(20px)" },
-                              to: { opacity: 1, transform: "translateY(0)" },
-                          },
-                      }}>
-                          {startButton}
-                      </Box>
                   </Box>
 
                   {/* Right half - Image with overlay */}
@@ -131,6 +120,7 @@ export default function CaseStudyPage() {
                           justifyContent: "center",
                           alignItems: "center",
                           order: { xs: 2, md: 2 },
+                          pb: {xs: 0, md: "70px"},
                       }}
                   >
                       <Box
@@ -173,6 +163,22 @@ export default function CaseStudyPage() {
                           />
                       </Box>
                   </Box>
+              </Box>
+
+              {/* Button - visible on desktop only */}
+              <Box sx={{
+                  position: "absolute",
+                  display: { xs: "none", md: "block" },
+                  animation: "fadeInUp 0.8s ease-out 0.6s backwards",
+                  pl: "48%",
+                  pt: "30%",
+                  zIndex: 10,
+                  "@keyframes fadeInUp": {
+                      from: { opacity: 0, transform: "translateY(20px)" },
+                      to: { opacity: 1, transform: "translateY(0)" },
+                  },
+              }}>
+                  {startButton}
               </Box>
 
               {/* Button - visible on mobile only */}
