@@ -1,0 +1,195 @@
+import Head from "next/head";
+import { Box, Typography } from "@mui/material";
+import Layout from "@/components/Layout";
+import { bPath } from "@/config/basePath";
+import PrimaryButton from "@/components/PrimaryButton";
+import { useTheme } from "@mui/material/styles";
+
+export default function CaseStudyPage() {
+  const theme = useTheme();
+
+  const startButton = (
+    <PrimaryButton href="/features">
+      Lion & Turnbull website
+    </PrimaryButton>
+  );
+
+  const themeStyle = theme.palette.whites.main;
+
+  return (
+    <>
+      <Head>
+        <title>Case Study - Auction Fusion</title>
+        <meta name="description" content="Real-world success stories and case studies from Auction Fusion clients" />
+      </Head>
+
+      <Layout
+        showContactButton={true}
+        prevPage="/why-us"
+        nextPage="/contact"
+        logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
+        backgroundColor={themeStyle}
+      >
+          <Box sx={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              padding: { xs: "3% 4%", md: "3% 4.5%" },
+              maxWidth: { xs: "100%", md: "1600px"},
+              margin: "0 auto",
+              '@media (max-width: 380px)': {
+                  padding: "2% 3%",
+              },
+          }}>
+              <Typography
+                  sx={{
+                      ...theme.typography.heading1,
+                      textAlign: "center",
+                      opacity: 1,
+                      color: theme.palette.primary.light,
+                      paddingTop: { xs: "25%", md: "8%" },
+                      paddingBottom: { xs: "0", md: "3%" },
+                      margin: 0,
+                      animation: "fadeInUp 0.8s ease-out",
+                      "@keyframes fadeInUp": {
+                          from: { opacity: 0, transform: "translateY(20px)" },
+                          to: { opacity: 1, transform: "translateY(0)" },
+                      },
+                      '@media (max-width: 380px)': {
+                          paddingTop: "28%",
+                          fontSize: "1.8rem",
+                      },
+                  }}
+              >
+                  Case study: conversions per customer up 500%
+              </Typography>
+
+              <Box
+                  sx={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: { xs: "column", md: "row" },
+                      alignItems: "center",
+                      gap: { xs: 3, md: 4 },
+                      '@media (max-width: 380px)': {
+                          gap: 2,
+                      },
+                  }}
+              >
+                  {/* Left half - Text content */}
+                  <Box
+                      sx={{
+                          flex: 1,
+                          textAlign: { xs: "center", md: "left" },
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: { xs: 2, md: 3 },
+                          order: { xs: 1, md: 1 },
+                      }}
+                  >
+                      <Typography
+                          sx={{
+                              ...theme.typography.body2,
+                              color: theme.palette.bg.contrastText,
+                              animation: "fadeInUp 0.8s ease-out 0.4s backwards",
+                              "@keyframes fadeInUp": {
+                                  from: { opacity: 0, transform: "translateY(20px)" },
+                                  to: { opacity: 1, transform: "translateY(0)" },
+                              },
+                              '@media (max-width: 380px)': {
+                                  fontSize: "0.9rem",
+                              },
+                          }}
+                      >
+                          Auction Fusion has transformed Lyon and Turnbull's website and digital brand. It's revolutionised their SEO and AEO - reach, relevancy and ranking. It's given L&T a bespoke online web brand which their customers love (88% rating it 4 or 5 out of 5).
+                          <br /><br />
+                          From 'go live' of the new Auction Fusion site, we retained over 100,000 historic lots and auction links with smart 1-2-1 redirection.
+                          <br /><br />
+                          The site also features automated and personalised content and cross-links, thematic pages (e.g. Artists and makers) and a host of customer-friendly auction features - all delivered by Auction Fusion, with a customisation layer to make the site uniquely L&T.
+                      </Typography>
+
+                      {/* Button - visible on desktop only */}
+                      <Box sx={{
+                          display: { xs: "none", md: "block" },
+                          animation: "fadeInUp 0.8s ease-out 0.6s backwards",
+                          "@keyframes fadeInUp": {
+                              from: { opacity: 0, transform: "translateY(20px)" },
+                              to: { opacity: 1, transform: "translateY(0)" },
+                          },
+                      }}>
+                          {startButton}
+                      </Box>
+                  </Box>
+
+                  {/* Right half - Image with overlay */}
+                  <Box
+                      sx={{
+                          flex: 1,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          order: { xs: 2, md: 2 },
+                      }}
+                  >
+                      <Box
+                          sx={{
+                              maxWidth: {xs: "50%", md: "600px"},
+                              width: "100%",
+                              position: "relative",
+                          }}
+                      >
+                          <Box
+                              component="img"
+                              alt="Case Study Background"
+                              src={`${bPath}/case-study.jpeg`}
+                              sx={{
+                                  width: "100%",
+                                  height: "auto",
+                                  cursor: "pointer",
+                                  transition: "opacity 0.3s",
+                                  position: "relative",
+                                  zIndex: 0,
+                                  "&:hover": { opacity: 0.9 },
+                              }}
+                          />
+                          <Box
+                              component="img"
+                              alt="Auction Website Preview"
+                              src={`${bPath}/case-study-over.png`}
+                              sx={{
+                                  position: "absolute",
+                                  top: "39%",
+                                  left: "50%",
+                                  transform: "translate(-30%, 40%) rotate(20deg)",
+                                  width: { xs: "70%", md: "60%" },
+                                  height: "auto",
+                                  zIndex: 10,
+                                  '@media (max-width: 380px)': {
+                                      width: "65%",
+                                  },
+                              }}
+                          />
+                      </Box>
+                  </Box>
+              </Box>
+
+              {/* Button - visible on mobile only */}
+              <Box sx={{
+                  display: { xs: "flex", md: "none" },
+                  justifyContent: "center",
+                  paddingTop: { xs: "5%", md: 0 },
+                  paddingBottom: { xs: "5%", md: 0 },
+                  '@media (max-width: 380px)': {
+                      paddingTop: "3%",
+                      paddingBottom: "3%",
+                  },
+              }}>
+                  {startButton}
+              </Box>
+          </Box>
+      </Layout>
+    </>
+  );
+}
