@@ -23,10 +23,11 @@ export default function TestimonialsPage() {
         <Box
           sx={{
             width: "100%",
-            height: "100%",
+              minHeight: { xs: "90vh", md: "100%" },
+              height: { xs: "auto", md: "100%" },
             display: "flex",
               justifyContent: "center",
-            padding: { xs: "80px 25px", md: "200px 110px 50px" },
+            padding: { xs: "29px 25px", md: "200px 110px 50px" },
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
             paddingTop: { xs: "140px", md: "200px" },
@@ -34,7 +35,11 @@ export default function TestimonialsPage() {
             margin: "0 auto",
               '@media (max-width: 380px)': {
                   padding: { xs: "0px 15px"},
-                  marginTop: "155px",
+                  marginTop: "63px",
+              },
+              '@media (min-width: 470px) and (max-width: 820px)': {
+                  paddingTop: "120px",
+                  minHeight: "94.5vh",
               },
           }}
         >
@@ -111,12 +116,19 @@ export default function TestimonialsPage() {
 
               <Typography component="p" sx={{
                   ...theme.typography.body1,
+                  '@media (max-width: 380px)': {
+                      ...theme.typography.body2,
+                  },
+
                   m: 0 }}>
                 To Auction Fusion&apos;s credit <strong>our improvement in SEO has been nothing less than stratospheric.</strong> Coupled with much improved functionality in critical areas like searching, image rendering, and lot alerts we are in a much better position to compete for consignments and bidders.
               </Typography>
 
               <Typography component="p" sx={{
                   ...theme.typography.body1,
+                  '@media (max-width: 380px)': {
+                      ...theme.typography.body2,
+                  },
                   mt: 2, mb: 0 }}>
                 The exciting results continue with <strong>100% sold</strong> in our following 2 auctions. Thanks for all the hard work behind the scenes to make this auction a success.
               </Typography>
@@ -143,7 +155,8 @@ export default function TestimonialsPage() {
                     '@media (max-width: 380px)':{
                         paddingTop: "3%",
                         mt: 1,
-                        marginBottom: "25px",
+                        // marginBottom: "10px",
+                        paddingBottom: "1px",
                     },
                 }}>
                     <Box component="span" sx={{

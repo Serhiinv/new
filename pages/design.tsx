@@ -24,22 +24,25 @@ export default function DesignPage() {
         <Box
           sx={{
             width: "100%",
-            height: "100%",
+            minHeight: { xs: "90vh", md: "100%" },
+            height: { xs: "auto", md: "100%" },
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
             gap: { xs: 1, md: 4 },
             padding: { xs: "3% 4%", md: "3% 4.5%" },
-            paddingTop: { xs: "30%", md: "0" },
+            paddingTop: { xs: "140px", md: "3%" },
+              paddingBottom: { xs: "15%", md: "0%" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
             '@media (max-width: 380px)': {
               padding: "0 3%",
-              paddingTop: "12%",
+              paddingTop: "80px",
             },
             '@media (min-width: 470px) and (max-width: 820px)': {
-              paddingTop: "18%",
+              paddingTop: "150px",
+                minHeight: "95vh",
             },
           }}
         >
@@ -52,8 +55,8 @@ export default function DesignPage() {
               alignItems: "center",
               order: { xs: 1, md: 1 },
                 '@media (max-width: 380px)': {
-                    position: "absolute",
-                    paddingTop: "21%",
+                    paddingTop: "45px",
+                    maxWidth: "300px",
                 },
             }}
           >
@@ -92,8 +95,8 @@ export default function DesignPage() {
                 padding: {xs: 0, md: "0"},
                 pr: {xs: 0, md: "3%"},
                 '@media (max-width: 380px)': {
-                  position: "absolute",
-                    paddingTop: "83%",
+                    paddingTop: "8px",
+                    paddingBottom: "45px",
                 },
             }}
           >

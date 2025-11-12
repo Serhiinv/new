@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         <link rel="icon" href="/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600&display=swap"
@@ -17,9 +17,6 @@ export default function Document() {
           }
           html, body {
             overflow-x: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
           }
           body {
             overscroll-behavior: none;
@@ -27,6 +24,14 @@ export default function Document() {
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+          }
+
+          @media (max-width: 820px) {
+            html, body {
+              position: static;
+              height: auto;
+              min-height: 100%;
+            }
           }
         `}</style>
       </Head>
@@ -37,3 +42,10 @@ export default function Document() {
     </Html>
   );
 }
+
+
+
+
+
+
+

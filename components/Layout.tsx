@@ -40,7 +40,27 @@ export default function Layout({
   const router = useRouter();
   const currentPath = router.pathname;
   const theme = useTheme();
-  // const hideNextOnHomeMobile = currentPath === "/home";
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  // Detect if we should use mobile layout (actual mobile OR zoomed desktop)
+  useEffect(() => {
+    const checkViewport = () => {
+      const actualWidth = window.innerWidth;
+      const viewportWidth = window.visualViewport?.width || actualWidth;
+      const isZoomed = viewportWidth < actualWidth * 0.95;
+      const isMobile = actualWidth <= 820;
+      setIsMobileView(isMobile || isZoomed);
+    };
+
+    checkViewport();
+    window.addEventListener('resize', checkViewport);
+    window.visualViewport?.addEventListener('resize', checkViewport);
+
+    return () => {
+      window.removeEventListener('resize', checkViewport);
+      window.visualViewport?.removeEventListener('resize', checkViewport);
+    };
+  }, []);
 
   // Swipe handler
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -92,28 +112,30 @@ export default function Layout({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       sx={{
-        position: "fixed",
+        position: { xs: "static", md: isMobileView ? "static" : "fixed" },
         top: 0,
         left: 0,
         width: "100%",
-        height: "100%",
+        minHeight: { xs: "90vh", md: isMobileView ? "100vh" : "100%" },
+        height: { xs: "auto", md: isMobileView ? "auto" : "100%" },
         background: backgroundColor,
         display: "flex",
-        alignItems: "center",
+        alignItems: { xs: "flex-start", md: isMobileView ? "flex-start" : "center" },
         justifyContent: "center",
-        overflow: "hidden",
+        overflow: { xs: "visible", md: isMobileView ? "visible" : "hidden" },
         fontFamily: theme.typography.fontFamily,
       }}
     >
       <Box
         sx={{
           width: "100%",
-          height: "100%",
+          minHeight: { xs: "90vh", md: isMobileView ? "100vh" : "100%" },
+          height: { xs: "auto", md: isMobileView ? "auto" : "100%" },
           maxWidth: { xs: "100%", md: "1600px" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: { xs: "flex-start", md: isMobileView ? "flex-start" : "center" },
           position: "relative",
         }}
       >
@@ -190,7 +212,6 @@ export default function Layout({
                   component={Link}
                   href={nextPage}
                   sx={{
-                    // display: hideNextOnHomeMobile ? { xs: "none", md: "inline-flex" } : undefined,
                     display: { xs: "none", md: "inline-flex" }, //hide on mobile always
                     width: 40,
                     height: 40,

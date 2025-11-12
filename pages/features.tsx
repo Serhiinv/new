@@ -154,19 +154,28 @@ export default function FeaturesPage() {
 
                 <Box sx={{
                     width: "100%",
-                    height: "100%",
+                    minHeight: { xs: "90vh", md: "100%" },
+                    height: { xs: "auto", md: "100%" },
                     display: "flex",
                     background: themeStyle,
                     padding: {xs: "3% 4%", md: "3% 5.5%"},
                     flexDirection: "column",
                     gap: { xs: 3, md: 10 },
-                    paddingTop: { xs: "34%", md: "0" },
+                    paddingTop: { xs: "35%", md: "0%" },
+                    paddingBottom: { xs: "0%", md: "0%" },
                     maxWidth: { xs: "100%", md: "1600px"},
                     justifyContent: {md: "center"},
                     margin: "0 auto",
                     '@media (max-width: 380px)': {
                         padding: "2% 3%",
                         paddingTop: "33%",
+                        paddingBottom: "26.5%",
+                    },
+                    '@media (min-width: 470px) and (max-width: 1140px)': {
+                        minHeight: "94.5vh",
+                        paddingTop: "200px",
+                        paddingBottom: "30%",
+                        gap: 3,
                     },
                 }}>
                     <Typography
