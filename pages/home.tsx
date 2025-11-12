@@ -36,8 +36,9 @@ export default function HomePage() {
       maxWidth: { xs: "100%", md: "1600px" },
       margin: "0 auto",
       '@media (max-width: 380px)': {
+          height: "80%",
         padding: "2% 3%",
-        paddingTop: "32%",
+        paddingTop: "120px",
         paddingBottom: "1%",
         gap: 1,
       },
@@ -63,6 +64,9 @@ export default function HomePage() {
       color: theme.palette.primary.light,
       overflowWrap: "break-word",
       margin: 0,
+        '@media (max-width: 380px)': {
+            ...theme.typography.heading2,
+        },
       animation: "fadeInUp 0.8s ease-out",
       ...fadeInUpAnimation,
     },
@@ -73,6 +77,9 @@ export default function HomePage() {
       marginTop: { xs: "0%", md: "140px" },
       '@media (min-width: 821px) and (max-width: 1140px)': {
         marginTop: "20px",
+      },
+      '@media (max-width: 380px)': {
+      ...theme.typography.body3,
       },
       ...fadeInUpAnimation,
     },
