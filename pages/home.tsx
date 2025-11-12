@@ -30,7 +30,7 @@ export default function HomePage() {
       justifyContent: "space-between",
       gap: { xs: 2, md: 4 },
       padding: { xs: "3% 4%", md: "3% 4.5%" },
-      paddingTop: { xs: "120px", md: "3%" },
+      paddingTop: { xs: "125px", md: "3%" },
       paddingBottom: { xs: "15%", md: "3%" },
       animation: "slideIn 0.6s ease-out",
       maxWidth: { xs: "100%", md: "1600px" },
@@ -132,7 +132,7 @@ export default function HomePage() {
       order: { xs: 3 },
       mt: { xs: "20px", md: 0 },
       '@media (max-width: 380px)': {
-        mt: "6%",
+        mt: "3.5%",
         mb: "7%",
       },
       '@media (min-width: 470px) and (max-width: 820px)': {
