@@ -35,7 +35,7 @@ export default function TestimonialsPage() {
             margin: "0 auto",
               '@media (max-width: 380px)': {
                   padding: { xs: "0px 15px"},
-                  marginTop: "63px",
+                  marginTop: "55px",
               },
               '@media (min-width: 470px) and (max-width: 820px)': {
                   paddingTop: "120px",
@@ -117,7 +117,7 @@ export default function TestimonialsPage() {
               <Typography component="p" sx={{
                   ...theme.typography.body1,
                   '@media (max-width: 380px)': {
-                      ...theme.typography.body2,
+                      ...theme.typography.body3,
                   },
 
                   m: 0 }}>

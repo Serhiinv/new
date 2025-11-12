@@ -113,7 +113,10 @@ export default function FeaturesPage() {
         handAnimation: {
             display: { xs: "block", md: "none" },
             position: "fixed",
-            bottom: "10%",
+            bottom: "12.5%",
+            '@media (max-width: 380px)': {
+                bottom: "20%",
+            },
             right: "10%",
             transform: "translateY(50%)",
             zIndex: 1000,
@@ -138,7 +141,7 @@ export default function FeaturesPage() {
             margin: "0 auto",
             '@media (max-width: 380px)': {
                 padding: "2% 3%",
-                paddingTop: "33%",
+                paddingTop: "122px",
                 paddingBottom: "26.5%",
             },
             '@media (min-width: 470px) and (max-width: 1140px)': {
@@ -162,7 +165,7 @@ export default function FeaturesPage() {
             maxWidth: "1100px",
             margin: "0 auto",
             '@media (max-width: 380px)': {
-                gap: 1.5,
+                gap: 0.7,
             },
         },
         featureCard: (index: number) => ({
@@ -175,7 +178,7 @@ export default function FeaturesPage() {
             animation: `fadeInUp 0.8s ease-out ${index * 0.4}s backwards`,
             ...animations.fadeInUp,
             '@media (max-width: 380px)': {
-                padding: 1.2,
+                padding: 0.7,
                 gap: 1,
             },
         }),
