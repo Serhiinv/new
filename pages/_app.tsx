@@ -35,11 +35,11 @@ export default function App({ Component, pageProps }: AppProps) {
     };
 
     // Prevent keyboard zoom (Ctrl +/-)
-    const preventKeyboardZoom = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=')) {
-        e.preventDefault();
-      }
-    };
+    // const preventKeyboardZoom = (e: KeyboardEvent) => {
+    //   if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=')) {
+    //     e.preventDefault();
+    //   }
+    // };
 
     // Prevent wheel zoom (Ctrl + scroll)
     const preventWheelZoom = (e: WheelEvent) => {
@@ -50,13 +50,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
     document.addEventListener('touchend', preventZoom, { passive: false });
     document.addEventListener('touchmove', preventPinchZoom, { passive: false });
-    document.addEventListener('keydown', preventKeyboardZoom);
+    // document.addEventListener('keydown', preventKeyboardZoom);
     document.addEventListener('wheel', preventWheelZoom, { passive: false });
 
     return () => {
       document.removeEventListener('touchend', preventZoom);
       document.removeEventListener('touchmove', preventPinchZoom);
-      document.removeEventListener('keydown', preventKeyboardZoom);
+      // document.removeEventListener('keydown', preventKeyboardZoom);
       document.removeEventListener('wheel', preventWheelZoom);
     };
   }, []);

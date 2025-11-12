@@ -83,10 +83,13 @@ export default function HomePage() {
                 '@media (max-width: 380px)': {
                   paddingTop: "30%",
                 },
-                '@media (min-width: 470px) and (max-width: 820px)': {
+                '@media (min-width: 470px) and (max-width: 1140px)': {
                   paddingTop: "15%",
                   width: "calc(100% - 60px)",
                 },
+                  '@media ((min-width: 821px) and (max-width: 1140px)), ((max-width: 820px) and (max-height: 902px))': {
+                      paddingTop: "100px",
+                  },
               }}
             >
                 Creating the finest auction websites
@@ -108,6 +111,9 @@ export default function HomePage() {
                 '@media (min-width: 470px) and (max-width: 820px)': {
                   marginTop: "33%",
                 },
+                  '@media ((min-width: 821px) and (max-width: 1140px)), ((max-width: 820px) and (max-height: 902px))': {
+                      marginTop: "190px",
+                  },
               }}
             >
               Auction Fusion is a next-generation auction website platform built for
@@ -143,6 +149,16 @@ export default function HomePage() {
                 mx: "auto",
                 mt: { xs: "-20%", md: 2 },
                 position: "relative",
+
+                  '@media ((min-width: 821px) and (max-width: 1140px)), ((max-width: 820px) and (max-height: 902px))': {
+                  // '@media (min-width: 821px) and (max-width: 1140px)': {
+                      maxWidth: "400px",
+                      position: "absolute",
+                      bottom: "120px",
+                      mt: "0px",
+                      mb:"0px",
+                  },
+
                 '@media (max-width: 380px)': {
                   mt: "-10%",
                 },
