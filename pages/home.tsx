@@ -22,8 +22,8 @@ export default function HomePage() {
   const styles = useMemo(() => ({
     container: {
       width: "100%",
-      minHeight: { xs: "90vh", md: "100%" },
-      height: { xs: "auto", md: "100%" },
+      height: { xs: "100%", md: "100%" },
+      minHeight: { xs: "auto", md: "100%" },
       display: "flex",
       flexDirection: { xs: "column", md: "row" },
       alignItems: "center",
