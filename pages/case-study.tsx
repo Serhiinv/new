@@ -40,7 +40,7 @@ export default function CaseStudyPage() {
               justifyContent: "center",
               textAlign: "center",
               padding: { xs: "3% 4%", md: "3% 4.5%" },
-              paddingTop: { xs: "140px", md: "3%" },
+              paddingTop: { xs: "140px", md: "1%" },
               paddingBottom: { xs: "15%", md: "0%" },
               maxWidth: { xs: "100%", md: "1600px"},
               margin: "0 auto",
@@ -119,9 +119,9 @@ export default function CaseStudyPage() {
                               },
                           }}
                       >
-                          Auction Fusion has transformed Lyon and Turnbull's website and digital brand. It's revolutionised their SEO and AEO - reach, relevancy and ranking. It's given L&T a bespoke online web brand which their customers love (88% rating it 4 or 5 out of 5).
+                          Auction Fusion has transformed Lyon and Turnbull&apos;s website and digital brand. It&apos;s revolutionised their SEO and AEO - reach, relevancy and ranking. It&apos;s given L&T a bespoke online web brand which their customers love (88% rating it 4 or 5 out of 5).
                           <br /><br />
-                          From 'go live' of the new Auction Fusion site, we retained over 100,000 historic lots and auction links with smart 1-2-1 redirection.
+                          From &apos;go live&apos; of the new Auction Fusion site, we retained over 100,000 historic lots and auction links with smart 1-2-1 redirection.
                           <br /><br />
                           <Box component="span" sx={{
                               display: { xs: "none", md: "inline" },
