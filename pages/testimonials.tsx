@@ -79,7 +79,7 @@ export default function TestimonialsPage() {
                 <Box sx={{ position: "absolute",
                     top: { xs: 3, md:5 },
                     left: { xs: 0, md: 0 },
-                    width: { xs: 36, md: 80 }, height: { xs: 36, md: 80 },
+                    width: { xs: 36, md: 70 }, height: { xs: 36, md: 70 },
                     '@media (min-width: 470px) and (max-width: 820px)': {
                         width: 50,
                         height: 50,
@@ -98,8 +98,8 @@ export default function TestimonialsPage() {
                 <Box sx={{ position: "absolute",
                     bottom: { xs: 5, md: 5 },
                     right: { xs: 8, md: 0 },
-                    width: { xs: 36, md: 80 },
-                    height: { xs: 36, md: 80 },
+                    width: { xs: 36, md: 70 },
+                    height: { xs: 36, md: 70 },
                     '@media (min-width: 470px) and (max-width: 820px)': {
                         width: 50,
                         height: 50,
@@ -148,14 +148,13 @@ export default function TestimonialsPage() {
                 <Typography component="p" sx={{
                     textAlign: 'center',
                     color: theme.palette.whites.main,
-                    ...theme.typography.body1,
+                    ...theme.typography.body2,
                     mt: 2,
                     paddingTop: { xs: "8%", md: "0" },
                     paddingBottom: { xs: "8%", md: "0" },
                     '@media (max-width: 380px)':{
                         paddingTop: "3%",
                         mt: 1,
-                        // marginBottom: "10px",
                         paddingBottom: "1px",
                     },
                 }}>
@@ -169,6 +168,9 @@ export default function TestimonialsPage() {
 
                     <Box component="span" sx={{
                         display: { xs: 'none', md: 'inline-block' },
+                        '@media (min-width: 1228px) and (min-height: 590px)': {  //wor windows 125%
+                            transform: 'translateY(-20px)',
+                        },
                     }}>
                         -<strong> Edward Barrow</strong>
                         , Auction Manager at Stanley Gibbons Baldwin&apos;s

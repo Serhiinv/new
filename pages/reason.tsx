@@ -113,12 +113,15 @@ export default function FeaturesPage() {
                         gridTemplateColumns: {xs: "1fr", md: "repeat(3, 1fr)"},
                         gap: { xs: 1.5, md: 4 },
                         margin: "0 auto",
-                        paddingTop: { xs: "0%", md: "5%" },
+                        paddingTop: { xs: "0%", md: "5.5%" },
                         '@media (max-width: 380px)': {
                           gap: 1.2,
                         },
                         '@media (min-width: 470px) and (max-width: 820px)': {
                             gap: 3,
+                        },
+                        '@media (min-width: 1220px) and (max-height: 595px)': {
+                           gap: 2,
                         },
                     }}>
                         {features.map((feature, index) => (
@@ -146,6 +149,11 @@ export default function FeaturesPage() {
                                     width: {xs: "100%", md: 300},
                                     height: {xs: "auto", md: 215},
                                 },
+                                '@media (min-width: 1220px) and (max-height: 595px)': {
+                                    width: 330,
+                                    height: 190,
+                                },
+
                             }}>
                                 <Typography sx={{
                                     ...theme.typography.heading2,
@@ -178,6 +186,9 @@ export default function FeaturesPage() {
                                         pl: 1,
                                         lineHeight: 0.7,
                                     },
+                                    '@media (min-width: 1220px) and (max-height: 595px)': {
+                                        ...theme.typography.heading2,
+                                    },
                                     animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
                                     "@keyframes slideInRight": {
                                         from: { opacity: 0, transform: "translateX(100px)" },
@@ -196,6 +207,9 @@ export default function FeaturesPage() {
                                     },
                                     '@media (min-width: 900px) and (max-width: 1180px)': {
                                         ...theme.typography.body2,
+                                    },
+                                    '@media (min-width: 1220px) and (max-height: 595px)': {
+                                        fontSize: 23,
                                     },
                                     animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
                                     "@keyframes slideInRight": {
