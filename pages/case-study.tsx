@@ -101,7 +101,6 @@ export default function CaseStudyPage() {
                           order: { xs: 1, md: 1 },
                           maxWidth: "670px",
                           pl: { xs: 0, md: "2%"},
-                          pr: { xs: 0, md: 0 },
                       }}
                   >
                       <Typography
