@@ -139,7 +139,7 @@ export default function FeaturesPage() {
                                   to: { opacity: 1, transform: "translateY(0)" },
                                 },
                                 '@media (max-width: 380px)': {
-                                  padding: 0.3,
+                                  padding: 0.5,
                                   gap: 0.5,
                                 },
                                 '@media (min-width: 900px) and (max-width: 1180px)': {

@@ -115,7 +115,7 @@ export default function FeaturesPage() {
             position: "fixed",
             bottom: "12.5%",
             '@media (max-width: 380px)': {
-                bottom: "20%",
+                bottom: "15%",
             },
             right: "10%",
             transform: "translateY(50%)",
@@ -140,6 +140,7 @@ export default function FeaturesPage() {
             justifyContent: { md: "center" },
             margin: "0 auto",
             '@media (max-width: 380px)': {
+                // minHeight: "90vh",
                 padding: "2% 3%",
                 paddingTop: "122px",
                 paddingBottom: "26.5%",

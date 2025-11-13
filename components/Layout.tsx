@@ -148,7 +148,7 @@ export default function Layout({
         <Box
           sx={{
             position: "absolute",
-            top: { xs: 15, md: 20 },
+            top: { xs: 20, md: 20 },
             left: "50%",
             transform: "translateX(-50%)",
             zIndex: 100,
@@ -250,7 +250,7 @@ export default function Layout({
             gap: 2,
             zIndex: 100,
             '@media (max-width: 380px)': {
-              bottom: "1%",
+              bottom: "3%",
             },
           }}
         >

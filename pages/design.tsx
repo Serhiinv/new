@@ -95,7 +95,7 @@ export default function DesignPage() {
                 padding: {xs: 0, md: "0"},
                 pr: {xs: 0, md: "3%"},
                 '@media (max-width: 380px)': {
-                    paddingTop: "8px",
+                    paddingTop: "4px",
                     paddingBottom: "45px",
                 },
             }}
