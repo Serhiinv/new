@@ -41,9 +41,6 @@ export default function TestimonialsPage() {
                   paddingTop: "120px",
                   minHeight: "94.5vh",
               },
-              // '@media (min-width: 1228px) and (min-height: 590px)': {  //wor windows 125%
-              //
-              // },
           }}
         >
           {/* Container for all content */}
@@ -158,11 +155,8 @@ export default function TestimonialsPage() {
                     '@media (max-width: 380px)':{
                         paddingTop: "3%",
                         mt: 1,
-                        // marginBottom: "10px",
                         paddingBottom: "1px",
                     },
-                    // '@media (min-width: 1228px) and (min-height: 590px)': {  //wor windows 125%
-                    // },
                 }}>
                     <Box component="span" sx={{
                         display: { xs: 'inline-block', md: 'none' },
