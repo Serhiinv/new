@@ -27,7 +27,7 @@ export default function TestimonialsPage() {
               height: { xs: "auto", md: "100%" },
             display: "flex",
               justifyContent: "center",
-            padding: { xs: "29px 25px", md: "200px 110px 50px" },
+            padding: { xs: "29px 10px", md: "200px 110px 50px" },
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
             paddingTop: { xs: "140px", md: "200px" },
