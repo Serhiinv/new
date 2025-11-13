@@ -145,46 +145,63 @@ export default function CaseStudyPage() {
                   >
                       <Box
                           sx={{
-                              maxWidth: {xs: "70%", md: "600px"},
+                              maxWidth: {xs: "80%", md: "600px"},
                               width: "90%",
                               position: "relative",
+                              transform: 'translateY(-25px)',
                           }}
                       >
                           <Box
-                              component="img"
-                              alt="Case Study Background"
-                              src={`${bPath}/case-study.jpeg`}
-                              sx={{
-                                  width: "100%",
-                                  height: "auto",
-                                  cursor: "pointer",
-                                  transition: "opacity 0.3s",
-                                  position: "relative",
-                                  zIndex: 0,
-                                  "&:hover": { opacity: 0.8 },
-                              }}
-                          />
+                              component="a"
+                              href="https://www.lyonandturnbull.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              sx={{ display: 'block' }}
+                          >
+                              <Box
+                                  component="img"
+                                  alt="Case Study Background"
+                                  src={`${bPath}/case-study.jpeg`}
+                                  sx={{
+                                      width: "100%",
+                                      height: "auto",
+                                      cursor: "pointer",
+                                      transition: "opacity 0.3s",
+                                      position: "relative",
+                                      zIndex: 0,
+                                      "&:hover": { opacity: 0.8 },
+                                  }}
+                              />
+                          </Box>
                           <Box
-                              component="img"
-                              alt="Auction Website Preview"
-
-                              src={`${bPath}/case-study-over.png`}
+                              component="a"
+                              href="https://www.lyonandturnbull.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
                               sx={{
                                   position: "absolute",
                                   top: "39%",
                                   left: "50%",
                                   transform: "translate(-30%, 40%) rotate(20deg)",
-                                  cursor: "pointer",
-                                  transition: "opacity 0.3s",
-                                  "&:hover": { opacity: 0.8 },
-                                  width: { xs: "70%", md: "60%" },
-                                  height: "auto",
                                   zIndex: 10,
-                                  '@media (max-width: 380px)': {
-                                      width: "65%",
-                                  },
                               }}
-                          />
+                          >
+                              <Box
+                                  component="img"
+                                  alt="Auction Website Preview"
+                                  src={`${bPath}/case-study-over.png`}
+                                  sx={{
+                                      cursor: "pointer",
+                                      transition: "opacity 0.3s",
+                                      "&:hover": { opacity: 0.8 },
+                                      width: { xs: "100%", md: "120%" },
+                                      height: "auto",
+                                      '@media (max-width: 380px)': {
+                                          width: "65%",
+                                      },
+                                  }}
+                              />
+                          </Box>
                       </Box>
                   </Box>
               </Box>
@@ -207,7 +224,6 @@ export default function CaseStudyPage() {
                       position: "absolute",
                   justifyContent: "center",
                   bottom: "15px",
-                  // paddingTop: { xs: "15%", md: 0 },
                   paddingBottom: { xs: "5%", md: "0" },
                   zIndex: 15,
                   '@media (max-width: 380px)': {
