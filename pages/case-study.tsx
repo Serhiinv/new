@@ -45,7 +45,7 @@ export default function CaseStudyPage() {
           }}>
               <Typography
                   sx={{
-                      ...theme.typography.heading1,
+                      ...theme.typography.heading2,
                       textAlign: "center",
                       opacity: 1,
                       color: theme.palette.primary.light,
@@ -88,11 +88,14 @@ export default function CaseStudyPage() {
                           flexDirection: "column",
                           gap: { xs: 2, md: 3 },
                           order: { xs: 1, md: 1 },
+                          pl: { xs: 0, md: "2%"},
+                          pr: { xs: 1, md: 0 },
                       }}
                   >
                       <Typography
                           sx={{
-                              ...theme.typography.body1,
+                              ...theme.typography.body2,
+                              fontWeight: "bold",
                               color: theme.palette.bg.contrastText,
                               animation: "fadeInUp 0.8s ease-out 0.4s backwards",
                               "@keyframes fadeInUp": {
@@ -120,13 +123,13 @@ export default function CaseStudyPage() {
                           justifyContent: "center",
                           alignItems: "center",
                           order: { xs: 2, md: 2 },
-                          pb: {xs: 0, md: "70px"},
+                          pb: {xs: 0, md: "90px"},
                       }}
                   >
                       <Box
                           sx={{
                               maxWidth: {xs: "50%", md: "600px"},
-                              width: "100%",
+                              width: "90%",
                               position: "relative",
                           }}
                       >
