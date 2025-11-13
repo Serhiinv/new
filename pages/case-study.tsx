@@ -101,7 +101,7 @@ export default function CaseStudyPage() {
                           order: { xs: 1, md: 1 },
                           maxWidth: "670px",
                           pl: { xs: 0, md: "2%"},
-                          pr: { xs: 1, md: 0 },
+                          pr: { xs: 0, md: 0 },
                       }}
                   >
                       <Typography
@@ -148,7 +148,7 @@ export default function CaseStudyPage() {
                               maxWidth: {xs: "80%", md: "600px"},
                               width: "90%",
                               position: "relative",
-                              transform: 'translateY(-25px)',
+                              transform: 'translateY(-20px)',
                           }}
                       >
                           <Box
