@@ -49,7 +49,7 @@ export default function CaseStudyPage() {
                   paddingTop: "80px",
               },
               '@media (min-width: 470px) and (max-width: 820px)': {
-                  paddingTop: "150px",
+                  paddingTop: "50px",
                   minHeight: "95vh",
               },
           }}>
