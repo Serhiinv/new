@@ -40,7 +40,33 @@ export default function Layout({
   const router = useRouter();
   const currentPath = router.pathname;
   const theme = useTheme();
-  // const hideNextOnHomeMobile = currentPath === "/home";
+  const [isActualMobileDevice, setIsActualMobileDevice] = useState(false);
+
+  // Detect if we're on an actual mobile device (not a resized desktop browser)
+  useEffect(() => {
+    const checkIfActualMobile = () => {
+      // Check for touch capability
+      const isTouchDevice = () => {
+        return (
+          (typeof window !== 'undefined' && 'ontouchstart' in window) ||
+          (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0)
+        );
+      };
+
+      // Check if viewport width is small (actual mobile devices)
+      const isSmallViewport = window.innerWidth <= 820;
+
+      // Only consider it a real mobile device if both conditions are true
+      setIsActualMobileDevice(isTouchDevice() && isSmallViewport);
+    };
+
+    checkIfActualMobile();
+    window.addEventListener('resize', checkIfActualMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkIfActualMobile);
+    };
+  }, []);
 
   // Swipe handler
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -92,36 +118,37 @@ export default function Layout({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       sx={{
-        position: "fixed",
+        position: isActualMobileDevice ? "fixed" : "relative",
         top: 0,
         left: 0,
         width: "100%",
-        height: "100%",
+        height: isActualMobileDevice ? "90vh" : "auto",
+        minHeight: "100vh",
         background: backgroundColor,
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
-        overflow: "hidden",
+        overflow: isActualMobileDevice ? "hidden" : "visible",
         fontFamily: theme.typography.fontFamily,
       }}
     >
       <Box
         sx={{
           width: "100%",
-          height: "100%",
-          maxWidth: { xs: "100%", md: "1600px" },
+          height: isActualMobileDevice ? "90vh" : "auto",
+          maxWidth: { xs: "90%", md: "1600px" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: { xs: "flex-start", md: "center" },
           position: "relative",
+          overflowY: isActualMobileDevice ? "hidden" : "visible",
         }}
       >
         {/* Logo */}
         <Box
           sx={{
             position: "absolute",
-            top: { xs: 20, md: 10 },
+            top: { xs: 20, md: 20 },
             left: "50%",
             transform: "translateX(-50%)",
             zIndex: 100,
@@ -167,7 +194,7 @@ export default function Layout({
                   component={Link}
                   href={prevPage}
                   sx={{
-                    display: { xs: "none", md: "inline-flex" }, //hide on mobile always
+                    display: { xs: "none", md: "inline-flex" },
                     width: 40,
                     height: 40,
                     borderRadius: 2,
@@ -190,8 +217,7 @@ export default function Layout({
                   component={Link}
                   href={nextPage}
                   sx={{
-                    // display: hideNextOnHomeMobile ? { xs: "none", md: "inline-flex" } : undefined,
-                    display: { xs: "none", md: "inline-flex" }, //hide on mobile always
+                    display: { xs: "none", md: "inline-flex" },
                     width: 40,
                     height: 40,
                     borderRadius: 2,
@@ -223,9 +249,9 @@ export default function Layout({
             display: "flex",
             gap: 2,
             zIndex: 100,
-              '@media (max-width: 380px)': {
-                  bottom: "1%",
-              },
+            '@media (max-width: 380px)': {
+              bottom: "3%",
+            },
           }}
         >
           {pages.map((page) => {
@@ -260,3 +286,4 @@ export default function Layout({
     </Box>
   );
 }
+

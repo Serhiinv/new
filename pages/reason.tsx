@@ -88,20 +88,22 @@ export default function FeaturesPage() {
                     height: "100%",
                     display: "flex",
                     background: themeStyle,
-                    padding: {xs: "3% 4%", md: "3% 5.5%"},
+                    padding: {xs: "3% 0%", md: "3% 5.5%"},
                     flexDirection: "column",
                     gap: { xs: 3, md: 10 },
-                    paddingTop: { xs: "31%", md: "0" },
+                    paddingTop: { xs: "135px", md: "0" },
                     maxWidth: { xs: "100%", md: "1600px"},
                     justifyContent: {md: "center"},
                     margin: "0 auto",
                     '@media (max-width: 380px)': {
-                        paddingTop: "34%",
+                        paddingTop: "125px",
                     },
-                    '@media (min-width: 900px) and (max-width: 1180px)': {
-                        pt: 5,
+                    '@media (min-width: 820px) and (max-width: 1140px)': {
+                        paddingTop: "135px",
+                        mb: "7%",
                     },
                     '@media (min-width: 470px) and (max-width: 820px)': {
+                        paddingTop: "165px",
                         mb: "20%",
                     },
                 }}>
@@ -109,11 +111,14 @@ export default function FeaturesPage() {
                     <Box sx={{
                         display: "grid",
                         gridTemplateColumns: {xs: "1fr", md: "repeat(3, 1fr)"},
-                        gap: { xs: 2, md: 7 },
+                        gap: { xs: 1.5, md: 4 },
                         margin: "0 auto",
                         paddingTop: { xs: "0%", md: "5%" },
                         '@media (max-width: 380px)': {
                           gap: 1.2,
+                        },
+                        '@media (min-width: 470px) and (max-width: 820px)': {
+                            gap: 3,
                         },
                     }}>
                         {features.map((feature, index) => (
@@ -121,8 +126,8 @@ export default function FeaturesPage() {
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: {xs: "flex-start", md: "center"},
-                                width: {xs: "100%", md: 310},
-                                height: {xs: "auto", md: 270},
+                                width: {xs: "100%", md: 350},
+                                height: {xs: "auto", md: 235},
                                 padding: { xs: 0.7, md: 1.5 },
                                 background: theme.palette.whites.dark,
                                 borderRadius: 3,
@@ -135,11 +140,11 @@ export default function FeaturesPage() {
                                 },
                                 '@media (max-width: 380px)': {
                                   padding: 0.5,
-                                  gap: 1,
+                                  gap: 0.5,
                                 },
                                 '@media (min-width: 900px) and (max-width: 1180px)': {
                                     width: {xs: "100%", md: 300},
-                                    height: {xs: "auto", md: 240},
+                                    height: {xs: "auto", md: 215},
                                 },
                             }}>
                                 <Typography sx={{
@@ -149,7 +154,7 @@ export default function FeaturesPage() {
                                     width: "100%",
                                     '@media (max-width: 380px)': {
                                         pl: 1,
-                                        pt: 0.6,
+                                        pt: 0.2,
                                         lineHeight: 0.6,
                                     },
                                     animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
