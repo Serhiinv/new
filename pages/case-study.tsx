@@ -32,33 +32,44 @@ export default function CaseStudyPage() {
       >
           <Box sx={{
               width: "100%",
-              height: "100%",
+              minHeight: { xs: "90vh", md: "100%" },
+              height: { xs: "auto", md: "100%" },
               display: "flex",
               flexDirection: "column",
+              alignItems: "center",
               justifyContent: "center",
+              textAlign: "center",
               padding: { xs: "3% 4%", md: "3% 4.5%" },
+              paddingTop: { xs: "140px", md: "3%" },
+              paddingBottom: { xs: "15%", md: "0%" },
               maxWidth: { xs: "100%", md: "1600px"},
               margin: "0 auto",
               '@media (max-width: 380px)': {
-                  padding: "2% 3%",
+                  padding: "0 3%",
+                  paddingTop: "80px",
+              },
+              '@media (min-width: 470px) and (max-width: 820px)': {
+                  paddingTop: "150px",
+                  minHeight: "95vh",
               },
           }}>
               <Typography
                   sx={{
                       ...theme.typography.heading2,
                       textAlign: "center",
-                      opacity: 1,
                       color: theme.palette.primary.light,
-                      paddingTop: { xs: "25%", md: "0" },
-                      paddingBottom: { xs: "0", md: "4%" },
+                      paddingBottom: { xs: "5%", md: "4%" },
                       margin: 0,
                       animation: "fadeInUp 0.8s ease-out",
                       "@keyframes fadeInUp": {
                           from: { opacity: 0, transform: "translateY(20px)" },
                           to: { opacity: 1, transform: "translateY(0)" },
                       },
+                      '@media (min-width: 900px) and (max-width: 1180px)': {
+                          ...theme.typography.heading2,
+                          fontSize: "38px",
+                      },
                       '@media (max-width: 380px)': {
-                          paddingTop: "28%",
                           fontSize: "1.8rem",
                       },
                   }}
@@ -72,7 +83,7 @@ export default function CaseStudyPage() {
                       display: "flex",
                       flexDirection: { xs: "column", md: "row" },
                       alignItems: "center",
-                      paddingBottom: { xs: "0", md: "7%" },
+                      justifyContent: "center",
                       gap: { xs: 3, md: 4 },
                       '@media (max-width: 380px)': {
                           gap: 2,
@@ -88,6 +99,7 @@ export default function CaseStudyPage() {
                           flexDirection: "column",
                           gap: { xs: 2, md: 3 },
                           order: { xs: 1, md: 1 },
+                          maxWidth: "670px",
                           pl: { xs: 0, md: "2%"},
                           pr: { xs: 1, md: 0 },
                       }}
@@ -111,7 +123,11 @@ export default function CaseStudyPage() {
                           <br /><br />
                           From 'go live' of the new Auction Fusion site, we retained over 100,000 historic lots and auction links with smart 1-2-1 redirection.
                           <br /><br />
-                          The site also features automated and personalised content and cross-links, thematic pages (e.g. Artists and makers) and a host of customer-friendly auction features - all delivered by Auction Fusion, with a customisation layer to make the site uniquely L&T.
+                          <Box component="span" sx={{
+                              display: { xs: "none", md: "inline" },
+                          }}>
+                              The site also features automated and personalised content and cross-links, thematic pages (e.g. Artists and makers) and a host of customer-friendly auction features - all delivered by Auction Fusion, with a customisation layer to make the site uniquely L&T.
+                          </Box>
                       </Typography>
                   </Box>
 
@@ -123,12 +139,13 @@ export default function CaseStudyPage() {
                           justifyContent: "center",
                           alignItems: "center",
                           order: { xs: 2, md: 2 },
-                          pb: {xs: 0, md: "90px"},
+                          mb: { xs: "20%", md: "90px" },
+                          maxWidth: "670px",
                       }}
                   >
                       <Box
                           sx={{
-                              maxWidth: {xs: "50%", md: "600px"},
+                              maxWidth: {xs: "70%", md: "600px"},
                               width: "90%",
                               position: "relative",
                           }}
@@ -144,18 +161,22 @@ export default function CaseStudyPage() {
                                   transition: "opacity 0.3s",
                                   position: "relative",
                                   zIndex: 0,
-                                  "&:hover": { opacity: 0.9 },
+                                  "&:hover": { opacity: 0.8 },
                               }}
                           />
                           <Box
                               component="img"
                               alt="Auction Website Preview"
+
                               src={`${bPath}/case-study-over.png`}
                               sx={{
                                   position: "absolute",
                                   top: "39%",
                                   left: "50%",
                                   transform: "translate(-30%, 40%) rotate(20deg)",
+                                  cursor: "pointer",
+                                  transition: "opacity 0.3s",
+                                  "&:hover": { opacity: 0.8 },
                                   width: { xs: "70%", md: "60%" },
                                   height: "auto",
                                   zIndex: 10,
@@ -171,28 +192,28 @@ export default function CaseStudyPage() {
               {/* Button - visible on desktop only */}
               <Box sx={{
                   position: "absolute",
+                    bottom: "12%",
+                    right: "30%",
+                    zIndex: 15,
                   display: { xs: "none", md: "block" },
-                  animation: "fadeInUp 0.8s ease-out 0.6s backwards",
-                  pl: "48%",
-                  pt: "30%",
-                  zIndex: 10,
-                  "@keyframes fadeInUp": {
-                      from: { opacity: 0, transform: "translateY(20px)" },
                       to: { opacity: 1, transform: "translateY(0)" },
-                  },
               }}>
                   {startButton}
               </Box>
 
               {/* Button - visible on mobile only */}
               <Box sx={{
-                  display: { xs: "flex", md: "none" },
+                  display: { xs: "block", md: "none" },
+                      position: "absolute",
                   justifyContent: "center",
-                  paddingTop: { xs: "5%", md: 0 },
-                  paddingBottom: { xs: "5%", md: 0 },
+                  bottom: "15px",
+                  // paddingTop: { xs: "15%", md: 0 },
+                  paddingBottom: { xs: "5%", md: "0" },
+                  zIndex: 15,
                   '@media (max-width: 380px)': {
                       paddingTop: "3%",
                       paddingBottom: "3%",
+                      zIndex: 15,
                   },
               }}>
                   {startButton}
