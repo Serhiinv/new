@@ -133,7 +133,7 @@ export default function FeaturesPage() {
             background: backgroundColor,
             padding: { xs: "3% 4%", md: "3% 5.5%" },
             flexDirection: "column",
-            gap: { xs: 3, md: 10 },
+            gap: { xs: 3, md: 7 },
             paddingTop: { xs: "35%", md: "0%" },
             paddingBottom: { xs: "0%", md: "0%" },
             maxWidth: { xs: "100%", md: "1600px" },
@@ -162,7 +162,7 @@ export default function FeaturesPage() {
         featuresGrid: {
             display: "grid",
             gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
-            gap: { xs: 3, md: 10 },
+            gap: { xs: 3, md: 7 },
             maxWidth: "1100px",
             margin: "0 auto",
             '@media (max-width: 380px)': {
