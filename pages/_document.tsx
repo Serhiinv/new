@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover" />
         <link rel="icon" href="/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600&display=swap"
@@ -12,6 +12,8 @@ export default function Document() {
         />
         <style>{`
           * {
+            // touch-action: manipulation;
+            // -ms-touch-action: manipulation;
             touch-action: pan-x pan-y;
             -ms-touch-action: pan-x pan-y;
           }
