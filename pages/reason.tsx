@@ -111,7 +111,7 @@ export default function FeaturesPage() {
                     <Box sx={{
                         display: "grid",
                         gridTemplateColumns: {xs: "1fr", md: "repeat(3, 1fr)"},
-                        gap: { xs: 1.5, md: 7 },
+                        gap: { xs: 1.5, md: 4 },
                         margin: "0 auto",
                         paddingTop: { xs: "0%", md: "5%" },
                         '@media (max-width: 380px)': {
@@ -126,8 +126,8 @@ export default function FeaturesPage() {
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: {xs: "flex-start", md: "center"},
-                                width: {xs: "100%", md: 310},
-                                height: {xs: "auto", md: 270},
+                                width: {xs: "100%", md: 350},
+                                height: {xs: "auto", md: 235},
                                 padding: { xs: 0.7, md: 1.5 },
                                 background: theme.palette.whites.dark,
                                 borderRadius: 3,
@@ -144,7 +144,7 @@ export default function FeaturesPage() {
                                 },
                                 '@media (min-width: 900px) and (max-width: 1180px)': {
                                     width: {xs: "100%", md: 300},
-                                    height: {xs: "auto", md: 240},
+                                    height: {xs: "auto", md: 215},
                                 },
                             }}>
                                 <Typography sx={{

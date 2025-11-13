@@ -124,6 +124,7 @@ export default function DesignPage() {
             <Typography
               sx={{
                   ...theme.typography.body1,
+                  fontSize: "22px",
                 color: theme.palette.bg.light,
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
                 "@keyframes fadeInUp": {
