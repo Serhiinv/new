@@ -131,16 +131,15 @@ export default function FeaturesPage() {
             height: { xs: "auto", md: "100%" },
             display: "flex",
             background: backgroundColor,
-            padding: { xs: "3% 4%", md: "3% 5.5%" },
+            padding: { xs: "3% 3%", md: "3% 5.5%" },
             flexDirection: "column",
             gap: { xs: 3, md: 7 },
-            paddingTop: { xs: "35%", md: "0%" },
+            paddingTop: { xs: "37%", md: "0%" },
             paddingBottom: { xs: "0%", md: "0%" },
             maxWidth: { xs: "100%", md: "1600px" },
             justifyContent: { md: "center" },
             margin: "0 auto",
             '@media (max-width: 380px)': {
-                // minHeight: "90vh",
                 padding: "2% 3%",
                 paddingTop: "122px",
                 paddingBottom: "26.5%",
@@ -162,7 +161,7 @@ export default function FeaturesPage() {
         featuresGrid: {
             display: "grid",
             gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
-            gap: { xs: 3, md: 7 },
+            gap: { xs: "5%", md: 7 },
             maxWidth: "1100px",
             margin: "0 auto",
             '@media (max-width: 380px)': {
@@ -190,6 +189,8 @@ export default function FeaturesPage() {
         },
         featureText: (index: number) => ({
             ...theme.typography.body1,
+            // fontWeight: "bold",
+            // opacity: 0.9,
             color: theme.palette.primary.main,
             animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
             ...animations.slideInRight,
