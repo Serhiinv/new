@@ -91,7 +91,6 @@ export default function FeaturesPage() {
                     padding: {xs: "3% 0%", md: "3% 5.5%"},
                     flexDirection: "column",
                     gap: { xs: 3, md: 10 },
-                    // paddingTop: { xs: "135px", md: "0" },
                     paddingTop: { xs: "130px", md: "0" },
                     maxWidth: { xs: "100%", md: "1600px"},
                     justifyContent: {md: "center"},
