@@ -59,11 +59,6 @@ export default function CaseStudyPage() {
                       color: theme.palette.primary.light,
                       paddingBottom: { xs: "5%", md: "4%" },
                       margin: 0,
-                      animation: "fadeInUp 0.8s ease-out",
-                      "@keyframes fadeInUp": {
-                          from: { opacity: 0, transform: "translateY(20px)" },
-                          to: { opacity: 1, transform: "translateY(0)" },
-                      },
                       '@media (min-width: 900px) and (max-width: 1180px)': {
                           ...theme.typography.heading2,
                           fontSize: "38px",
@@ -168,6 +163,12 @@ export default function CaseStudyPage() {
                                       position: "relative",
                                       zIndex: 0,
                                       "&:hover": { opacity: 0.8 },
+                                      animation: "slideInFromUpperRight 0.3s ease-out 1s backwards",
+                                      "@keyframes slideInFromUpperRight": {
+                                          from: { opacity: 0, transform: "translate(30vw, -30vh)" },
+                                          to: { opacity: 1, transform: "translate(0, 0)" },
+                                      },
+
                                   }}
                               />
                           </Box>
@@ -194,6 +195,11 @@ export default function CaseStudyPage() {
                                       "&:hover": { opacity: 0.8 },
                                       width: { xs: "100%", md: "120%" },
                                       height: "auto",
+                                      animation: "slideInFromLeft 0.3s ease-out 2s backwards",
+                                      "@keyframes slideInFromLeft": {
+                                          from: { opacity: 0, transform: "translateX(-30vw)" },
+                                          to: { opacity: 1, transform: "translateX(0)" },
+                                      },
                                       '@media (max-width: 380px)': {
                                           width: "65%",
                                       },
@@ -212,6 +218,11 @@ export default function CaseStudyPage() {
                     zIndex: 15,
                   display: { xs: "none", md: "block" },
                       to: { opacity: 1, transform: "translateY(0)" },
+                  animation: "slideInFromRight 0.3s ease-out 3s backwards",
+                  "@keyframes slideInFromRight": {
+                      from: { opacity: 0, transform: "translateX(30vw)" },
+                      to: { opacity: 1, transform: "translateX(0)" },
+                  },
               }}>
                   {startButton}
               </Box>
@@ -224,6 +235,11 @@ export default function CaseStudyPage() {
                   bottom: "15px",
                   paddingBottom: { xs: "5%", md: "0" },
                   zIndex: 15,
+                  animation: "slideInFromRight 0.3s ease-out 3s backwards",
+                  "@keyframes slideInFromRight": {
+                      from: { opacity: 0, transform: "translateX(100vw)" },
+                      to: { opacity: 1, transform: "translateX(0)" },
+                  },
                   '@media (max-width: 380px)': {
                       paddingTop: "3%",
                       paddingBottom: "3%",
