@@ -39,9 +39,8 @@ export default function CaseStudyPage() {
               alignItems: "center",
               justifyContent: "center",
               textAlign: "center",
-              padding: { xs: "3% 4%", md: "3% 4.5%" },
-              paddingTop: { xs: "140px", md: "1%" },
-              paddingBottom: { xs: "15%", md: "0%" },
+              padding: { xs: "3% 2%", md: "3% 4.5%" },
+              paddingTop: { xs: "130px", md: "1%" },
               maxWidth: { xs: "100%", md: "1600px"},
               margin: "0 auto",
               '@media (max-width: 380px)': {
