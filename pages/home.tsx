@@ -91,6 +91,7 @@ export default function HomePage() {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+        paddingBottom: { xs: "15%", md: "0" },
       order: { xs: 2, md: 2 },
     },
     monitorContainer: {
@@ -126,14 +127,14 @@ export default function HomePage() {
       zIndex: 10,
     },
     mobileButton: {
-      position: { xs: "relative", md: "absolute" },
-      bottom: { xs: "0", md: "3%" },
+      position: { xs: "absolute", md: "absolute" },
+      bottom: { xs: "45px", md: "3%" },
       display: { xs: "block", md: "none" },
       order: { xs: 3 },
-      mt: { xs: "20px", md: 0 },
+      mt: { xs: "25px", md: 0 },
       '@media (max-width: 380px)': {
         mt: "3.5%",
-        mb: "7%",
+        // mb: "7%",
       },
       '@media (min-width: 470px) and (max-width: 820px)': {
         mt: "7%",
