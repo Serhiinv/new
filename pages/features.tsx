@@ -175,8 +175,11 @@ export default function FeaturesPage() {
             padding: { xs: 1.5, md: 3 },
             background: theme.palette.whites.dark,
             borderRadius: 3,
-            animation: `fadeInUp 0.8s ease-out ${index * 0.4}s backwards`,
-            ...animations.fadeInUp,
+            animation: `flipIn 0.8s ease-out ${index * 0.8}s backwards`,
+            "@keyframes flipIn": {
+                from: { opacity: 0, transform: "perspective(400px) rotateX(-90deg)" },
+                to: { opacity: 1, transform: "perspective(400px) rotateX(0)" },
+            },
             '@media (max-width: 380px)': {
                 padding: 0.7,
                 gap: 1,
@@ -187,13 +190,9 @@ export default function FeaturesPage() {
             width: { xs: 60, md: 100 },
             height: { xs: 60, md: 100 },
         },
-        featureText: (index: number) => ({
+        featureText: () => ({
             ...theme.typography.body1,
-            // fontWeight: "bold",
-            // opacity: 0.9,
             color: theme.palette.primary.main,
-            animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
-            ...animations.slideInRight,
         }),
     }), [theme, backgroundColor]);
 
@@ -238,7 +237,7 @@ export default function FeaturesPage() {
                                         {feature.svgPaths}
                                     </svg>
                                 </Box>
-                                <Typography sx={styles.featureText(index)}>
+                                <Typography sx={styles.featureText()}>
                                     {feature.text}
                                 </Typography>
                             </Box>

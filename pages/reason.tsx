@@ -136,10 +136,11 @@ export default function FeaturesPage() {
                                 borderRadius: 3,
                                 pl: {xs: 1, md: 1.5},
                                 pt: {xs: 0.7, md: 2},
-                                animation: `fadeInUp 0.8s ease-out ${index * 0.4}s backwards`,
-                                "@keyframes fadeInUp": {
-                                  from: { opacity: 0, transform: "translateY(20px)" },
-                                  to: { opacity: 1, transform: "translateY(0)" },
+
+                                animation: `slideInFromTop 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.9}s backwards`,
+                                "@keyframes slideInFromTop": {
+                                    from: { opacity: 0, transform: "translateY(-100vh)" },
+                                    to: { opacity: 1, transform: "translateY(0)" },
                                 },
                                 '@media (max-width: 400px)': {
                                   padding: 0.55,
@@ -165,11 +166,6 @@ export default function FeaturesPage() {
                                         pt: 0.2,
                                         lineHeight: 0.6,
                                     },
-                                    animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
-                                    "@keyframes slideInRight": {
-                                      from: { opacity: 0, transform: "translateX(100px)" },
-                                      to: { opacity: 1, transform: "translateX(0)" },
-                                    },
                                 }}>{feature.heading}</Typography>
                                 <Box sx={{
                                     display: {xs:"flex", md:"block"},
@@ -190,11 +186,6 @@ export default function FeaturesPage() {
                                     '@media (min-width: 1220px) and (max-height: 595px)': {
                                         ...theme.typography.heading2,
                                     },
-                                    animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
-                                    "@keyframes slideInRight": {
-                                        from: { opacity: 0, transform: "translateX(100px)" },
-                                        to: { opacity: 1, transform: "translateX(0)" },
-                                    },
                                 }}>{feature.data}</Typography>
                                 <Typography sx={{
                                     ...theme.typography.body1,
@@ -211,11 +202,6 @@ export default function FeaturesPage() {
                                     },
                                     '@media (min-width: 1220px) and (max-height: 595px)': {
                                         fontSize: 23,
-                                    },
-                                    animation: `slideInRight 0.8s ease-out ${index * 0.4 + 0.4}s backwards`,
-                                    "@keyframes slideInRight": {
-                                        from: { opacity: 0, transform: "translateX(100px)" },
-                                        to: { opacity: 1, transform: "translateX(0)" },
                                     },
                                 }}>{feature.text}</Typography>
                                 </Box>
