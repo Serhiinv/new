@@ -33,7 +33,7 @@ export default function WhyUsPage() {
                 width: "100%",
                 height: "100%",
                 textAlign: "center",
-                padding: { xs: "250px 25px", md: "20% 70px" },
+                padding: { xs: "60% 25px", md: "20% 70px" },
                 maxWidth: { xs: "100%", md: "1600px"},
                 margin: "0 auto",
             }}>
