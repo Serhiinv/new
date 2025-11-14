@@ -152,6 +152,11 @@ export default function TestimonialsPage() {
                     mt: 2,
                     paddingTop: { xs: "8%", md: "0" },
                     paddingBottom: { xs: "8%", md: "0" },
+                    animation: "slideInFromLeft 0.8s ease-out 1s backwards",
+                    "@keyframes slideInFromLeft": {
+                        from: { opacity: 0, transform: "translateX(-10vw)" },
+                        to: { opacity: 1, transform: "translateX(0)" },
+                    },
                     '@media (max-width: 380px)':{
                         paddingTop: "3%",
                         mt: 1,

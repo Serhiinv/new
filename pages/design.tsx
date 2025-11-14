@@ -105,7 +105,6 @@ export default function DesignPage() {
                   ...theme.typography.heading1,
                 color: theme.palette.primary.light,
                 overflowWrap: "break-word",
-                animation: "fadeInUp 0.8s ease-out",
                   '@media (min-width: 900px) and (max-width: 1180px)': {
                       ...theme.typography.heading2,
                       fontSize: "38px",

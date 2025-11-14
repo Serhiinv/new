@@ -42,11 +42,6 @@ export default function WhyUsPage() {
                   color: theme.palette.primary.light,
                     ...theme.typography.heading1,
                   mb: 2,
-                  animation: "fadeInUp 0.8s ease-out",
-                  "@keyframes fadeInUp": {
-                    from: { opacity: 0, transform: "translateY(20px)" },
-                    to: { opacity: 1, transform: "translateY(0)" },
-                  },
                 }}
               >
                 Why Choose Us

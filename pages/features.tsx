@@ -155,8 +155,6 @@ export default function FeaturesPage() {
             ...theme.typography.heading1,
             color: theme.palette.whites.main,
             textAlign: "center",
-            animation: "fadeInUp 0.8s ease-out",
-            ...animations.fadeInUp,
         },
         featuresGrid: {
             display: "grid",
@@ -175,7 +173,7 @@ export default function FeaturesPage() {
             padding: { xs: 1.5, md: 3 },
             background: theme.palette.whites.dark,
             borderRadius: 3,
-            animation: `flipIn 0.8s ease-out ${index * 0.8}s backwards`,
+            animation: `flipIn 0.8s ease-out ${index * 0.9}s backwards`,
             "@keyframes flipIn": {
                 from: { opacity: 0, transform: "perspective(400px) rotateX(-90deg)" },
                 to: { opacity: 1, transform: "perspective(400px) rotateX(0)" },
