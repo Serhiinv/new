@@ -112,8 +112,8 @@ export default function FeaturesPage() {
     const styles = useMemo(() => ({
         handAnimation: {
             display: { xs: "block", md: "none" },
-            position: "fixed",
-            bottom: "12.5%",
+            position: "absolute",
+            bottom: "68px",
             '@media (max-width: 380px)': {
                 bottom: "15%",
             },
