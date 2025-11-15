@@ -22,7 +22,6 @@ export default function HomePage() {
   const isMobile = useMediaQuery("(max-width:1140px)");
 
   // Base dimensions for iPhone 12 mini
-  // const BASE_HEIGHT = 812;
   const BASE_WIDTH = 375;
   const BASE_HEIGHT = 630; // 812-browser ui = 630
 
@@ -31,24 +30,18 @@ export default function HomePage() {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
 
-      // Only scale on mobile devices (under 820px)
+      // Scale on mobile devices
       if (windowWidth <= 600) {
-        // Calculate scale based on width
         const scaleX = windowWidth / BASE_WIDTH;
-        // Calculate scale based on height
         const scaleY = windowHeight / BASE_HEIGHT;
 
-        // Use the smaller scale to ensure content fits
         const newScale = Math.min(scaleX, scaleY);
         setScale(newScale);
       }
-      else if (windowWidth <= 1140) {
-        // For devices between 601px and 820px, scale based on width only
+      else if (windowWidth <= 1140) { // Tablet range
           const scaleX = windowWidth / BASE_WIDTH ;
-          // Calculate scale based on height
           const scaleY = windowHeight / BASE_HEIGHT * 1.1;
 
-          // Use the smaller scale to ensure content fits
           const newScale = Math.min(scaleX, scaleY);
           setScale(newScale);
       }
@@ -62,8 +55,8 @@ export default function HomePage() {
     return () => window.removeEventListener('resize', calculateScale);
   }, []);
 
-  // Memoized styles to avoid recalculation on every render
   const styles = useMemo(() => ({
+      // Mobile styles only
       scaleWrapper: {
           width: BASE_WIDTH,
           height: BASE_HEIGHT,
@@ -72,14 +65,6 @@ export default function HomePage() {
           position: 'relative' as const,
           display: 'flex',
           justifyContent: 'center',
-
-          // // Desktop
-          // '@media (min-width: 1141px) and (max-width: 5760px)': {
-          //     width: '100%',
-          //     height: '100vh',
-          //     minHeight: '100vh',
-          //     transform: 'translateY(10%)',
-          // },
       },
       verticalStack: {
           width: '100%',
@@ -93,6 +78,7 @@ export default function HomePage() {
           padding:  '15px',
           boxSizing: 'border-box',
       },
+      // Mobile & Tablet & Desktop styles
       textContent: {
           textAlign: { xs: "center", md: "left" },
           display: "flex",
@@ -117,10 +103,6 @@ export default function HomePage() {
               fontSize: {xs: '30px'},
               pt: '135px',
           },
-          // Desktop
-          // '@media (min-width: 1141px) and (max-width: 5760px)': {
-          //     pt: '0px'
-          // },
       },
       description: {
           ...theme.typography.body1,
@@ -175,59 +157,33 @@ export default function HomePage() {
           transform: 'translate(0, -155%)',
       },
 
-      desktopButton: {
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          display: {xs: "none", md: "block"},
-      },
-      // mobileButton: {
-      //     position: "relative",
-      //     display: { xs: "flex", md: "none" },
-      //     order: { xs: 3 },
-      // },
-  //     Desktop variant
+  //     Desktop styles only
       container: {
           width: "100%",
-          height: { xs: "100%", md: "100%" },
-          minHeight: { xs: "auto", md: "100%" },
+          height:  "100%",
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection:  "row",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: { xs: 2, md: 4 },
-          padding: { xs: "3% 4%", md: "3% 4.5%" },
-          paddingTop: { xs: "125px", md: "3%" },
-          paddingBottom: { xs: "15%", md: "3%" },
+          gap: 4,
+          padding: "3% 4.5%",
+          paddingTop: "3%",
+          paddingBottom: "3%",
           animation: "slideIn 0.6s ease-out",
-          maxWidth: { xs: "100%", md: "1600px" },
+          maxWidth: "1600px",
           margin: "0 auto",
-          // '@media (max-width: 380px)': {
-          //     height: "80%",
-          //     padding: "2% 3%",
-          //     paddingTop: "120px",
-          //     paddingBottom: "1%",
-          //     gap: 1,
-          // },
-          // '@media (min-width: 470px) and (max-width: 820px)': {
-          //     padding: "1% 6%",
-          //     paddingTop: "120px",
-          //     paddingBottom: "12%",
-          //     gap: 3,
-          // },
       },
-
       imageSection: {
           flex: 1,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          paddingBottom: { xs: "15%", md: "0" },
-          order: { xs: 2, md: 2 },
+          paddingBottom: "0",
+          order: 2,
       },
-
-
   }), [theme, scale]);
+
+  //                     *********** Mobile version **********
 
   if (isMobile) {
     return (
@@ -254,9 +210,6 @@ export default function HomePage() {
                 <Typography sx={styles.description}>
                   Auction Fusion is a next-generation auction website platform built for unparalleled AI / search performance and customer experience
                 </Typography>
-                <Box sx={styles.desktopButton}>
-                  <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
-                </Box>
               </Box>
               <Box sx={styles.monitorContainer}>
                 <Box
@@ -285,7 +238,9 @@ export default function HomePage() {
       </>
     );
   } else {
-      // Desktop version
+
+      //                ********** Desktop version **********
+
       return (
           <>
               <Head>
@@ -314,7 +269,7 @@ export default function HomePage() {
                               unparalleled AI / search performance and customer experience
                           </Typography>
 
-                          <Box sx={styles.desktopButton}>
+                          <Box>
                               <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
                           </Box>
                       </Box>
@@ -336,11 +291,6 @@ export default function HomePage() {
                               />
                           </Box>
                       </Box>
-
-                      {/*/!* Mobile Button *!/*/}
-                      {/*<Box sx={styles.mobileButton}>*/}
-                      {/*    <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>*/}
-                      {/*</Box>*/}
                   </Box>
               </Layout>
           </>
