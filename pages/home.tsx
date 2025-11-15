@@ -20,10 +20,9 @@ export default function HomePage() {
   const [scale, setScale] = useState(1);
 
   // Base dimensions for iPhone 12 mini
-  // const BASE_WIDTH = 375;
   // const BASE_HEIGHT = 812;
   const BASE_WIDTH = 375;
-  const BASE_HEIGHT = 630;
+  const BASE_HEIGHT = 630; // 812-browser ui = 630
 
   useEffect(() => {
     const calculateScale = () => {
@@ -31,7 +30,7 @@ export default function HomePage() {
       const windowHeight = window.innerHeight;
 
       // Only scale on mobile devices (under 820px)
-      if (windowWidth <= 800) {
+      if (windowWidth <= 600) {
         // Calculate scale based on width
         const scaleX = windowWidth / BASE_WIDTH;
         // Calculate scale based on height
@@ -40,7 +39,18 @@ export default function HomePage() {
         // Use the smaller scale to ensure content fits
         const newScale = Math.min(scaleX, scaleY);
         setScale(newScale);
-      } else {
+      }
+      else if (windowWidth <= 1140) {
+        // For devices between 601px and 820px, scale based on width only
+          const scaleX = windowWidth / BASE_WIDTH ;
+          // Calculate scale based on height
+          const scaleY = windowHeight / BASE_HEIGHT * 1.1;
+
+          // Use the smaller scale to ensure content fits
+          const newScale = Math.min(scaleX, scaleY);
+          setScale(newScale);
+      }
+      else {
         setScale(1);
       }
     };
@@ -52,87 +62,119 @@ export default function HomePage() {
 
   // Memoized styles to avoid recalculation on every render
   const styles = useMemo(() => ({
-    scaleWrapper: {
-      width: BASE_WIDTH,
-      height: BASE_HEIGHT,
-      transform: `scale(${scale})`,
-      transformOrigin: 'top center',
-      position: 'relative' as const,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      '@media (min-width: 821px)': {
-        width: '100%',
-        height: 'auto',
-        transform: 'none',
+      scaleWrapper: {
+          width: BASE_WIDTH,
+          height: BASE_HEIGHT,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top center',
+          position: 'relative' as const,
+          display: 'flex',
+          justifyContent: 'center',
+
+          // Desktop
+          '@media (min-width: 1141px) and (max-width: 5760px)': {
+              width: '100%',
+              height: 'auto',
+              transform: 'none',
+              pt: '0px'
+          },
       },
-    },
-    verticalStack: {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      // flexDirection: 'column',
-        flexDirection: { xs: "column", md: "row" },
-      alignItems: 'center',
-      justifyContent: 'center',
-      // justifyContent: 'space-around',
-      gap: '15px',
-      padding: '15px',
-      boxSizing: 'border-box',
-    },
-    heading: {
-      ...theme.typography.heading1,
-      color: theme.palette.primary.light,
-      textAlign: 'center',
-      margin: 0,
-        pt: '95px',
-      animation: 'fadeInUp 0.8s ease-out',
-      ...fadeInUpAnimation,
-    },
-    description: {
-      ...theme.typography.body2,
-        fontWeight: 'bold',
-      color: theme.palette.bg.contrastText,
-      textAlign: 'center',
-      margin: 0,
-      animation: 'fadeInUp 0.8s ease-out 0.4s backwards',
-      ...fadeInUpAnimation,
-    },
-    monitorContainer: {
-      maxWidth: '300px',
-      width: '100%',
-      mx: 'auto',
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-        pb: '15px',
-    },
-    monitorImage: {
-      width: '100%',
-      height: 'auto',
-      cursor: 'pointer',
-      transition: 'opacity 0.3s',
-      position: 'relative',
-      zIndex: 0,
-      '&:hover': { opacity: 0.9 },
-    },
-    screenOverlay: {
-      position: 'absolute',
-      top: '39%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      width: '85%',
-      height: 'auto',
-      zIndex: 10,
-    },
-    button: {
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
+      verticalStack: {
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: {xs: "column", md: "row"},
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '15px',
+          padding: {xs: '15px', md: '3% 4.5%'},
+          boxSizing: 'border-box',
+      },
+      textContent: {
+          textAlign: { xs: "center", md: "left" },
+          display: "flex",
+          flexDirection: "column",
+          gap: {  md: 3 },
+          padding: {md: '0 0px'},
+      },
+      heading: {
+          ...theme.typography.heading1,
+          color: theme.palette.primary.light,
+          margin: 0,
+          // pt: '175px', //same as 51%
+          pt: '51%',
+          pb: '15px',
+          animation: 'fadeInUp 0.8s ease-out',
+          ...fadeInUpAnimation,
+
+          // Tablet
+          '@media (min-width: 600px) and (max-width: 1140px)': {
+              fontWeight: {xs: 600, md: 400},
+              fontSize: {xs: '30px'},
+              pt: '135px',
+          },
+      },
+      description: {
+          ...theme.typography.body1,
+          color: theme.palette.bg.contrastText,
+          margin: 0,
+          pb: '5px',
+          animation: 'fadeInUp 0.8s ease-out 0.4s backwards',
+          ...fadeInUpAnimation,
+
+          // Tablet
+          '@media (min-width: 600px) and (max-width: 1140px)': {
+              fontSize: {xs: '16px'},
+          },
+      },
+      monitorContainer: {
+          maxWidth: {xs: '300px', md: '570px'},
+          width: '100%',
+          mx: 'auto',
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: {md: '0 20px'},
+
+          // Tablet
+          '@media (min-width: 600px) and (max-width: 1140px)': {
+              fontWeight: {xs: 600, md: 400},
+              fontSize: {xs: '30px'},
+              pb: '18%',
+          },
+      },
+      monitorImage: {
+          width: '100%',
+          height: 'auto',
+          cursor: 'pointer',
+          transition: 'opacity 0.3s',
+          position: 'relative',
+          zIndex: 0,
+          '&:hover': {opacity: 0.9},
+      },
+      screenOverlay: {
+          position: 'relative',
+          width: '87%',
+          height: 'auto',
+          zIndex: 10,
+          transform: 'translate(0, -155%)',
+      },
+
+      desktopButton: {
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          display: {xs: "none", md: "block"},
+      },
+      mobileButton: {
+          position: "relative",
+          display: { xs: "flex", md: "none" },
+          order: { xs: 3 },
+      },
+
+
   }), [theme, scale]);
 
   return (
@@ -153,13 +195,20 @@ export default function HomePage() {
       >
         <Box sx={styles.scaleWrapper}>
           <Box sx={styles.verticalStack}>
+
+             <Box sx={styles.textContent}>
             <Typography sx={styles.heading}>
               Creating the finest auction websites
             </Typography>
             <Typography sx={styles.description}>
               Auction Fusion is a next-generation auction website platform built for unparalleled AI / search performance and customer experience
             </Typography>
-            <Box sx={styles.monitorContainer}>
+
+                 <Box sx={styles.desktopButton}>
+                     <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
+                 </Box>
+             </Box>
+              <Box sx={styles.monitorContainer}>
               <Box
                 component="img"
                 alt="Monitor Background"
@@ -173,11 +222,15 @@ export default function HomePage() {
                 sx={styles.screenOverlay}
               />
             </Box>
-            <Box sx={styles.button}>
-              <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
-            </Box>
           </Box>
         </Box>
+          <Box sx={{
+              position: "absolute",
+              display: { xs: "flex", md: "none" },
+              bottom: 41,
+          }}>
+              <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
+          </Box>
       </Layout>
     </>
   );

@@ -754,7 +754,7 @@ const getTheme = (client: string): any => {
         theme.typography.body1 = {                // in use as main text on all pages
             ...theme.typography.body1,
             [theme.breakpoints.down('sm')]: {
-                fontSize: 18,
+                fontSize: 17,
             },
         };
 
