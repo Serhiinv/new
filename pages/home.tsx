@@ -74,9 +74,10 @@ export default function HomePage() {
           // Desktop
           '@media (min-width: 1141px) and (max-width: 5760px)': {
               width: '100%',
-              height: 'auto',
+              height: '100%',
+              // height: 'auto',
               transform: 'none',
-              pt: '0px'
+              // pt: '0px'
           },
       },
       verticalStack: {
@@ -96,6 +97,7 @@ export default function HomePage() {
           flexDirection: "column",
           gap: {  md: 3 },
           padding: {md: '0 0px'},
+            maxWidth: {xs: '100%', md: '670px'},
       },
       heading: {
           ...theme.typography.heading1,
@@ -112,6 +114,10 @@ export default function HomePage() {
               fontWeight: {xs: 600, md: 400},
               fontSize: {xs: '30px'},
               pt: '135px',
+          },
+          // Desktop
+          '@media (min-width: 1141px) and (max-width: 5760px)': {
+              pt: '0px'
           },
       },
       description: {
@@ -143,6 +149,10 @@ export default function HomePage() {
               fontWeight: {xs: 600, md: 400},
               fontSize: {xs: '30px'},
               pb: '18%',
+          },
+          // Desktop
+          '@media (min-width: 1141px) and (max-width: 5760px)': {
+              // pt: '150px'
           },
       },
       monitorImage: {
