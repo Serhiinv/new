@@ -7,6 +7,7 @@ import { useTheme } from "@mui/material/styles";
 import { useMemo } from "react";
 import { useMediaQuery } from "@mui/material";
 import { useScale } from "@/hooks/useScale";
+import { useScaleStyles } from "@/hooks/useScaleStyles";
 
 // Animation keyframes
 const fadeInUpAnimation = {
@@ -20,33 +21,11 @@ export default function HomePage() {
   const theme = useTheme();
   const backgroundColor = theme.palette.whites.main;
   const scale = useScale();
+  const { scaleWrapper, verticalStack } = useScaleStyles(scale);
   const isMobile = useMediaQuery("(max-width:1140px)");
 
   const styles = useMemo(
     () => ({
-      // Mobile styles only
-      scaleWrapper: {
-        width: 375, // Base width iPhone 12mini
-        height: 630, // Base height iPhone 12mini without browser UI
-        transform: `scale(${scale})`,
-        transformOrigin: "top center",
-        position: "relative" as const,
-        display: "flex",
-        justifyContent: "center",
-      },
-      verticalStack: {
-        width: "100%",
-        height: "100%",
-        minHeight: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "15px",
-        padding: "15px",
-        boxSizing: "border-box",
-      },
-      // Mobile & Tablet & Desktop styles
       textContent: {
         textAlign: { xs: "center", md: "left" },
         display: "flex",
@@ -150,7 +129,7 @@ export default function HomePage() {
         order: 2,
       },
     }),
-    [theme, scale]
+    [theme]
   );
 
   //                     *********** Mobile version **********
@@ -173,8 +152,8 @@ export default function HomePage() {
           }
           backgroundColor={backgroundColor}
         >
-          <Box sx={styles.scaleWrapper}>
-            <Box sx={styles.verticalStack}>
+          <Box sx={scaleWrapper}>
+            <Box sx={verticalStack}>
               <Box sx={styles.textContent}>
                 <Typography sx={styles.heading}>
                   Creating the finest auction websites
