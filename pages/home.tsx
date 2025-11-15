@@ -23,6 +23,7 @@ export default function HomePage() {
   const scale = useScale();
   const { scaleWrapper, verticalStack } = useScaleStyles(scale);
   const isMobile = useMediaQuery("(max-width:1140px)");
+    const pbs = 97 * scale; //calculated padding for start Btn
 
   const styles = useMemo(
     () => ({
@@ -183,7 +184,8 @@ export default function HomePage() {
             sx={{
               position: "absolute",
               display: { xs: "flex", md: "none" },
-              bottom: 41,
+              bottom: pbs, //TODO: need to calculate better for iPad
+              // bottom: 90,
             }}
           >
             <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>

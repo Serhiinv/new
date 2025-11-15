@@ -10,6 +10,10 @@ export function useScaleStyles(scale: number) {
       position: "relative" as const,
       display: "flex",
       justifyContent: "center",
+      maxWidth: "100vw",
+      maxHeight: "100vh",
+      margin: "0 auto",
+      overflow: "hidden",
     },
     verticalStack: {
       width: "100%",
@@ -22,7 +26,7 @@ export function useScaleStyles(scale: number) {
       gap: "15px",
       padding: "15px",
       boxSizing: "border-box",
+      overflow: "hidden",
     },
   }), [scale]);
 }
-

@@ -7,6 +7,7 @@ import { IconButton, Tooltip } from "@mui/material";
 import PrimaryButton from "./PrimaryButton";
 import { useTheme } from "@mui/material/styles";
 import Logo from "./Logo";
+import { useScale } from "@/hooks/useScale";
 
 interface LayoutProps {
   children: ReactNode;
@@ -41,6 +42,8 @@ export default function Layout({
   const currentPath = router.pathname;
   const theme = useTheme();
   const [isActualMobileDevice, setIsActualMobileDevice] = useState(false);
+    const scale = useScale();
+    const pbs = 78 * scale; // padding bottom for pagination dots
 
   // Detect if we're on an actual mobile device (not a resized desktop browser)
   useEffect(() => {
@@ -121,27 +124,28 @@ export default function Layout({
         position: isActualMobileDevice ? "fixed" : "relative",
         top: 0,
         left: 0,
-        width: "100%",
-        height: isActualMobileDevice ? "90vh" : "auto",
+        width: "100vw",
+        height: isActualMobileDevice ? "100vh" : "auto",
         minHeight: "100vh",
         background: backgroundColor,
         display: "flex",
         justifyContent: "center",
-        overflow: isActualMobileDevice ? "hidden" : "visible",
+        overflow: "hidden",
         fontFamily: theme.typography.fontFamily,
       }}
     >
       <Box
         sx={{
           width: "100%",
-          height: isActualMobileDevice ? "90vh" : "auto",
-          maxWidth: { xs: "90%", md: "1600px" },
+          height: isActualMobileDevice ? "100vh" : "auto",
+          maxWidth: { xs: "100%", md: "1600px" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: { xs: "flex-start", md: "center" },
           position: "relative",
           overflowY: isActualMobileDevice ? "hidden" : "visible",
+          overflowX: "hidden",
         }}
       >
         {/* Logo */}
@@ -238,12 +242,13 @@ export default function Layout({
 
         {/* Page Content */}
         {children}
-
+        {/*bottom: isActualMobileDevice ? `${pbs}px` : 30,*/}
         {/* Footer with Pagination Dots */}
         <Box
           sx={{
             position: "absolute",
-            bottom: { xs: "2%", md: 30 },
+              bottom: isActualMobileDevice ? `${pbs}px` : 30,
+            // bottom: { xs: "90px", md: 30 },
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",
@@ -286,4 +291,3 @@ export default function Layout({
     </Box>
   );
 }
-
