@@ -7,7 +7,6 @@ import { IconButton, Tooltip } from "@mui/material";
 import PrimaryButton from "./PrimaryButton";
 import { useTheme } from "@mui/material/styles";
 import Logo from "./Logo";
-import { useScale } from "@/hooks/useScale";
 
 interface LayoutProps {
   children: ReactNode;
