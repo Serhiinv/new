@@ -42,8 +42,6 @@ export default function Layout({
   const currentPath = router.pathname;
   const theme = useTheme();
   const [isActualMobileDevice, setIsActualMobileDevice] = useState(false);
-    const scale = useScale();
-    const pbs = 78 * scale; // padding bottom for pagination dots
 
   // Detect if we're on an actual mobile device (not a resized desktop browser)
   useEffect(() => {
@@ -137,7 +135,7 @@ export default function Layout({
       <Box
         sx={{
           width: "100%",
-          height: isActualMobileDevice ? "100vh" : "auto",
+          height: isActualMobileDevice ? "90vh" : "auto",
           maxWidth: { xs: "100%", md: "1600px" },
           display: "flex",
           flexDirection: "column",
@@ -242,13 +240,12 @@ export default function Layout({
 
         {/* Page Content */}
         {children}
-        {/*bottom: isActualMobileDevice ? `${pbs}px` : 30,*/}
+
         {/* Footer with Pagination Dots */}
         <Box
           sx={{
             position: "absolute",
-              bottom: isActualMobileDevice ? `${pbs}px` : 30,
-            // bottom: { xs: "90px", md: 30 },
+              bottom: { xs: "2%", md: 30 },
             left: "50%",
             transform: "translateX(-50%)",
             display: "flex",

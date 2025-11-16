@@ -116,22 +116,24 @@ export default function FeaturesPage() {
         return () => clearTimeout(timer);
     }, []);
 
-    // Memoized styles to avoid recalculation on every render
     const styles = useMemo(() => ({
         handAnimation: {
             display: {xs: "block", md: "none"},
-            position: "absolute",
-            bottom: "68px",
-            '@media (max-width: 380px)': {
-                bottom: "15%",
-            },
-            right: "10%",
-            transform: "translateY(50%)",
+            position: "relative",
+            pt: "25px",
+            transform: "translateX(80%)",
             zIndex: 1000,
             pointerEvents: "none",
             animation: "handSwipe 2.5s ease-in-out 4s 2",
             opacity: 0,
             ...animations.handSwipe,
+            // Tablet
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                position: "absolute",
+                pt: 0,
+                bottom: "90px",
+                transform: "scale(0.7)",
+            },
         },
         container: {
             width: "100%",
@@ -146,22 +148,22 @@ export default function FeaturesPage() {
             maxWidth: {xs: "100%", md: "1600px"},
             justifyContent: {md: "center"},
             margin: "0 auto",
-            '@media (max-width: 380px)': {
-                padding: "2% 3%",
-                paddingTop: "122px",
-                paddingBottom: "26.5%",
-            },
-            '@media (min-width: 470px) and (max-width: 1140px)': {
-                minHeight: "94.5vh",
-                paddingTop: "200px",
-                paddingBottom: "30%",
-                gap: 3,
+
+            // Tablet
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                pt: "70px",
+                gap: 2,
             },
         },
         heading: {
             ...theme.typography.heading1,
             color: theme.palette.whites.main,
             textAlign: "center",
+            // Tablet
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                fontWeight: { xs: 600, md: 400 },
+                fontSize: { xs: "30px" },
+            },
         },
         featuresGrid: {
             display: "grid",
@@ -169,9 +171,11 @@ export default function FeaturesPage() {
             gap: {xs: "5%", md: 7},
             maxWidth: "1100px",
             margin: "0 auto",
-            // '@media (max-width: 380px)': {
-            //     gap: 0.7,
-            // },
+            // Tablet
+            '@media (min-width: 600px) and (max-width: 1140px)': {
+                minWidth: "350px",
+                gap: 2,
+            },
         },
         featureCard: (index: number) => ({
             display: "flex",
@@ -185,9 +189,9 @@ export default function FeaturesPage() {
                 from: {opacity: 0, transform: "perspective(400px) rotateX(-90deg)"},
                 to: {opacity: 1, transform: "perspective(400px) rotateX(0)"},
             },
-            '@media (max-width: 380px)': {
+            // Tablet
+            '@media (min-width: 470px) and (max-width: 1140px)': {
                 padding: 0.7,
-                gap: 1,
             },
         }),
         iconContainer: {
@@ -198,6 +202,10 @@ export default function FeaturesPage() {
         featureText: () => ({
             ...theme.typography.body1,
             color: theme.palette.primary.main,
+            // Tablet
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                fontSize: { xs: "16px" },
+            },
         }),
     }), [theme, backgroundColor]);
 
@@ -218,49 +226,45 @@ export default function FeaturesPage() {
                     logoVariant={backgroundColor === theme.palette.primary.light ? "light" : "dark"}
                     backgroundColor={backgroundColor}
                 >
-                    {/* Hand Swipe Animation */}
-                    {showHandAnimation && (
-                        <Box sx={styles.handAnimation}>
-                            <svg width="70" height="70" viewBox="-1 0 100 100">
-                                <path d={HAND_ICON_PATH} fill="white"/>
-                            </svg>
-                        </Box>
-                    )}
-
-
                     <Box sx={scaleWrapper}>
                         <Box sx={verticalStack}>
-                    {/* Main Content */}
-                    <Box sx={styles.container}>
-                        <Typography sx={styles.heading}>
-                            Why Auction Fusion?
-                        </Typography>
-
-                        <Box sx={styles.featuresGrid}>
-                            {features.map((feature, index) => (
-                                <Box key={feature.id} sx={styles.featureCard(index)}>
-                                    <Box sx={styles.iconContainer}>
-                                        <svg
-                                            viewBox={feature.svgViewBox}
-                                            aria-label={feature.ariaLabel}
-                                            style={{width: "100%", height: "100%"}}
-                                        >
-                                            {feature.svgPaths}
+                            {/* Main Content */}
+                            <Box sx={styles.container}>
+                                <Typography sx={styles.heading}>
+                                    Why Auction Fusion?
+                                </Typography>
+                                <Box sx={styles.featuresGrid}>
+                                    {features.map((feature, index) => (
+                                        <Box key={feature.id} sx={styles.featureCard(index)}>
+                                            <Box sx={styles.iconContainer}>
+                                                <svg
+                                                    viewBox={feature.svgViewBox}
+                                                    aria-label={feature.ariaLabel}
+                                                    style={{width: "100%", height: "100%"}}
+                                                >
+                                                    {feature.svgPaths}
+                                                </svg>
+                                            </Box>
+                                            <Typography sx={styles.featureText()}>
+                                                {feature.text}
+                                            </Typography>
+                                        </Box>
+                                    ))}
+                                </Box>
+                                {/* Hand Swipe Animation */}
+                                {showHandAnimation && (
+                                    <Box sx={styles.handAnimation}>
+                                        <svg width="70" height="70" viewBox="-1 0 100 100">
+                                            <path d={HAND_ICON_PATH} fill="white"/>
                                         </svg>
                                     </Box>
-                                    <Typography sx={styles.featureText()}>
-                                        {feature.text}
-                                    </Typography>
-                                </Box>
-                            ))}
-                        </Box>
-                    </Box>
+                                )}
+                            </Box>
                         </Box>
                     </Box>
                 </Layout>
             </>
         );
-
 } else {
         //                ********** Desktop version **********
 
@@ -278,15 +282,6 @@ export default function FeaturesPage() {
                 logoVariant={backgroundColor === theme.palette.primary.light ? "light" : "dark"}
                 backgroundColor={backgroundColor}
             >
-                {/* Hand Swipe Animation */}
-                {showHandAnimation && (
-                    <Box sx={styles.handAnimation}>
-                        <svg width="70" height="70" viewBox="-1 0 100 100">
-                            <path d={HAND_ICON_PATH} fill="white"/>
-                        </svg>
-                    </Box>
-                )}
-
                 {/* Main Content */}
                 <Box sx={styles.container}>
                     <Typography sx={styles.heading}>
