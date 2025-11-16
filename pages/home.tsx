@@ -33,6 +33,10 @@ export default function HomePage() {
         gap: { md: 3 },
         padding: { md: "0 10px" },
         maxWidth: { xs: "100%", md: "670px" },
+          // Tablet  // TODO  width 1140px on desktop
+          "@media (min-width: 600px) and (max-width: 1140px)": {
+              textAlign: "center",
+          },
       },
       heading: {
         ...theme.typography.heading1,

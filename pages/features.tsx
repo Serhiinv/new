@@ -105,7 +105,7 @@ export default function FeaturesPage() {
     const [showHandAnimation, setShowHandAnimation] = useState(true);
     const scale = useScale();
     const { scaleWrapper, verticalStack } = useScaleStyles(scale);
-    const isMobile = useMediaQuery("(max-width:1140px)");
+    const isMobile = useMediaQuery("(max-width:1139px)");
 
 
     useEffect(() => {
