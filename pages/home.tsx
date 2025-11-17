@@ -132,6 +132,12 @@ export default function HomePage() {
         paddingBottom: "0",
         order: 2,
       },
+      emptyBox: {
+        "@media (min-width: 420px) and (max-width: 810px)": {
+        height: { xs: '110px', md: '0' },
+        },
+
+      },
     }),
     [theme]
   );
@@ -181,6 +187,9 @@ export default function HomePage() {
                   sx={styles.screenOverlay}
                 />
               </Box>
+            {/*Empty box that hold space for let's Start Btn while resizing on desktop*/}
+                <Box sx={styles.emptyBox}> </Box>
+
             </Box>
           </Box>
           <Box
