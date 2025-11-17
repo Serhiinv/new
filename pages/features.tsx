@@ -6,8 +6,6 @@ import { useMemo } from "react";
 import {useScale} from "@/hooks/useScale";
 import {useScaleStyles} from "@/hooks/useScaleStyles";
 
-
-
 interface Feature {
     id: string;
     text: string;
@@ -118,16 +116,14 @@ export default function FeaturesPage() {
             animation: "handSwipe 2.5s ease-in-out 4s 2",
             opacity: 0,
             ...animations.handSwipe,
-            // Tablet
             "@media (min-width: 600px) and (max-width: 1140px)": {
-            pt: 0,
-            transform: "translateY(-20px) translateX(70%) scale(0.7)",
+                pt: 0,
+                transform: "translateY(-20px) translateX(70%) scale(0.7)",
             },
             '@media (max-width: 380px)': {
                 pt: "20px",
                 transform: "translateX(80%) scale(0.7)",
             },
-
         },
         container: {
             width: "100%",
@@ -142,8 +138,7 @@ export default function FeaturesPage() {
             maxWidth: {xs: "100%", md: "1600px"},
             justifyContent: { md: "center"},
             margin: "0 auto",
-
-            // Tablet
+            boxSizing: "border-box",
             "@media (min-width: 600px) and (max-width: 1140px)": {
                 pt: "70px",
                 gap: 2,
@@ -153,10 +148,9 @@ export default function FeaturesPage() {
             ...theme.typography.heading1,
             color: theme.palette.whites.main,
             textAlign: "center",
-            // Tablet
             "@media (min-width: 600px) and (max-width: 1140px)": {
-                fontWeight: { xs: 600, md: 400 },
-                fontSize: { xs: "30px" },
+                fontWeight: 600,
+                fontSize: "30px",
             },
         },
         featuresGrid: {
@@ -165,7 +159,6 @@ export default function FeaturesPage() {
             gap: {xs: "5%", md: 7},
             maxWidth: "1100px",
             margin: "0 auto",
-            // Tablet
             '@media (min-width: 600px) and (max-width: 1140px)': {
                 minWidth: "350px",
                 gap: 2,
@@ -184,7 +177,6 @@ export default function FeaturesPage() {
                 from: {opacity: 0, transform: "perspective(400px) rotateX(-90deg)"},
                 to: {opacity: 1, transform: "perspective(400px) rotateX(0)"},
             },
-            // Tablet
             '@media (min-width: 470px) and (max-width: 1140px)': {
                 padding: 0.7,
             },
@@ -194,114 +186,94 @@ export default function FeaturesPage() {
             width: {xs: 60, md: 100},
             height: {xs: 60, md: 100},
         },
-        featureText: () => ({
+        featureText: {
             ...theme.typography.body1,
             color: theme.palette.primary.main,
-            // Tablet
             "@media (min-width: 600px) and (max-width: 1140px)": {
-                fontSize: { xs: "16px" },
+                fontSize: "16px",
             },
-        }),
+        },
     }), [theme, backgroundColor]);
 
-    //                     *********** Mobile version **********
+    const logoVariant = backgroundColor === theme.palette.primary.light ? "light" : "dark";
 
+    // Shared page head
+    const pageHead = (
+        <Head>
+            <title>Features - Auction Fusion</title>
+            <meta name="description" content="Discover the powerful features of Auction Fusion platform"/>
+        </Head>
+    );
+
+    // Shared features content
+    const renderFeaturesContent = () => (
+        <Box sx={styles.container}>
+            <Typography sx={styles.heading}>
+                Why Auction Fusion?
+            </Typography>
+            <Box sx={styles.featuresGrid}>
+                {features.map((feature, index) => (
+                    <Box key={feature.id} sx={styles.featureCard(index)}>
+                        <Box sx={styles.iconContainer}>
+                            <svg
+                                viewBox={feature.svgViewBox}
+                                aria-label={feature.ariaLabel}
+                                style={{width: "100%", height: "100%"}}
+                            >
+                                {feature.svgPaths}
+                            </svg>
+                        </Box>
+                        <Typography sx={styles.featureText}>
+                            {feature.text}
+                        </Typography>
+                    </Box>
+                ))}
+            </Box>
+            {isMobile && (
+                <Box sx={styles.handAnimation}>
+                    <svg width="70" height="70" viewBox="-1 0 100 100">
+                        <path d={HAND_ICON_PATH} fill="white"/>
+                    </svg>
+                </Box>
+            )}
+        </Box>
+    );
+
+    // *********** Mobile version **********
     if (isMobile) {
         return (
             <>
-                <Head>
-                    <title>Features - Auction Fusion</title>
-                    <meta name="description" content="Discover the powerful features of Auction Fusion platform"/>
-                </Head>
-
+                {pageHead}
                 <Layout
                     showContactButton={true}
                     prevPage="/home"
                     nextPage="/design"
-                    logoVariant={backgroundColor === theme.palette.primary.light ? "light" : "dark"}
+                    logoVariant={logoVariant}
                     backgroundColor={backgroundColor}
                 >
                     <Box sx={scaleWrapper}>
                         <Box sx={verticalStack}>
-                            {/* Main Content */}
-                            <Box sx={styles.container}>
-                                <Typography sx={styles.heading}>
-                                    Why Auction Fusion?
-                                </Typography>
-                                <Box sx={styles.featuresGrid}>
-                                    {features.map((feature, index) => (
-                                        <Box key={feature.id} sx={styles.featureCard(index)}>
-                                            <Box sx={styles.iconContainer}>
-                                                <svg
-                                                    viewBox={feature.svgViewBox}
-                                                    aria-label={feature.ariaLabel}
-                                                    style={{width: "100%", height: "100%"}}
-                                                >
-                                                    {feature.svgPaths}
-                                                </svg>
-                                            </Box>
-                                            <Typography sx={styles.featureText()}>
-                                                {feature.text}
-                                            </Typography>
-                                        </Box>
-                                    ))}
-                                </Box>
-                                {/* Hand Swipe Animation */}
-                                    <Box sx={styles.handAnimation}>
-                                        <svg width="70" height="70" viewBox="-1 0 100 100">
-                                            <path d={HAND_ICON_PATH} fill="white"/>
-                                        </svg>
-                                    </Box>
-                            </Box>
+                            {renderFeaturesContent()}
                         </Box>
                     </Box>
                 </Layout>
             </>
         );
-} else {
-        //                ********** Desktop version **********
+    }
 
-        return (
+    // ********** Desktop version **********
+    return (
         <>
-            <Head>
-                <title>Features - Auction Fusion</title>
-                <meta name="description" content="Discover the powerful features of Auction Fusion platform"/>
-            </Head>
-
+            {pageHead}
             <Layout
                 showContactButton={true}
                 prevPage="/home"
                 nextPage="/design"
-                logoVariant={backgroundColor === theme.palette.primary.light ? "light" : "dark"}
+                logoVariant={logoVariant}
                 backgroundColor={backgroundColor}
             >
-                {/* Main Content */}
-                <Box sx={styles.container}>
-                    <Typography sx={styles.heading}>
-                        Why Auction Fusion?
-                    </Typography>
-
-                    <Box sx={styles.featuresGrid}>
-                        {features.map((feature, index) => (
-                            <Box key={feature.id} sx={styles.featureCard(index)}>
-                                <Box sx={styles.iconContainer}>
-                                    <svg
-                                        viewBox={feature.svgViewBox}
-                                        aria-label={feature.ariaLabel}
-                                        style={{width: "100%", height: "100%"}}
-                                    >
-                                        {feature.svgPaths}
-                                    </svg>
-                                </Box>
-                                <Typography sx={styles.featureText()}>
-                                    {feature.text}
-                                </Typography>
-                            </Box>
-                        ))}
-                    </Box>
-                </Box>
+                {renderFeaturesContent()}
             </Layout>
         </>
     );
-  }
 }
