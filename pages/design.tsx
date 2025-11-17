@@ -1,151 +1,179 @@
 import Head from "next/head";
-import { Box, Typography } from "@mui/material";
+import {Box, Typography, useMediaQuery} from "@mui/material";
 import Layout from "@/components/Layout";
 import {bPath} from "@/config/basePath";
-import { useTheme } from "@mui/material/styles";
+import {useTheme} from "@mui/material/styles";
+import {useMemo} from "react";
+import {useScale} from "@/hooks/useScale";
+import {useScaleStyles} from "@/hooks/useScaleStyles";
+import {animations} from "@/config/animations";
+import {designContent} from "@/config/designData";
 
 export default function DesignPage() {
-  const theme = useTheme();
-    const themeStyle = theme.palette.secondary.main;
+    const theme = useTheme();
+    const backgroundColor = theme.palette.secondary.main;
+    const scale = useScale();
+    const {scaleWrapper, verticalStack} = useScaleStyles(scale);
+    const isMobile = useMediaQuery("(max-width:1139px)");
 
-  return (
-    <>
-      <Head>
-        <title>Design Philosophy - Auction Fusion</title>
-        <meta name="description" content="Designed for clicks. Built for people." />
-      </Head>
-
-      <Layout
-          showContactButton={true} prevPage="/features"
-          nextPage="/testimonials"
-          logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
-          backgroundColor={themeStyle}
-      >
-        <Box
-          sx={{
-            width: "100%",
-            minHeight: { xs: "90vh", md: "100%" },
-            height: { xs: "auto", md: "100%" },
+    const styles = useMemo(() => ({
+        container: {
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
+            // height: "100%",
+            flexDirection: {xs: "column", md: "row"},
             alignItems: "center",
-            justifyContent: "space-between",
-            gap: { xs: 1, md: 4 },
-            padding: { xs: "3% 4%", md: "3% 4.5%" },
-            paddingTop: { xs: "140px", md: "3%" },
-              paddingBottom: { xs: "15%", md: "0%" },
-            maxWidth: { xs: "100%", md: "1600px"},
+            justifyContent: "center",
+            gap: {xs: 1, md: 4},
+            padding: {xs: "2% 2%", md: "3% 4.5%"},
+            paddingTop: {xs: "115px", md: ""},
+            maxWidth: {xs: "100%", md: "1600px"},
             margin: "0 auto",
-            '@media (max-width: 380px)': {
-              padding: "0 3%",
-              paddingTop: "80px",
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                // transform: "translateY(-5%)",
+                textAlign: "center",
+                pt: 27,
+                pb:35,
+                scale: 0.95,
             },
-            '@media (min-width: 470px) and (max-width: 820px)': {
-              paddingTop: "150px",
-                minHeight: "95vh",
+        },
+        imageSection: {
+            flex: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            order: {xs: 1, md: 1},
+        },
+        imageWrapper: {
+            maxWidth: "670px",
+            width: "90%",
+            position: "relative",
+        },
+        image: {
+            width: "100%",
+            height: "auto",
+            position: "relative",
+            zIndex: 0,
+            borderRadius: 2,
+        },
+        textSection: {
+            flex: 1,
+            textAlign: {xs: "center", md: "left"},
+            display: "flex",
+            flexDirection: "column",
+            gap: {xs: 2, md: 2},
+            order: {xs: 2, md: 2},
+            maxWidth: "670px",
+            padding: {xs: 0, md: "0"},
+            pr: {xs: 0, md: "3%"},
+        },
+        heading: {
+            ...theme.typography.heading1,
+            color: theme.palette.primary.light,
+            overflowWrap: "break-word",
+            animation: "fadeInUp 0.8s ease-out",
+            ...animations.fadeInUp,
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                fontWeight: 600,
+                fontSize: "30px",
             },
-          }}
-        >
-          {/* Left half - Image */}
-          <Box
-            sx={{
-              flex: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              order: { xs: 1, md: 1 },
-                '@media (max-width: 380px)': {
-                    paddingTop: "45px",
-                    maxWidth: "300px",
-                },
-            }}
-          >
-            <Box
-              sx={{
-                maxWidth: "670px",
-                width: "90%",
-                position: "relative",
-              }}
-            >
-              <Box
-                component="img"
-                alt="Design Preview"
-                src={`${bPath}/design.jpeg`}
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  position: "relative",
-                  zIndex: 0,
-                  borderRadius: 2,
-                }}
-              />
-            </Box>
-          </Box>
+        },
+        bodyText: {
+            ...theme.typography.body1,
+            fontSize: "22px",
+            color: theme.palette.bg.light,
+            animation: "fadeInUp 0.8s ease-out 0.4s backwards",
+            ...animations.fadeInUp,
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                fontSize: "16px",
+            },
+        },
+    }), [theme]);
 
-          {/* Right half - Text content */}
-          <Box
-            sx={{
-              flex: 1,
-              textAlign: { xs: "center", md: "left" },
-              display: "flex",
-              flexDirection: "column",
-              gap: { xs: 2, md: 2 },
-              order: { xs: 2, md: 2 },
-                maxWidth: "670px",
-                padding: {xs: 0, md: "0"},
-                pr: {xs: 0, md: "3%"},
-                '@media (max-width: 380px)': {
-                    paddingTop: "4px",
-                    paddingBottom: "45px",
-                },
-            }}
-          >
-            <Typography
-              sx={{
-                  ...theme.typography.heading1,
-                color: theme.palette.primary.light,
-                overflowWrap: "break-word",
-                  '@media (min-width: 900px) and (max-width: 1180px)': {
-                      ...theme.typography.heading2,
-                      fontSize: "38px",
-                  },
-                "@keyframes fadeInUp": {
-                  from: { opacity: 0, transform: "translateY(20px)" },
-                  to: { opacity: 1, transform: "translateY(0)" },
-                },
-              }}
-            >
-              Designed for clicks.
-              <br />
-              Built for people.
-            </Typography>
+    const logoVariant = backgroundColor === theme.palette.primary.light ? "light" : "dark";
 
-            <Typography
-              sx={{
-                  ...theme.typography.body1,
-                  fontSize: "22px",
-                color: theme.palette.bg.light,
-                animation: "fadeInUp 0.8s ease-out 0.4s backwards",
-                "@keyframes fadeInUp": {
-                  from: { opacity: 0, transform: "translateY(20px)" },
-                  to: { opacity: 1, transform: "translateY(0)" },
-                },
-              }}
-            >
-                From the first online query to a seamless customer experience on your new website, Auction Fusion drives consignment and sales at every step.
-                <br />
-                <Box component="span" sx={{
-                    display: { xs: "none", md: "inline" },
-                }}>
-                And with your upcoming lots visible on Google in hours, Auction Fusion is beating the biggest and best in the auction world.
-                <br />
+    // Shared page head
+    const pageHead = (
+        <Head>
+            <title>Design Philosophy - Auction Fusion</title>
+            <meta name="description" content="Designed for clicks. Built for people."/>
+        </Head>
+    );
+
+    // Shared design content
+    const renderDesignContent = () => (
+        <Box sx={styles.container}>
+            {/* Left half - Image */}
+            <Box sx={styles.imageSection}>
+                <Box sx={styles.imageWrapper}>
+                    <Box
+                        component="img"
+                        alt="Design Preview"
+                        src={`${bPath}/design.jpeg`}
+                        sx={styles.image}
+                    />
                 </Box>
-                <br />
-                <strong>That&apos;s why our auction clients are seeing conversions per customer up by over 500%.</strong>
-            </Typography>
-          </Box>
+            </Box>
+
+            {/* Right half - Text content */}
+            <Box sx={styles.textSection}>
+                <Typography sx={styles.heading}>
+                    {designContent.title.split('\n').map((line, index) => (
+                        <span key={index}>
+              {line}
+                            {index === 0 && <br/>}
+            </span>
+                    ))}
+                </Typography>
+
+                <Typography sx={styles.bodyText}>
+                    {designContent.bodyText}
+                    <br/>
+                    <Box component="span" sx={{display: {xs: "none", md: "inline"}}}>
+                        {designContent.additionalText}
+                        <br/>
+                    </Box>
+                    <br/>
+                    <strong>{designContent.emphasizedText}</strong>
+                </Typography>
+            </Box>
         </Box>
-      </Layout>
-    </>
-  );
+    );
+
+    // *********** Mobile version **********
+    if (isMobile) {
+        return (
+            <>
+                {pageHead}
+                <Layout
+                    showContactButton={true}
+                    prevPage="/features"
+                    nextPage="/testimonials"
+                    logoVariant={logoVariant}
+                    backgroundColor={backgroundColor}
+                >
+                    <Box sx={scaleWrapper}>
+                        <Box sx={verticalStack}>
+                            {renderDesignContent()}
+                        </Box>
+                    </Box>
+                </Layout>
+            </>
+        );
+    }
+
+    // ********** Desktop version **********
+    return (
+        <>
+            {pageHead}
+            <Layout
+                showContactButton={true}
+                prevPage="/features"
+                nextPage="/testimonials"
+                logoVariant={logoVariant}
+                backgroundColor={backgroundColor}
+            >
+                {renderDesignContent()}
+            </Layout>
+        </>
+    );
 }
