@@ -1,8 +1,12 @@
 import Head from "next/head";
-import { Box, Typography } from "@mui/material";
+import {Box, Typography, useMediaQuery} from "@mui/material";
 import Layout from "@/components/Layout";
 import { useTheme } from "@mui/material/styles";
-import { useEffect, useState, useMemo } from "react";
+import { useMemo } from "react";
+import {useScale} from "@/hooks/useScale";
+import {useScaleStyles} from "@/hooks/useScaleStyles";
+
+
 
 interface Feature {
     id: string;
@@ -98,107 +102,169 @@ const HAND_ICON_PATH = "m86.89,53.83c-1.57-6.4-4.51-10.68-8.74-12.73-4.91-2.38-1
 export default function FeaturesPage() {
     const theme = useTheme();
     const backgroundColor = theme.palette.primary.light;
-    const [showHandAnimation, setShowHandAnimation] = useState(true);
+    const scale = useScale();
+    const { scaleWrapper, verticalStack } = useScaleStyles(scale);
+    const isMobile = useMediaQuery("(max-width:1139px)");
 
-    useEffect(() => {
-        // Hide hand animation after it completes (2 swipes = ~10 seconds)
-        const timer = setTimeout(() => {
-            setShowHandAnimation(false);
-        }, 10000);
-        return () => clearTimeout(timer);
-    }, []);
-
-    // Memoized styles to avoid recalculation on every render
     const styles = useMemo(() => ({
         handAnimation: {
-            display: { xs: "block", md: "none" },
-            position: "absolute",
-            bottom: "68px",
-            '@media (max-width: 380px)': {
-                bottom: "15%",
-            },
-            right: "10%",
-            transform: "translateY(50%)",
+            display: {xs: "block", md: "none"},
+            position: "relative",
+            pt: "25px",
+            pb: "20px",
+            transform: "translateX(80%)",
             zIndex: 1000,
             pointerEvents: "none",
             animation: "handSwipe 2.5s ease-in-out 4s 2",
             opacity: 0,
             ...animations.handSwipe,
+            // Tablet
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+            pt: 0,
+            transform: "translateY(-20px) translateX(70%) scale(0.7)",
+            },
+            '@media (max-width: 380px)': {
+                pt: "20px",
+                transform: "translateX(80%) scale(0.7)",
+            },
+
         },
         container: {
             width: "100%",
-            minHeight: { xs: "90vh", md: "100%" },
-            height: { xs: "auto", md: "100%" },
+            height: "100%",
             display: "flex",
             background: backgroundColor,
-            padding: { xs: "3% 3%", md: "3% 5.5%" },
+            padding: {xs: "3% 3%", md: "3% 5.5%"},
             flexDirection: "column",
-            gap: { xs: 3, md: 7 },
-            paddingTop: { xs: "37%", md: "0%" },
-            paddingBottom: { xs: "0%", md: "0%" },
-            maxWidth: { xs: "100%", md: "1600px" },
-            justifyContent: { md: "center" },
+            gap: {xs: 3, md: 7},
+            paddingTop: {xs: "30%", md: "0%"},
+            paddingBottom: {xs: "0%", md: "0%"},
+            maxWidth: {xs: "100%", md: "1600px"},
+            justifyContent: { md: "center"},
             margin: "0 auto",
-            '@media (max-width: 380px)': {
-                padding: "2% 3%",
-                paddingTop: "122px",
-                paddingBottom: "26.5%",
-            },
-            '@media (min-width: 470px) and (max-width: 1140px)': {
-                minHeight: "94.5vh",
-                paddingTop: "200px",
-                paddingBottom: "30%",
-                gap: 3,
+
+            // Tablet
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                pt: "70px",
+                gap: 2,
             },
         },
         heading: {
             ...theme.typography.heading1,
             color: theme.palette.whites.main,
             textAlign: "center",
+            // Tablet
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                fontWeight: { xs: 600, md: 400 },
+                fontSize: { xs: "30px" },
+            },
         },
         featuresGrid: {
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
-            gap: { xs: "5%", md: 7 },
+            gridTemplateColumns: {xs: "1fr", md: "repeat(2, 1fr)"},
+            gap: {xs: "5%", md: 7},
             maxWidth: "1100px",
             margin: "0 auto",
-            '@media (max-width: 380px)': {
-                gap: 0.7,
+            // Tablet
+            '@media (min-width: 600px) and (max-width: 1140px)': {
+                minWidth: "350px",
+                gap: 2,
             },
         },
         featureCard: (index: number) => ({
             display: "flex",
             alignItems: "center",
-            gap: { xs: 1.5, md: 3 },
-            padding: { xs: 1.5, md: 3 },
+            gap: {xs: 1.5, md: 3},
+            padding: {xs: 1.5, md: 3},
             background: theme.palette.whites.dark,
             borderRadius: 3,
             animation: `flipIn 0.8s ease-out ${index * 0.9}s backwards`,
             "@keyframes flipIn": {
-                from: { opacity: 0, transform: "perspective(400px) rotateX(-90deg)" },
-                to: { opacity: 1, transform: "perspective(400px) rotateX(0)" },
+                from: {opacity: 0, transform: "perspective(400px) rotateX(-90deg)"},
+                to: {opacity: 1, transform: "perspective(400px) rotateX(0)"},
             },
-            '@media (max-width: 380px)': {
+            // Tablet
+            '@media (min-width: 470px) and (max-width: 1140px)': {
                 padding: 0.7,
-                gap: 1,
             },
         }),
         iconContainer: {
             flexShrink: 0,
-            width: { xs: 60, md: 100 },
-            height: { xs: 60, md: 100 },
+            width: {xs: 60, md: 100},
+            height: {xs: 60, md: 100},
         },
         featureText: () => ({
             ...theme.typography.body1,
             color: theme.palette.primary.main,
+            // Tablet
+            "@media (min-width: 600px) and (max-width: 1140px)": {
+                fontSize: { xs: "16px" },
+            },
         }),
     }), [theme, backgroundColor]);
 
-    return (
+    //                     *********** Mobile version **********
+
+    if (isMobile) {
+        return (
+            <>
+                <Head>
+                    <title>Features - Auction Fusion</title>
+                    <meta name="description" content="Discover the powerful features of Auction Fusion platform"/>
+                </Head>
+
+                <Layout
+                    showContactButton={true}
+                    prevPage="/home"
+                    nextPage="/design"
+                    logoVariant={backgroundColor === theme.palette.primary.light ? "light" : "dark"}
+                    backgroundColor={backgroundColor}
+                >
+                    <Box sx={scaleWrapper}>
+                        <Box sx={verticalStack}>
+                            {/* Main Content */}
+                            <Box sx={styles.container}>
+                                <Typography sx={styles.heading}>
+                                    Why Auction Fusion?
+                                </Typography>
+                                <Box sx={styles.featuresGrid}>
+                                    {features.map((feature, index) => (
+                                        <Box key={feature.id} sx={styles.featureCard(index)}>
+                                            <Box sx={styles.iconContainer}>
+                                                <svg
+                                                    viewBox={feature.svgViewBox}
+                                                    aria-label={feature.ariaLabel}
+                                                    style={{width: "100%", height: "100%"}}
+                                                >
+                                                    {feature.svgPaths}
+                                                </svg>
+                                            </Box>
+                                            <Typography sx={styles.featureText()}>
+                                                {feature.text}
+                                            </Typography>
+                                        </Box>
+                                    ))}
+                                </Box>
+                                {/* Hand Swipe Animation */}
+                                    <Box sx={styles.handAnimation}>
+                                        <svg width="70" height="70" viewBox="-1 0 100 100">
+                                            <path d={HAND_ICON_PATH} fill="white"/>
+                                        </svg>
+                                    </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Layout>
+            </>
+        );
+} else {
+        //                ********** Desktop version **********
+
+        return (
         <>
             <Head>
                 <title>Features - Auction Fusion</title>
-                <meta name="description" content="Discover the powerful features of Auction Fusion platform" />
+                <meta name="description" content="Discover the powerful features of Auction Fusion platform"/>
             </Head>
 
             <Layout
@@ -208,15 +274,6 @@ export default function FeaturesPage() {
                 logoVariant={backgroundColor === theme.palette.primary.light ? "light" : "dark"}
                 backgroundColor={backgroundColor}
             >
-                {/* Hand Swipe Animation */}
-                {showHandAnimation && (
-                    <Box sx={styles.handAnimation}>
-                        <svg width="70" height="70" viewBox="-1 0 100 100">
-                            <path d={HAND_ICON_PATH} fill="white" />
-                        </svg>
-                    </Box>
-                )}
-
                 {/* Main Content */}
                 <Box sx={styles.container}>
                     <Typography sx={styles.heading}>
@@ -230,7 +287,7 @@ export default function FeaturesPage() {
                                     <svg
                                         viewBox={feature.svgViewBox}
                                         aria-label={feature.ariaLabel}
-                                        style={{ width: "100%", height: "100%" }}
+                                        style={{width: "100%", height: "100%"}}
                                     >
                                         {feature.svgPaths}
                                     </svg>
@@ -245,4 +302,5 @@ export default function FeaturesPage() {
             </Layout>
         </>
     );
+  }
 }

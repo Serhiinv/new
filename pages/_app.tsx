@@ -4,9 +4,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@/theme/theme";
 import { useState, useEffect } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
+import Head from "next/head";
+import { useZoomDetection } from "@/hooks/useZoomDetection";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
+  const shouldAllowScroll = useZoomDetection();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,86 +19,68 @@ export default function App({ Component, pageProps }: AppProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // useEffect(() => {
-  //   // Prevent zoom on double tap
-  //   let lastTouchEnd = 0;
-  //   const preventZoom = (e: TouchEvent) => {
-  //     const now = Date.now();
-  //     if (now - lastTouchEnd <= 300) {
-  //       e.preventDefault();
-  //     }
-  //     lastTouchEnd = now;
-  //   };
-  //
-  //   // Prevent pinch zoom
-  //   // const preventPinchZoom = (e: TouchEvent) => {
-  //   //   if (e.touches.length > 1) {
-  //   //     e.preventDefault();
-  //   //   }
-  //   // };
-  //
-  //   // Prevent keyboard zoom (Ctrl +/-)
-  //   // const preventKeyboardZoom = (e: KeyboardEvent) => {
-  //   //   if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=')) {
-  //   //     e.preventDefault();
-  //   //   }
-  //   // };
-  //
-  //   // Prevent wheel zoom (Ctrl + scroll)
-  //   // const preventWheelZoom = (e: WheelEvent) => {
-  //   //   if (e.ctrlKey) {
-  //   //     e.preventDefault();
-  //   //   }
-  //   // };
-  //
-  //   document.addEventListener('touchend', preventZoom, { passive: false });
-  //   document.addEventListener('touchmove', preventPinchZoom, { passive: false });
-  //   // document.addEventListener('keydown', preventKeyboardZoom);
-  //   document.addEventListener('wheel', preventWheelZoom, { passive: false });
-  //
-  //   return () => {
-  //     document.removeEventListener('touchend', preventZoom);
-  //     document.removeEventListener('touchmove', preventPinchZoom);
-  //     // document.removeEventListener('keydown', preventKeyboardZoom);
-  //     document.removeEventListener('wheel', preventWheelZoom);
-  //   };
-  // }, []);
+  // Apply dynamic overflow styles based on zoom detection
+  useEffect(() => {
+    if (shouldAllowScroll) {
+      // Allow vertical scroll when zoomed in 150% or more on desktop
+      document.documentElement.style.overflowY = "auto";
+      document.body.style.overflowY = "auto";
+    } else {
+      // Disable vertical scroll for normal views
+      // document.documentElement.style.overflowY = "hidden";
+      // document.body.style.overflowY = "hidden";
+    }
+    // Always prevent horizontal scroll
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowX = "hidden";
+  }, [shouldAllowScroll]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {loading && (
-        <Box
-          sx={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "#0A1E3F",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "white",
-            zIndex: 9999,
-            transition: "opacity 0.5s ease",
-            fontFamily: "'Schibsted Grotesk', sans-serif",
-          }}
-        >
-          <CircularProgress
+    <>
+      <Head>
+        <style>{`
+          html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+          }
+        `}</style>
+      </Head>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {loading && (
+          <Box
             sx={{
-              color: "#E91E63",
-              mb: 2,
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "#0A1E3F",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              zIndex: 9999,
+              transition: "opacity 0.5s ease",
+              fontFamily: "'Schibsted Grotesk', sans-serif",
             }}
-            size={40}
-          />
-          <Typography variant="body1" sx={{ fontSize: "1.1em" }}>
-            Loading ...
-          </Typography>
-        </Box>
-      )}
-      <Component {...pageProps} />
-    </ThemeProvider>
+          >
+            <CircularProgress
+              sx={{
+                color: "#E91E63",
+                mb: 2,
+              }}
+              size={40}
+            />
+            <Typography variant="body1" sx={{ fontSize: "1.1em" }}>
+              Loading ...
+            </Typography>
+          </Box>
+        )}
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
   );
 }
