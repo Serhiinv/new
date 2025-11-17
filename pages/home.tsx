@@ -94,11 +94,8 @@ export default function HomePage() {
       monitorImage: {
         width: "100%",
         height: "auto",
-        cursor: "pointer",
-        transition: "opacity 0.3s",
         position: "relative",
         zIndex: 0,
-        "&:hover": { opacity: 0.9 },
       },
       screenOverlay: {
         position: "relative",
