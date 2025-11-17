@@ -7,6 +7,7 @@ import { IconButton, Tooltip } from "@mui/material";
 import PrimaryButton from "./PrimaryButton";
 import { useTheme } from "@mui/material/styles";
 import Logo from "./Logo";
+import { useZoomDetection } from "@/hooks/useZoomDetection";
 
 interface LayoutProps {
   children: ReactNode;
@@ -41,6 +42,7 @@ export default function Layout({
   const currentPath = router.pathname;
   const theme = useTheme();
   const [isActualMobileDevice, setIsActualMobileDevice] = useState(false);
+  const shouldAllowScroll = useZoomDetection();
 
   // Detect if we're on an actual mobile device (not a resized desktop browser)
   useEffect(() => {
@@ -122,26 +124,28 @@ export default function Layout({
         top: 0,
         left: 0,
         width: "100vw",
-        height: isActualMobileDevice ? "100vh" : "auto",
+        height: shouldAllowScroll ? "auto" : (isActualMobileDevice ? "100vh" : "auto"),
         minHeight: "100vh",
         background: backgroundColor,
         display: "flex",
         justifyContent: "center",
-        overflow: "hidden",
+        overflow: shouldAllowScroll ? "auto" : "hidden",
+        overflowX: "hidden",
         fontFamily: theme.typography.fontFamily,
       }}
     >
       <Box
         sx={{
           width: "100%",
-          height: isActualMobileDevice ? "90vh" : "auto",
+          height: shouldAllowScroll ? "auto" : (isActualMobileDevice ? "90vh" : "auto"),
+          minHeight: shouldAllowScroll ? "100vh" : "auto",
           maxWidth: { xs: "100%", md: "1600px" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: { xs: "flex-start", md: "center" },
           position: "relative",
-          overflowY: isActualMobileDevice ? "hidden" : "visible",
+          overflowY: shouldAllowScroll ? "visible" : (isActualMobileDevice ? "hidden" : "visible"),
           overflowX: "hidden",
         }}
       >

@@ -8,17 +8,20 @@ export function useScale() {
 
   useEffect(() => {
     const calculateScale = () => {
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
 
-      if (windowWidth <= 600) {
-        const scaleX = windowWidth / BASE_WIDTH;
-        const scaleY = windowHeight / BASE_HEIGHT;
-        setScale(Math.min(scaleX, scaleY));
+      if (windowWidth >= windowHeight) {
+            setScale((1.07))  // need to move pagination down if use more than 1.07
+      } else
+          if (windowWidth <= 600) {
+          const scaleX = windowWidth / BASE_WIDTH;
+          const scaleY = windowHeight / BASE_HEIGHT;
+          setScale(Math.min(scaleX, scaleY));
       } else if (windowWidth <= 1140) {
-        const scaleX = windowWidth / BASE_WIDTH;
-        const scaleY = (windowHeight / BASE_HEIGHT) * 1.1;
-        setScale(Math.min(scaleX, scaleY));
+          const scaleX = windowWidth / BASE_WIDTH;
+          const scaleY = (windowHeight / BASE_HEIGHT) * 1.1;
+          setScale(Math.min(scaleX, scaleY));
       } else {
         setScale(1);
       }

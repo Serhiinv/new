@@ -2,7 +2,7 @@ import Head from "next/head";
 import {Box, Typography, useMediaQuery} from "@mui/material";
 import Layout from "@/components/Layout";
 import { useTheme } from "@mui/material/styles";
-import { useEffect, useState, useMemo } from "react";
+import { useMemo } from "react";
 import {useScale} from "@/hooks/useScale";
 import {useScaleStyles} from "@/hooks/useScaleStyles";
 
@@ -102,25 +102,16 @@ const HAND_ICON_PATH = "m86.89,53.83c-1.57-6.4-4.51-10.68-8.74-12.73-4.91-2.38-1
 export default function FeaturesPage() {
     const theme = useTheme();
     const backgroundColor = theme.palette.primary.light;
-    const [showHandAnimation, setShowHandAnimation] = useState(true);
     const scale = useScale();
     const { scaleWrapper, verticalStack } = useScaleStyles(scale);
     const isMobile = useMediaQuery("(max-width:1139px)");
-
-
-    useEffect(() => {
-        // Hide hand animation after it completes (2 swipes = ~10 seconds)
-        const timer = setTimeout(() => {
-            setShowHandAnimation(false);
-        }, 10000);
-        return () => clearTimeout(timer);
-    }, []);
 
     const styles = useMemo(() => ({
         handAnimation: {
             display: {xs: "block", md: "none"},
             position: "relative",
             pt: "25px",
+            pb: "20px",
             transform: "translateX(80%)",
             zIndex: 1000,
             pointerEvents: "none",
@@ -129,11 +120,14 @@ export default function FeaturesPage() {
             ...animations.handSwipe,
             // Tablet
             "@media (min-width: 600px) and (max-width: 1140px)": {
-                position: "absolute",
-                pt: 0,
-                bottom: "90px",
-                transform: "scale(0.7)",
+            pt: 0,
+            transform: "translateY(-20px) translateX(70%) scale(0.7)",
             },
+            '@media (max-width: 380px)': {
+                pt: "20px",
+                transform: "translateX(80%) scale(0.7)",
+            },
+
         },
         container: {
             width: "100%",
@@ -146,7 +140,7 @@ export default function FeaturesPage() {
             paddingTop: {xs: "30%", md: "0%"},
             paddingBottom: {xs: "0%", md: "0%"},
             maxWidth: {xs: "100%", md: "1600px"},
-            justifyContent: {md: "center"},
+            justifyContent: { md: "center"},
             margin: "0 auto",
 
             // Tablet
@@ -252,13 +246,11 @@ export default function FeaturesPage() {
                                     ))}
                                 </Box>
                                 {/* Hand Swipe Animation */}
-                                {showHandAnimation && (
                                     <Box sx={styles.handAnimation}>
                                         <svg width="70" height="70" viewBox="-1 0 100 100">
                                             <path d={HAND_ICON_PATH} fill="white"/>
                                         </svg>
                                     </Box>
-                                )}
                             </Box>
                         </Box>
                     </Box>

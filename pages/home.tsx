@@ -185,7 +185,7 @@ export default function HomePage() {
           </Box>
           <Box
             sx={{
-              position: "absolute",
+              position: "absolute", // TODO change to relative
               display: { xs: "flex", md: "none" },
                 bottom: 41,
             }}
