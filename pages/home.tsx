@@ -112,13 +112,12 @@ export default function HomePage() {
         order: 2,
       },
       mobileBtn: {
-                        position: "absolute",
-                        display: { xs: "flex", md: "none" },
-                        bottom: 41,
-                        left: 0,
-                        right: 0,
-                        justifyContent: "center",
-
+        position: "absolute",
+        display: { xs: "flex", md: "none" },
+        bottom: 41,
+        left: 0,
+        right: 0,
+        justifyContent: "center",
       },
       mobileSpacer: {
         height: 0,
