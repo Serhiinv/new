@@ -169,6 +169,7 @@ export default function FeaturesPage() {
             '@media (min-width: 600px) and (max-width: 1140px)': {
                 minWidth: "350px",
                 gap: 2,
+                transform: "translateX(-12px)",
             },
         },
         featureCard: (index: number) => ({
