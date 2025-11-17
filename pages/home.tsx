@@ -33,25 +33,21 @@ export default function HomePage() {
         gap: { md: 3 },
         padding: { md: "0 10px" },
         maxWidth: { xs: "100%", md: "670px" },
-          // Tablet  // TODO  width 1140px on desktop
-          "@media (min-width: 600px) and (max-width: 1140px)": {
-              textAlign: "center",
-          },
+        "@media (min-width: 600px) and (max-width: 1140px)": {
+          textAlign: "center",
+        },
       },
       heading: {
         ...theme.typography.heading1,
         color: theme.palette.primary.light,
         margin: 0,
-        // pt: '175px', //same as 51%
         pt: { xs: "51%", md: 0 },
         pb: "15px",
         animation: "fadeInUp 0.8s ease-out",
         ...fadeInUpAnimation,
-
-        // Tablet
         "@media (min-width: 600px) and (max-width: 1140px)": {
-          fontWeight: { xs: 600, md: 400 },
-          fontSize: { xs: "30px" },
+          fontWeight: 600,
+          fontSize: "30px",
           pt: "135px",
         },
       },
@@ -62,33 +58,24 @@ export default function HomePage() {
         pb: "5px",
         animation: "fadeInUp 0.8s ease-out 0.4s backwards",
         ...fadeInUpAnimation,
-
-        // Tablet
         "@media (min-width: 600px) and (max-width: 1140px)": {
-          fontSize: { xs: "16px" },
+          fontSize: "16px",
         },
       },
       monitorContainer: {
-        maxWidth: { xs: "300px", md: "550px" },
+        maxWidth: { xs: "300px", md: "530px" },
         position: "relative",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         padding: { md: "0 20px" },
-
-        // Tablet
         "@media (min-width: 600px) and (max-width: 1140px)": {
-          fontWeight: { xs: 600, md: 400 },
-          fontSize: { xs: "30px" },
           pb: "18%",
         },
-        // Desktop
-        "@media (min-width: 1141px) and (max-width: 5760px)": {
-          alignItems: "bottom",
-          justifyContent: "bottom",
-          height: "100%",
-          transform: "translateY(130px)",
+        "@media (min-width: 1141px)": {
+            height: "100%",
+          transform: "translateY(90px)",
         },
       },
       monitorImage: {
@@ -104,161 +91,134 @@ export default function HomePage() {
         zIndex: 10,
         transform: "translate(0, -155%)",
       },
-
-      //     Desktop styles only
-      container: {
+      desktopContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "center",
         gap: 4,
         padding: "3% 4.5%",
-        paddingTop: "3%",
-        paddingBottom: "3%",
-        animation: "slideIn 0.6s ease-out",
         maxWidth: "1600px",
         margin: "0 auto",
+        boxSizing: "border-box",
       },
-      imageSection: {
+      desktopImageSection: {
         flex: 1,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        paddingBottom: "0",
         order: 2,
       },
-      emptyBox: {
-        "@media (min-width: 420px) and (max-width: 810px)": {
-        height: { xs: '110px', md: '0' },
-        },
+      mobileBtn: {
+                        position: "absolute",
+                        display: { xs: "flex", md: "none" },
+                        bottom: 41,
+                        left: 0,
+                        right: 0,
+                        justifyContent: "center",
 
+      },
+      mobileSpacer: {
+        height: 0,
+        "@media (min-width: 420px) and (max-width: 810px)": {
+          height: "110px",
+        },
       },
     }),
     [theme]
   );
 
-  //                     *********** Mobile version **********
+  const logoVariant =
+    backgroundColor === theme.palette.primary.light ? "light" : "dark";
 
+  // Shared page head
+  const pageHead = (
+    <Head>
+      <title>Auction Fusion - Creating the Finest Auction Websites</title>
+      <meta
+        name="description"
+        content="Auction Fusion is a next-generation auction website platform built for unparalleled AI / search performance and customer experience"
+      />
+    </Head>
+  );
+
+  // Shared hero content
+  const renderHeroContent = () => (
+    <Box sx={styles.textContent}>
+      <Typography sx={styles.heading}>
+        Creating the finest auction websites
+      </Typography>
+      <Typography sx={styles.description}>
+        Auction Fusion is a next-generation auction website platform built
+        for unparalleled AI / search performance and customer experience
+      </Typography>
+        <Box sx={{display: { xs: "none", md: "block" },}}>
+            <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
+        </Box>
+    </Box>
+  );
+
+  // Shared monitor display
+  const renderMonitor = () => (
+    <Box sx={styles.monitorContainer}>
+      <Box
+        component="img"
+        alt="Monitor Background"
+        src={`${bPath}/monitor.png`}
+        sx={styles.monitorImage}
+      />
+      <Box
+        component="img"
+        alt="Auction Website Preview"
+        src={`${bPath}/monitor-screen.jpeg`}
+        sx={styles.screenOverlay}
+      />
+    </Box>
+  );
+
+  // *********** Mobile version **********
   if (isMobile) {
     return (
       <>
-        <Head>
-          <title>Auction Fusion - Creating the Finest Auction Websites</title>
-          <meta
-            name="description"
-            content="Auction Fusion is a next-generation auction website platform built for unparalleled AI / search performance and customer experience"
-          />
-        </Head>
+        {pageHead}
         <Layout
           showContactButton={true}
           nextPage="/features"
-          logoVariant={
-            backgroundColor === theme.palette.primary.light ? "light" : "dark"
-          }
+          logoVariant={logoVariant}
           backgroundColor={backgroundColor}
         >
           <Box sx={scaleWrapper}>
             <Box sx={verticalStack}>
-              <Box sx={styles.textContent}>
-                <Typography sx={styles.heading}>
-                  Creating the finest auction websites
-                </Typography>
-                <Typography sx={styles.description}>
-                  Auction Fusion is a next-generation auction website platform built
-                  for unparalleled AI / search performance and customer experience
-                </Typography>
-              </Box>
-              <Box sx={styles.monitorContainer}>
-                <Box
-                  component="img"
-                  alt="Monitor Background"
-                  src={`${bPath}/monitor.png`}
-                  sx={styles.monitorImage}
-                />
-                <Box
-                  component="img"
-                  alt="Auction Website Preview"
-                  src={`${bPath}/monitor-screen.jpeg`}
-                  sx={styles.screenOverlay}
-                />
-              </Box>
-            {/*Empty box that hold space for let's Start Btn while resizing on desktop*/}
-                <Box sx={styles.emptyBox}> </Box>
-
+              {renderHeroContent()}
+              {renderMonitor()}
+              <Box sx={styles.mobileSpacer} />
             </Box>
           </Box>
-          <Box
-            sx={{
-              position: "absolute", // TODO change to relative
-              display: { xs: "flex", md: "none" },
-                bottom: 41,
-            }}
-          >
+          <Box sx={styles.mobileBtn}>
             <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
           </Box>
         </Layout>
       </>
     );
-  } else {
-    //                ********** Desktop version **********
-
-    return (
-      <>
-        <Head>
-          <title>Auction Fusion - Creating the Finest Auction Websites</title>
-          <meta
-            name="description"
-            content="Auction Fusion is a next-generation auction website platform built for unparalleled AI / search performance and customer experience"
-          />
-        </Head>
-
-        <Layout
-          showContactButton={true}
-          nextPage="/features"
-          logoVariant={
-            backgroundColor === theme.palette.primary.light ? "light" : "dark"
-          }
-          backgroundColor={backgroundColor}
-        >
-          <Box sx={styles.container}>
-            {/* Text Content Section */}
-            <Box sx={styles.textContent}>
-              <Typography sx={styles.heading}>
-                Creating the finest auction websites
-              </Typography>
-
-              <Typography sx={styles.description}>
-                Auction Fusion is a next-generation auction website platform built
-                for unparalleled AI / search performance and customer experience
-              </Typography>
-
-              <Box>
-                <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
-              </Box>
-            </Box>
-
-            {/* Monitor Image Section */}
-            <Box sx={styles.imageSection}>
-              <Box sx={styles.monitorContainer}>
-                <Box
-                  component="img"
-                  alt="Monitor Background"
-                  src={`${bPath}/monitor.png`}
-                  sx={styles.monitorImage}
-                />
-                <Box
-                  component="img"
-                  alt="Auction Website Preview"
-                  src={`${bPath}/monitor-screen.jpeg`}
-                  sx={styles.screenOverlay}
-                />
-              </Box>
-            </Box>
-          </Box>
-        </Layout>
-      </>
-    );
   }
+
+  // ********** Desktop version **********
+  return (
+    <>
+      {pageHead}
+      <Layout
+        showContactButton={true}
+        nextPage="/features"
+        logoVariant={logoVariant}
+        backgroundColor={backgroundColor}
+      >
+        <Box sx={styles.desktopContainer}>
+          {renderHeroContent()}
+          <Box sx={styles.desktopImageSection}>{renderMonitor()}</Box>
+        </Box>
+      </Layout>
+    </>
+  );
 }
