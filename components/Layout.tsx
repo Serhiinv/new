@@ -194,7 +194,7 @@ export default function Layout({
             }}
           >
             {prevPage ? (
-              <Tooltip title="Previous page" placement="right">
+              <Tooltip title="Previous page" placement="bottom">
                 <IconButton
                   component={Link}
                   href={prevPage}
@@ -217,7 +217,7 @@ export default function Layout({
             )}
 
             {nextPage ? (
-              <Tooltip title="Next page" placement="left">
+              <Tooltip title="Next page" placement="bottom">
                 <IconButton
                   component={Link}
                   href={nextPage}
