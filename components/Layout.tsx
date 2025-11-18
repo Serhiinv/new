@@ -75,7 +75,7 @@ export default function Layout({
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Minimum swipe distance (in px)
-  const minSwipeDistance = 50;
+  const minSwipeDistance = 70;
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
