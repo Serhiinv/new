@@ -149,9 +149,9 @@ export default function HomePage() {
                 backgroundColor: theme.palette.background.paper,
                 borderRadius: theme.shape.borderRadius,
                 boxShadow: theme.shadows[5],
-                // padding: theme.spacing(2, 3, 1),
-                padding: theme.spacing(2, 4, 3),
-                width: '90%',
+                padding: theme.spacing(2, 3, 1),
+                // padding: theme.spacing(2, 4, 3),
+                width: '80%',
                 maxWidth: '600px',
                 position: 'relative',
                 maxHeight: '70vh',
@@ -159,11 +159,15 @@ export default function HomePage() {
                 flexDirection: 'column',
             },
             closeButton: {
+                backgroundColor: "black",
+                "&:hover": { backgroundColor: "blue" },
                 position: 'absolute',
-                top: theme.spacing(1),
-                right: theme.spacing(1),
+                width: '50px',
+                height: '50px',
+                color: theme.palette.background.paper,
+                top: -20,
+                right: -20,
                 zIndex: 1,
-                backgroundColor: theme.palette.background.paper,
             },
             modalScrollableContent: {
                 overflowY: 'auto',
@@ -229,7 +233,7 @@ export default function HomePage() {
                         sx={{mb: 2}}
                     >
                         {/*Info*/}
-                           {/*should be empty space if no text*/}
+                        <strong>More info here</strong>{/*should be empty space if no text*/}
                     </Typography>
                     <Box sx={styles.modalScrollableContent}>
                         <Typography id="info-modal-description" sx={{mb: 2}}>
