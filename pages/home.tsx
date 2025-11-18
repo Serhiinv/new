@@ -188,6 +188,12 @@ export default function HomePage() {
                     Our platform offers a wide range of features and tools to create
                     stunning auction websites that cater to your business needs.
                 </Typography>
+                <Typography id="info-modal-description" sx={{mb: 2}}>
+                    Auction Fusion is a next-generation auction website platform built
+                    for unparalleled AI / search performance and customer experience.
+                    Our platform offers a wide range of features and tools to create
+                    stunning auction websites that cater to your business needs.
+                </Typography>
             </InfoModal>
             <Box sx={{display: {xs: "none", md: "block"},}}>
                 <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>

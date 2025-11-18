@@ -1,4 +1,5 @@
 import { Box, IconButton, Modal, Typography } from "@mui/material";
+import { Fade } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@mui/material/styles";
 import { useMemo } from "react";
@@ -31,6 +32,18 @@ export default function InfoModal({ open, onClose, title = "More info here", chi
                 maxHeight: '70vh',
                 display: 'flex',
                 flexDirection: 'column',
+                margin: '0 auto',
+                animation: 'modalScaleIn 0.3s ease-out',
+                '@keyframes modalScaleIn': {
+                    from: {
+                        opacity: 0,
+                        transform: 'scale(0.5)',
+                    },
+                    to: {
+                        opacity: 1,
+                        transform: 'scale(1)',
+                    },
+                },
             },
             closeButton: {
                 backgroundColor: "black",
@@ -58,27 +71,31 @@ export default function InfoModal({ open, onClose, title = "More info here", chi
             aria-labelledby="info-modal-title"
             aria-describedby="info-modal-description"
             sx={styles.modal}
+            closeAfterTransition
         >
-            <Box sx={styles.modalContent}>
-                <IconButton
-                    onClick={onClose}
-                    sx={styles.closeButton}
-                >
-                    <CloseIcon />
-                </IconButton>
-                <Typography
-                    id="info-modal-title"
-                    variant="h6"
-                    component="h2"
-                    sx={{mb: 2}}
-                >
-                    <strong>{title}</strong>
-                </Typography>
-                <Box sx={styles.modalScrollableContent} id="info-modal-description">
-                    {children}
-                </Box>
-            </Box>
+            <Fade in={open} timeout={300}>
+                <div>
+                    <Box sx={styles.modalContent}>
+                        <IconButton
+                            onClick={onClose}
+                            sx={styles.closeButton}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                        <Typography
+                            id="info-modal-title"
+                            variant="h6"
+                            component="h2"
+                            sx={{mb: 2}}
+                        >
+                            <strong>{title}</strong>
+                        </Typography>
+                        <Box sx={styles.modalScrollableContent} id="info-modal-description">
+                            {children}
+                        </Box>
+                    </Box>
+                </div>
+            </Fade>
         </Modal>
     );
 }
-
