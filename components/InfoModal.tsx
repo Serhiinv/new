@@ -47,7 +47,10 @@ export default function InfoModal({ open, onClose, title = "More info here", chi
             },
             closeButton: {
                 backgroundColor: "black",
-                "&:hover": { backgroundColor: "blue" },
+                transition: 'transform 0.2s ease-in-out',
+                "&:hover": {
+                    backgroundColor: "black",
+                    transform: 'scale(0.9)'},
                 position: 'absolute' as const,
                 width: '50px',
                 height: '50px',
