@@ -19,21 +19,11 @@ export default function App({ Component, pageProps }: AppProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Apply dynamic overflow styles based on zoom detection
+  // Only prevent horizontal scroll, let vertical scroll be handled by CSS in _document.tsx
   useEffect(() => {
-    if (shouldAllowScroll) {
-      // Allow vertical scroll when zoomed in 150% or more on desktop
-      document.documentElement.style.overflowY = "auto";
-      document.body.style.overflowY = "auto";
-    } else {
-      // Disable vertical scroll for normal views
-      // document.documentElement.style.overflowY = "hidden";
-      // document.body.style.overflowY = "hidden";
-    }
-    // Always prevent horizontal scroll
     document.documentElement.style.overflowX = "hidden";
     document.body.style.overflowX = "hidden";
-  }, [shouldAllowScroll]);
+  }, []);
 
   return (
     <>

@@ -18,10 +18,11 @@ export default function Document() {
           html {
             width: 100%;
             height: 100%;
+            overflow-x: hidden;
           }
           body {
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             overflow-x: hidden;
             overscroll-behavior: none;
             -webkit-user-select: none;
@@ -31,19 +32,16 @@ export default function Document() {
             -webkit-touch-callout: none;
           }
 
-          @media (max-width: 820px) {
+          @media (max-width: 1140px) {
             html, body {
-              position: static;
-              height: auto;
-              overflow: visible;
+              position: relative;
+              overflow-y: auto;
             }
           }
 
-          @media (min-width: 821px) {
+          @media (min-width: 1141px) {
             html, body {
-              position: static;
-              height: auto;
-              overflow-x: hidden;
+              position: relative;
             }
           }
         `}</style>

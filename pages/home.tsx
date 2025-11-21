@@ -10,6 +10,7 @@ import {useMediaQuery} from "@mui/material";
 import {useScale} from "@/hooks/useScale";
 import {useScaleStyles} from "@/hooks/useScaleStyles";
 import {animations} from "@/config/animations";
+import {useScrollDirection} from "@/hooks/useScrollDirection";
 
 // Animation keyframes
 const fadeInUpAnimation = {
@@ -26,6 +27,7 @@ export default function HomePage() {
     const {scaleWrapper, verticalStack} = useScaleStyles(scale);
     const isMobile = useMediaQuery("(max-width:1140px)");
     const [openInfoModal, setOpenInfoModal] = useState(false);
+    const { isVisible } = useScrollDirection(1);
 
     const styles = useMemo(
         () => ({
@@ -117,11 +119,17 @@ export default function HomePage() {
             mobileBtn: {
                 // position: "absolute",
                 position: "fixed",
-                display: {xs: "flex", md: "none"},
+                display: "flex",
                 bottom: 41,
                 left: 0,
                 right: 0,
                 justifyContent: "center",
+                transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out",
+                transform: isVisible ? "translateY(0)" : "translateY(120px)",
+                opacity: isVisible ? 1 : 0,
+                "@media (min-width: 1141px)": {
+                    display: "none",
+                },
             },
             mobileSpacer: {
                 height: 0,
@@ -142,7 +150,7 @@ export default function HomePage() {
                 },
             },
         }),
-        [theme]
+        [theme, isVisible]
     );
 
     const logoVariant =
