@@ -115,7 +115,8 @@ export default function HomePage() {
                 order: 2,
             },
             mobileBtn: {
-                position: "absolute",
+                // position: "absolute",
+                position: "fixed",
                 display: {xs: "flex", md: "none"},
                 bottom: 41,
                 left: 0,
