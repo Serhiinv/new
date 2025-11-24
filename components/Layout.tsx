@@ -129,8 +129,7 @@ export default function Layout({
         background: backgroundColor,
         display: "flex",
         justifyContent: "center",
-        // overflow: shouldAllowScroll ? "auto" : "hidden",
-          overflow: "visible",
+        overflow: shouldAllowScroll ? "auto" : "hidden",
         overflowX: "hidden",
         fontFamily: theme.typography.fontFamily,
       }}
@@ -146,8 +145,7 @@ export default function Layout({
           alignItems: "center",
           justifyContent: { xs: "flex-start", md: "center" },
           position: "relative",
-          // overflowY: shouldAllowScroll ? "visible" : (isActualMobileDevice ? "hidden" : "visible"),
-            overflowY: "visible",
+          overflowY: shouldAllowScroll ? "visible" : (isActualMobileDevice ? "hidden" : "visible"),
           overflowX: "hidden",
         }}
       >

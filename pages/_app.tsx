@@ -9,7 +9,6 @@ import { useZoomDetection } from "@/hooks/useZoomDetection";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
-  const shouldAllowScroll = useZoomDetection();
 
   useEffect(() => {
     const timer = setTimeout(() => {

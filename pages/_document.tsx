@@ -12,8 +12,10 @@ export default function Document() {
         />
         <style>{`
           * {
-            touch-action: pan-y;
-            -ms-touch-action: pan-y;
+            touch-action: pan-x pan-y;
+            -ms-touch-action: pan-x pan-y;
+            touch-action: manipulation;
+            -ms-touch-action: manipulation;
           }
           html {
             width: 100%;

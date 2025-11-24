@@ -3,14 +3,13 @@ import {Box, Typography} from "@mui/material";
 import Layout from "@/components/Layout";
 import {bPath} from "@/config/basePath";
 import PrimaryButton from "@/components/PrimaryButton";
-import InfoModal from "@/components/InfoModal";
+// import InfoModal from "@/components/InfoModal";
 import {useTheme} from "@mui/material/styles";
 import {useMemo, useState} from "react";
 import {useMediaQuery} from "@mui/material";
 import {useScale} from "@/hooks/useScale";
 import {useScaleStyles} from "@/hooks/useScaleStyles";
 import {animations} from "@/config/animations";
-import {useScrollDirection} from "@/hooks/useScrollDirection";
 
 // Animation keyframes
 const fadeInUpAnimation = {
@@ -26,8 +25,7 @@ export default function HomePage() {
     const scale = useScale();
     const {scaleWrapper, verticalStack} = useScaleStyles(scale);
     const isMobile = useMediaQuery("(max-width:1140px)");
-    const [openInfoModal, setOpenInfoModal] = useState(false);
-    const { isVisible } = useScrollDirection(1);
+    // const [openInfoModal, setOpenInfoModal] = useState(false);
 
     const styles = useMemo(
         () => ({
@@ -117,19 +115,12 @@ export default function HomePage() {
                 order: 2,
             },
             mobileBtn: {
-                // position: "absolute",
                 position: "fixed",
-                display: "flex",
+                display: {xs: "flex", md: "none"},
                 bottom: 41,
                 left: 0,
                 right: 0,
                 justifyContent: "center",
-                transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out",
-                transform: isVisible ? "translateY(0)" : "translateY(120px)",
-                opacity: isVisible ? 1 : 0,
-                "@media (min-width: 1141px)": {
-                    display: "none",
-                },
             },
             mobileSpacer: {
                 height: 0,
@@ -150,7 +141,7 @@ export default function HomePage() {
                 },
             },
         }),
-        [theme, isVisible]
+        [theme]
     );
 
     const logoVariant =
@@ -177,33 +168,33 @@ export default function HomePage() {
                 Auction Fusion is a next-generation auction website platform built
                 for unparalleled AI / search performance and customer experience
             </Typography>
-            <Typography
-                component="span"
-                sx={styles.infoLink}
-                onClick={() => setOpenInfoModal(true)}
-            >
-                see more
-            </Typography>
-            <InfoModal open={openInfoModal} onClose={() => setOpenInfoModal(false)} title={"More info here"}>
-                <Typography id="info-modal-description" sx={{mb: 2}}>
-                    Auction Fusion is a next-generation auction website platform built
-                    for unparalleled AI / search performance and customer experience.
-                    Our platform offers a wide range of features and tools to create
-                    stunning auction websites that cater to your business needs.
-                </Typography>
-                <Typography id="info-modal-description" sx={{mb: 2}}>
-                    Auction Fusion is a next-generation auction website platform built
-                    for unparalleled AI / search performance and customer experience.
-                    Our platform offers a wide range of features and tools to create
-                    stunning auction websites that cater to your business needs.
-                </Typography>
-                <Typography id="info-modal-description" sx={{mb: 2}}>
-                    Auction Fusion is a next-generation auction website platform built
-                    for unparalleled AI / search performance and customer experience.
-                    Our platform offers a wide range of features and tools to create
-                    stunning auction websites that cater to your business needs.
-                </Typography>
-            </InfoModal>
+            {/*<Typography*/}
+            {/*    component="span"*/}
+            {/*    sx={styles.infoLink}*/}
+            {/*    onClick={() => setOpenInfoModal(true)}*/}
+            {/*>*/}
+            {/*    see more*/}
+            {/*</Typography>*/}
+            {/*<InfoModal open={openInfoModal} onClose={() => setOpenInfoModal(false)} title={"More info here"}>*/}
+            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
+            {/*        Auction Fusion is a next-generation auction website platform built*/}
+            {/*        for unparalleled AI / search performance and customer experience.*/}
+            {/*        Our platform offers a wide range of features and tools to create*/}
+            {/*        stunning auction websites that cater to your business needs.*/}
+            {/*    </Typography>*/}
+            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
+            {/*        Auction Fusion is a next-generation auction website platform built*/}
+            {/*        for unparalleled AI / search performance and customer experience.*/}
+            {/*        Our platform offers a wide range of features and tools to create*/}
+            {/*        stunning auction websites that cater to your business needs.*/}
+            {/*    </Typography>*/}
+            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
+            {/*        Auction Fusion is a next-generation auction website platform built*/}
+            {/*        for unparalleled AI / search performance and customer experience.*/}
+            {/*        Our platform offers a wide range of features and tools to create*/}
+            {/*        stunning auction websites that cater to your business needs.*/}
+            {/*    </Typography>*/}
+            {/*</InfoModal>*/}
             <Box sx={{display: {xs: "none", md: "block"},}}>
                 <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
             </Box>
