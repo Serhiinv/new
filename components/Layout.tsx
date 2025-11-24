@@ -75,7 +75,7 @@ export default function Layout({
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Minimum swipe distance (in px)
-  const minSwipeDistance = 50;
+  const minSwipeDistance = 70;
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
@@ -194,7 +194,7 @@ export default function Layout({
             }}
           >
             {prevPage ? (
-              <Tooltip title="Previous page" placement="right">
+              <Tooltip title="Previous page" placement="bottom">
                 <IconButton
                   component={Link}
                   href={prevPage}
@@ -217,7 +217,7 @@ export default function Layout({
             )}
 
             {nextPage ? (
-              <Tooltip title="Next page" placement="left">
+              <Tooltip title="Next page" placement="bottom">
                 <IconButton
                   component={Link}
                   href={nextPage}
@@ -247,7 +247,8 @@ export default function Layout({
         {/* Footer with Pagination Dots */}
         <Box
           sx={{
-            position: "absolute",
+            // position: "absolute",
+            position: "fixed",
               bottom: { xs: "2%", md: 30 },
             left: "50%",
             transform: "translateX(-50%)",

@@ -12,7 +12,8 @@ export function useScale() {
         const windowHeight = window.innerHeight;
 
       if (windowWidth >= windowHeight) {
-            setScale((1.07))  // need to move pagination down if use more than 1.07
+          const scaleX = windowWidth / BASE_WIDTH - 0.5;
+            setScale(scaleX)
       } else
           if (windowWidth <= 600) {
           const scaleX = windowWidth / BASE_WIDTH;

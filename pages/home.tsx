@@ -3,8 +3,9 @@ import {Box, Typography} from "@mui/material";
 import Layout from "@/components/Layout";
 import {bPath} from "@/config/basePath";
 import PrimaryButton from "@/components/PrimaryButton";
+// import InfoModal from "@/components/InfoModal";
 import {useTheme} from "@mui/material/styles";
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
 import {useMediaQuery} from "@mui/material";
 import {useScale} from "@/hooks/useScale";
 import {useScaleStyles} from "@/hooks/useScaleStyles";
@@ -24,6 +25,7 @@ export default function HomePage() {
     const scale = useScale();
     const {scaleWrapper, verticalStack} = useScaleStyles(scale);
     const isMobile = useMediaQuery("(max-width:1140px)");
+    // const [openInfoModal, setOpenInfoModal] = useState(false);
 
     const styles = useMemo(
         () => ({
@@ -113,7 +115,7 @@ export default function HomePage() {
                 order: 2,
             },
             mobileBtn: {
-                position: "absolute",
+                position: "fixed",
                 display: {xs: "flex", md: "none"},
                 bottom: 41,
                 left: 0,
@@ -124,6 +126,18 @@ export default function HomePage() {
                 height: 0,
                 "@media (min-width: 420px) and (max-width: 810px)": {
                     height: "110px",
+                },
+            },
+            infoLink: {
+                ...theme.typography.body1,
+                color: theme.palette.primary.main,
+                cursor: "pointer",
+                textDecoration: "underline",
+                display: "inline",
+                animation: "fadeInUp 0.8s ease-out 0.4s backwards",
+                ...fadeInUpAnimation,
+                "&:hover": {
+                    opacity: 0.8,
                 },
             },
         }),
@@ -154,6 +168,33 @@ export default function HomePage() {
                 Auction Fusion is a next-generation auction website platform built
                 for unparalleled AI / search performance and customer experience
             </Typography>
+            {/*<Typography*/}
+            {/*    component="span"*/}
+            {/*    sx={styles.infoLink}*/}
+            {/*    onClick={() => setOpenInfoModal(true)}*/}
+            {/*>*/}
+            {/*    see more*/}
+            {/*</Typography>*/}
+            {/*<InfoModal open={openInfoModal} onClose={() => setOpenInfoModal(false)} title={"More info here"}>*/}
+            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
+            {/*        Auction Fusion is a next-generation auction website platform built*/}
+            {/*        for unparalleled AI / search performance and customer experience.*/}
+            {/*        Our platform offers a wide range of features and tools to create*/}
+            {/*        stunning auction websites that cater to your business needs.*/}
+            {/*    </Typography>*/}
+            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
+            {/*        Auction Fusion is a next-generation auction website platform built*/}
+            {/*        for unparalleled AI / search performance and customer experience.*/}
+            {/*        Our platform offers a wide range of features and tools to create*/}
+            {/*        stunning auction websites that cater to your business needs.*/}
+            {/*    </Typography>*/}
+            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
+            {/*        Auction Fusion is a next-generation auction website platform built*/}
+            {/*        for unparalleled AI / search performance and customer experience.*/}
+            {/*        Our platform offers a wide range of features and tools to create*/}
+            {/*        stunning auction websites that cater to your business needs.*/}
+            {/*    </Typography>*/}
+            {/*</InfoModal>*/}
             <Box sx={{display: {xs: "none", md: "block"},}}>
                 <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
             </Box>
