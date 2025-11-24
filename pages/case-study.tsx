@@ -25,7 +25,7 @@ export default function CaseStudyPage() {
 
       <Layout
         showContactButton={true}
-        prevPage="/why-us"
+        prevPage="/flip"
         nextPage="/contact"
         logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
         backgroundColor={themeStyle}
@@ -244,9 +244,7 @@ export default function CaseStudyPage() {
                       to: { opacity: 1, transform: "translateX(0)" },
                   },
                   '@media (max-width: 380px)': {
-                      // transform: 'translateY(-20px)',
                       bottom: "8.5%",
-                      // bottom: "60px",
                       zIndex: 15,
                   },
               }}>

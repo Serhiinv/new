@@ -14,7 +14,7 @@ export default function FlipCard({front, back}: FlipCardProps) {
         <Box
             sx={{
                 perspective: "1200px",
-                minHeight: 400,
+                minHeight: 380,
                 minWidth: {xs: "100%", md: "800px"},
                 maxWidth: 600,
                 // maxHeight: 500,

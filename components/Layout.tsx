@@ -26,6 +26,7 @@ const pages = [
   { path: "/testimonials", label: "Testimonials" },
   { path: "/reason", label: "Reason" },
   { path: "/why-us", label: "Why Us" },
+  { path: "/flip", label: "Flip" },
   { path: "/case-study", label: "Case Study" },
   { path: "/contact", label: "Contact" },
 ];
