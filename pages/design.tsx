@@ -25,7 +25,7 @@ export default function DesignPage() {
             justifyContent: "center",
             gap: {xs: 1, md: 4},
             padding: {xs: "2% 2%", md: "3% 4.5%"},
-            paddingTop: {xs: "115px", md: ""},
+            paddingTop: {xs: "100px", md: ""},
             maxWidth: {xs: "100%", md: "1600px"},
             margin: "0 auto",
             "@media (min-width: 600px) and (max-width: 1140px)": {

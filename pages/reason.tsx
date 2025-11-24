@@ -91,12 +91,12 @@ export default function FeaturesPage() {
                     padding: {xs: "3% 0%", md: "3% 5.5%"},
                     flexDirection: "column",
                     gap: { xs: 3, md: 10 },
-                    paddingTop: { xs: "130px", md: "0" },
+                    paddingTop: { xs: "120px", md: "0" },
                     maxWidth: { xs: "100%", md: "1600px"},
                     justifyContent: {md: "center"},
                     margin: "0 auto",
                     '@media (max-width: 380px)': {
-                        paddingTop: "125px",
+                        paddingTop: "115px",
                     },
                     '@media (min-width: 820px) and (max-width: 1140px)': {
                         paddingTop: "135px",
@@ -111,9 +111,9 @@ export default function FeaturesPage() {
                     <Box sx={{
                         display: "grid",
                         gridTemplateColumns: {xs: "1fr", md: "repeat(3, 1fr)"},
-                        gap: { xs: 1.5, md: 4 },
+                        gap: { xs: 2, md: 4 },
                         margin: "0 auto",
-                        paddingTop: { xs: "0%", md: "5.5%" },
+                        paddingTop: { xs: "5%", md: "5.5%" },
                         '@media (max-width: 400px)': {
                           gap: 1.2,
                         },
@@ -129,13 +129,14 @@ export default function FeaturesPage() {
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: {xs: "flex-start", md: "center"},
-                                width: {xs: "100%", md: 350},
+                                width: {xs: "95%", md: 350},
                                 height: {xs: "auto", md: 235},
                                 padding: { xs: 0.7, md: 1.5 },
                                 background: theme.palette.whites.dark,
                                 borderRadius: 3,
                                 pl: {xs: 1, md: 1.5},
-                                pt: {xs: 0.7, md: 2},
+                                pt: {xs: 0.8, md: 2},
+                                margin: "0 auto",
 
                                 animation: `slideInFromTop 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.9}s backwards`,
                                 "@keyframes slideInFromTop": {
@@ -143,8 +144,8 @@ export default function FeaturesPage() {
                                     to: { opacity: 1, transform: "translateY(0)" },
                                 },
                                 '@media (max-width: 400px)': {
-                                  padding: 0.55,
-                                  gap: 0.4,
+                                  // padding: 0.55,
+                                  gap: 0.5,
                                 },
                                 '@media (min-width: 900px) and (max-width: 1180px)': {
                                     width: {xs: "100%", md: 300},

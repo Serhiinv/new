@@ -21,7 +21,7 @@ export default function FeaturesPage() {
             position: "relative",
             pt: "25px",
             pb: "20px",
-            transform: "translateX(80%)",
+            transform: "translateX(80%) scale(0.9)",
             zIndex: 1000,
             pointerEvents: "none",
             animation: "handSwipe 2.5s ease-in-out 4s 2",
@@ -32,7 +32,7 @@ export default function FeaturesPage() {
                 transform: "translateY(-20px) translateX(70%) scale(0.7)",
             },
             '@media (max-width: 380px)': {
-                pt: "20px",
+                pt: "3px",
                 transform: "translateX(80%) scale(0.7)",
             },
         },
@@ -44,7 +44,7 @@ export default function FeaturesPage() {
             padding: {xs: "3% 3%", md: "3% 5.5%"},
             flexDirection: "column",
             gap: {xs: 3, md: 7},
-            paddingTop: {xs: "30%", md: "0%"},
+            paddingTop: {xs: "31%", md: "0%"},
             paddingBottom: {xs: "0%", md: "0%"},
             maxWidth: {xs: "100%", md: "1600px"},
             justifyContent: {md: "center"},
@@ -74,6 +74,9 @@ export default function FeaturesPage() {
                 minWidth: "350px",
                 gap: 2,
                 transform: "translateX(-12px)",
+            },
+            "@media (max-width: 380px)": {
+                gap: "3.5%",
             },
         },
         featureCard: (index: number) => ({

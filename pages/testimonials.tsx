@@ -30,12 +30,12 @@ export default function TestimonialsPage() {
             padding: { xs: "29px 10px", md: "0px 50px" },
             flexDirection: "column",
             gap: { xs: 4, md: 7 },
-            paddingTop: { xs: "140px", md: "0" },
+            paddingTop: { xs: "135px", md: "0" },
             maxWidth: { xs: "100%", md: "1600px"},
             margin: "0 auto",
               '@media (max-width: 380px)': {
                   padding: { xs: "0px 15px"},
-                  marginTop: "55px",
+                  marginTop: "35px",
               },
               '@media (min-width: 470px) and (max-width: 820px)': {
                   paddingTop: "120px",
@@ -69,8 +69,8 @@ export default function TestimonialsPage() {
               zIndex: 2,
               fontWeight: 200,
               padding: { xs: "0 7%", md: "0 9%" },
-              paddingTop: { xs: "5%", md: "80px" },
-              paddingBottom: { xs: "5%", md: "80px" },
+              paddingTop: { xs: "8%", md: "80px" },
+              paddingBottom: { xs: "8%", md: "80px" },
                 backgroundColor: {xs: theme.palette.primary.dark, md: themeStyle},
                 borderRadius: 3,
             }}>

@@ -45,7 +45,7 @@ export default function CaseStudyPage() {
               margin: "0 auto",
               '@media (max-width: 380px)': {
                   padding: "0 3%",
-                  paddingTop: "80px",
+                  paddingTop: "75px",
               },
               '@media (min-width: 470px) and (max-width: 820px)': {
                   paddingTop: "50px",
@@ -80,7 +80,7 @@ export default function CaseStudyPage() {
                       justifyContent: "center",
                       gap: { xs: 3, md: 4 },
                       '@media (max-width: 380px)': {
-                          gap: 2,
+                          gap: 1,
                       },
                   }}
               >
@@ -134,12 +134,15 @@ export default function CaseStudyPage() {
                           order: { xs: 2, md: 2 },
                           mb: { xs: "20%", md: "90px" },
                           maxWidth: "670px",
+                          '@media (max-width: 380px)': {
+                              maxWidth: "80%",
+                          },
                       }}
                   >
                       <Box
                           sx={{
-                              maxWidth: {xs: "80%", md: "600px"},
                               width: "90%",
+                              maxWidth: {xs: "80%", md: "600px"},
                               position: "relative",
                               transform: 'translateY(-20px)',
                           }}
@@ -201,7 +204,7 @@ export default function CaseStudyPage() {
                                           to: { opacity: 1, transform: "translateX(0)" },
                                       },
                                       '@media (max-width: 380px)': {
-                                          width: "65%",
+                                          maxWidth: "90%",
                                       },
                                   }}
                               />
@@ -241,8 +244,9 @@ export default function CaseStudyPage() {
                       to: { opacity: 1, transform: "translateX(0)" },
                   },
                   '@media (max-width: 380px)': {
-                      paddingTop: "3%",
-                      paddingBottom: "3%",
+                      // transform: 'translateY(-20px)',
+                      bottom: "8.5%",
+                      // bottom: "60px",
                       zIndex: 15,
                   },
               }}>
