@@ -3,7 +3,7 @@ import {Box, Typography} from "@mui/material";
 import Layout from "@/components/Layout";
 import {bPath} from "@/config/basePath";
 import PrimaryButton from "@/components/PrimaryButton";
-// import InfoModal from "@/components/InfoModal";
+import InfoModal from "@/components/InfoModal";
 import {useTheme} from "@mui/material/styles";
 import {useMemo, useState} from "react";
 import {useMediaQuery} from "@mui/material";
@@ -25,7 +25,7 @@ export default function HomePage() {
     const scale = useScale();
     const {scaleWrapper, verticalStack} = useScaleStyles(scale);
     const isMobile = useMediaQuery("(max-width:1140px)");
-    // const [openInfoModal, setOpenInfoModal] = useState(false);
+    const [openInfoModal, setOpenInfoModal] = useState(false);
 
     const styles = useMemo(
         () => ({
@@ -129,7 +129,7 @@ export default function HomePage() {
                 },
             },
             infoLink: {
-                ...theme.typography.body1,
+                ...theme.typography.body2,
                 color: theme.palette.primary.main,
                 cursor: "pointer",
                 textDecoration: "underline",
@@ -166,35 +166,43 @@ export default function HomePage() {
             </Typography>
             <Typography sx={styles.description}>
                 Auction Fusion is a next-generation auction website platform built
-                for unparalleled AI / search performance and customer experience
+                for unparalleled AI / search performance and customer experience. {' '}
+                <Box
+                    component="span"
+                    sx={styles.infoLink}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setOpenInfoModal(true)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setOpenInfoModal(true);
+                        }
+                    }}
+                >
+                    see more
+                </Box>
             </Typography>
-            {/*<Typography*/}
-            {/*    component="span"*/}
-            {/*    sx={styles.infoLink}*/}
-            {/*    onClick={() => setOpenInfoModal(true)}*/}
-            {/*>*/}
-            {/*    see more*/}
-            {/*</Typography>*/}
-            {/*<InfoModal open={openInfoModal} onClose={() => setOpenInfoModal(false)} title={"More info here"}>*/}
-            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
-            {/*        Auction Fusion is a next-generation auction website platform built*/}
-            {/*        for unparalleled AI / search performance and customer experience.*/}
-            {/*        Our platform offers a wide range of features and tools to create*/}
-            {/*        stunning auction websites that cater to your business needs.*/}
-            {/*    </Typography>*/}
-            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
-            {/*        Auction Fusion is a next-generation auction website platform built*/}
-            {/*        for unparalleled AI / search performance and customer experience.*/}
-            {/*        Our platform offers a wide range of features and tools to create*/}
-            {/*        stunning auction websites that cater to your business needs.*/}
-            {/*    </Typography>*/}
-            {/*    <Typography id="info-modal-description" sx={{mb: 2}}>*/}
-            {/*        Auction Fusion is a next-generation auction website platform built*/}
-            {/*        for unparalleled AI / search performance and customer experience.*/}
-            {/*        Our platform offers a wide range of features and tools to create*/}
-            {/*        stunning auction websites that cater to your business needs.*/}
-            {/*    </Typography>*/}
-            {/*</InfoModal>*/}
+            <InfoModal open={openInfoModal} onClose={() => setOpenInfoModal(false)} title={"More info here"}>
+                <Typography id="info-modal-description" sx={{mb: 2}}>
+                    Auction Fusion is a next-generation auction website platform built
+                    for unparalleled AI / search performance and customer experience.
+                    Our platform offers a wide range of features and tools to create
+                    stunning auction websites that cater to your business needs.
+                </Typography>
+                <Typography id="info-modal-description" sx={{mb: 2}}>
+                    Auction Fusion is a next-generation auction website platform built
+                    for unparalleled AI / search performance and customer experience.
+                    Our platform offers a wide range of features and tools to create
+                    stunning auction websites that cater to your business needs.
+                </Typography>
+                <Typography id="info-modal-description" sx={{mb: 2}}>
+                    Auction Fusion is a next-generation auction website platform built
+                    for unparalleled AI / search performance and customer experience.
+                    Our platform offers a wide range of features and tools to create
+                    stunning auction websites that cater to your business needs.
+                </Typography>
+            </InfoModal>
             <Box sx={{display: {xs: "none", md: "block"},}}>
                 <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
             </Box>
