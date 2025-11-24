@@ -27,7 +27,7 @@ export default function InfoModal({ open, onClose, title = "More info here", chi
                 boxShadow: theme.shadows[5],
                 padding: theme.spacing(2, 3, 1),
                 width: '80%',
-                maxWidth: '600px',
+                maxWidth: '800px',
                 position: 'relative' as const,
                 maxHeight: '70vh',
                 display: 'flex',
