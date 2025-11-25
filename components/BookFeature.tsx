@@ -9,7 +9,7 @@ export interface BookFeatureProps {
 
 const PAGE_WIDTH = 400;
 const PAGE_HEIGHT = 500;
-const FLIP_DURATION = 800; // ms
+const FLIP_DURATION = 1000; // ms
 
 export default function BookFeature({
                                         pages,
@@ -145,48 +145,57 @@ export default function BookFeature({
             sx={{
                 width,
                 height,
-                perspective: 1200,
+                perspective: 1500,
                 display: "flex",
                 position: "relative",
                 userSelect: "none",
-                background: "#d4cfc4",
-                borderRadius: 8,
-                boxShadow: "0 4px 32px 0 rgba(0,0,0,0.10)",
+                background: "transparent",
+                // background: "#d4cfc4",
+                borderRadius: 0,
                 overflow: "visible",
                 outline: "none",
+                boxShadow: "0 4px 32px 0 rgba(0,0,0,0.10)",
             }}
         >
-            {/* Left Page Stack (thickness visualization) */}
-            <Box
-                sx={{
-                    position: "absolute",
-                    left: -3,
-                    top: 3,
-                    width: width / 2 + 3,
-                    height: height - 6,
-                    background: "#e8e8e8",
-                    borderTopLeftRadius: 8,
-                    borderBottomLeftRadius: 8,
-                    boxShadow: "-2px 0 4px rgba(0,0,0,0.1)",
-                    zIndex: 0,
-                }}
-            />
+            {/*Left Page Stack (thickness visualization - multiple layers)*/}
+            {[...Array(5)].map((_, i) => (
+                <Box
+                    key={`left-stack-${i}`}
+                    sx={{
+                        position: "absolute",
+                        left: -6 - i * 0.8,
+                        top: 8 + i * 0.5,
+                        width: width / 2 + 6,
+                        height: height - 16,
+                        background: `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
+                        borderTopLeftRadius: 8,
+                        borderBottomLeftRadius: 8,
+                        boxShadow: "-1px 0 3px rgba(0,0,0,0.15)",
+                        zIndex: -5 + i,
+                        opacity: 0.7 - i * 0.1,
+                    }}
+                />
+            ))}
 
-            {/* Right Page Stack (thickness visualization) */}
-            <Box
-                sx={{
-                    position: "absolute",
-                    right: -3,
-                    top: 3,
-                    width: width / 2 + 3,
-                    height: height - 6,
-                    background: "#e8e8e8",
-                    borderTopRightRadius: 8,
-                    borderBottomRightRadius: 8,
-                    boxShadow: "2px 0 4px rgba(0,0,0,0.1)",
-                    zIndex: 0,
-                }}
-            />
+            {/* Right Page Stack (thickness visualization - multiple layers) */}
+            {[...Array(5)].map((_, i) => (
+                 <Box
+                    key={`right-stack-${i}`}
+                    sx={{
+                        position: "absolute",
+                        right: -6 - i * 0.8,
+                        top: 8 + i * 0.5,
+                        width: width / 2 + 6,
+                        height: height - 16,
+                        background: `linear-gradient(to left, #d8d8d8, #e8e8e8)`,
+                        borderTopRightRadius: 8,
+                        borderBottomRightRadius: 8,
+                        boxShadow: "1px 0 3px rgba(0,0,0,0.15)",
+                        zIndex: -5 + i,
+                        opacity: 0.7 - i * 0.1,
+                    }}
+                />
+            ))}
 
             {/* Left Page (static, updates after flip) */}
             <Box
@@ -195,7 +204,7 @@ export default function BookFeature({
                     width: width / 2,
                     height,
                     background: "#fff",
-                    boxShadow: "2px 0 8px rgba(0,0,0,0.08)",
+                    boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 4px 0 12px rgba(0,0,0,0.15)",
                     zIndex: 1,
                     position: "relative",
                     borderTopLeftRadius: 8,
@@ -205,7 +214,19 @@ export default function BookFeature({
                     flexDirection: "column",
                     cursor: canFlipPrev ? "pointer" : "default",
                     transition: "box-shadow 0.3s",
-                    "&:hover": canFlipPrev ? {boxShadow: "0 0 16px #bdbdbd"} : {},
+                    "&:hover": canFlipPrev ? {boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)"} : {},
+                    // Add page edge visibility
+                    "&::before": {
+                        content: '""',
+                        position: "absolute",
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                        width: "8px",
+                        background: "linear-gradient(to right, #f5f5f5, transparent)",
+                        pointerEvents: "none",
+                        zIndex: 1,
+                    },
                 }}
             >
                 {staticLeftPage}
@@ -216,8 +237,8 @@ export default function BookFeature({
                 sx={{
                     width: width / 2,
                     height,
-                    background: "#f7f7f7",
-                    boxShadow: "-2px 0 8px rgba(0,0,0,0.08)",
+                    background: "#fafafa",
+                    boxShadow: "inset 2px 0 8px rgba(0,0,0,0.1), -4px 0 12px rgba(0,0,0,0.15)",
                     zIndex: 1,
                     position: "relative",
                     borderTopRightRadius: 8,
@@ -227,7 +248,19 @@ export default function BookFeature({
                     flexDirection: "column",
                     cursor: canFlipNext ? "pointer" : "default",
                     transition: "box-shadow 0.3s",
-                    "&:hover": canFlipNext ? {boxShadow: "0 0 16px #bdbdbd"} : {},
+                    "&:hover": canFlipNext ? {boxShadow: "inset 2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)"} : {},
+                    // Add page edge visibility
+                    "&::before": {
+                        content: '""',
+                        position: "absolute",
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        width: "8px",
+                        background: "linear-gradient(to left, #f5f5f5, transparent)",
+                        pointerEvents: "none",
+                        zIndex: 1,
+                    },
                 }}
             >
                 {staticRightPage}
@@ -333,13 +366,13 @@ export default function BookFeature({
             <Box
                 sx={{
                     position: "absolute",
-                    left: width / 2 - 2,
+                    left: width / 2 - 3,
                     top: 0,
-                    width: 4,
+                    width: 3,
                     height,
                     background: "#e0e0e0",
                     zIndex: 3,
-                    borderRadius: 2,
+                    borderRadius: 3,
                 }}
             />
         </Box>
