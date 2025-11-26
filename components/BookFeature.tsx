@@ -190,9 +190,7 @@ export default function BookFeature({
                         background: "#999999",
                         borderTopLeftRadius: 8,
                         borderBottomLeftRadius: 8,
-                        // boxShadow: "-1px 0 3px rgba(0,0,0,0.15)",
                         zIndex: -10 + i,
-                        // opacity: 0.7 - i * 0.1,
                     }}
                 />
             ))}
@@ -230,57 +228,10 @@ export default function BookFeature({
                         background: "#999999",
                         borderTopRightRadius: 8,
                         borderBottomRightRadius: 8,
-                        // boxShadow: "1px 0 3px rgba(0,0,0,0.15)",
                         zIndex: -10 + i,
-                        // opacity: 0.7 - i * 0.1,
                     }}
                 />
             ))}
-
-            {/* Bottom Page Stack (thickness visualization - multiple layers) */}
-            {/*{[...Array(5)].map((_, i) => (*/}
-            {/*    <Box*/}
-            {/*        key={`bottom-stack-${i}`}*/}
-            {/*        sx={{*/}
-            {/*            position: "absolute",*/}
-            {/*            left: -6,*/}
-            {/*            bottom: -7 - i * 0.8,*/}
-            {/*            width: width + 12,*/}
-            {/*            height: height / 2 + 1,*/}
-            {/*            // background: `linear-gradient(to bottom, #e8e8e8, #d8d8d8)`,*/}
-            {/*            background: `linear-gradient(to bottom, #dddddd, #bbbbbb)`,*/}
-
-            {/*            borderBottomLeftRadius: 8,*/}
-            {/*            borderBottomRightRadius: 8,*/}
-            {/*            boxShadow: "0 1px 3px rgba(0,0,0,0.15)",*/}
-            {/*            zIndex: -12 + i,*/}
-            {/*            opacity: 0.6 - i * 0.1,*/}
-            {/*        }}*/}
-            {/*    />*/}
-            {/*))}*/}
-
-            {/* Bottom Page Stack (thickness visualization - multiple layers) */}
-            {/*{[...Array(5)].map((_, i) => (*/}
-            {/*    <Box*/}
-            {/*        key={`bottom-stack-${i}`}*/}
-            {/*        sx={{*/}
-            {/*            position: "absolute",*/}
-            {/*            left: -11,*/}
-            {/*            bottom: -8 - i * 0.8,*/}
-            {/*            width: width + 22,*/}
-            {/*            height: height - 6 ,*/}
-            {/*            // background: `linear-gradient(to bottom, #e8e8e8, #d8d8d8)`,*/}
-            {/*            background: "#999999",*/}
-            {/*            borderTopLeftRadius: 8,*/}
-            {/*            borderTopRightRadius: 8,*/}
-            {/*            borderBottomLeftRadius: 8,*/}
-            {/*            borderBottomRightRadius: 8,*/}
-            {/*            boxShadow: "0 1px 3px rgba(0,0,0,0.15)",*/}
-            {/*            zIndex: -10 + i,*/}
-            {/*            opacity: 0.8 - i * 0.1,*/}
-            {/*        }}*/}
-            {/*    />*/}
-            {/*))}*/}
 
             {/* Left Page (static, updates after flip) */}
             <Box
