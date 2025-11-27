@@ -117,9 +117,6 @@ export default function BookFeature({
             borderTopRightRadius: 8,
             borderBottomRightRadius: 8,
             transformOrigin: "left center",
-            boxShadow: flippingProgress === "end"
-                ? "-12px 0 32px 0 rgba(0,0,0,0.25)"
-                : "-8px 0 24px 0 rgba(0,0,0,0.15)",
             zIndex: 10,
         };
         flippingTransform = flippingProgress === "start" ? "rotateY(0deg)" : "rotateY(-180deg)";
@@ -132,9 +129,6 @@ export default function BookFeature({
             borderTopLeftRadius: 8,
             borderBottomLeftRadius: 8,
             transformOrigin: "right center",
-            boxShadow: flippingProgress === "end"
-                ? "12px 0 32px 0 rgba(0,0,0,0.25)"
-                : "8px 0 24px 0 rgba(0,0,0,0.15)",
             zIndex: 10,
         };
         flippingTransform = flippingProgress === "start" ? "rotateY(0deg)" : "rotateY(180deg)";
@@ -142,17 +136,15 @@ export default function BookFeature({
 
     // Determine what to render for static left/right pages for smooth flip
     const isFirstPage = pageIndex === 0;
-    const isThirdPage = pageIndex === 2; ////
+    const isThirdPage = pageIndex === 2;
     let staticLeftPage = isFirstPage ? null : leftPage;
-    // let staticLeftPage = leftPage;
     let staticRightPage = rightPage;
     if (isFlipping && flipDirection === "next") {
         // Show the next Right page under the flipping page
         staticRightPage = nextRightPage;
     } else if (isFlipping && flipDirection === "prev") {
         // Show the previous Left page under the flipping page
-        // staticLeftPage = prevLeftPage;
-        staticLeftPage = isThirdPage ? null : prevLeftPage; //////
+        staticLeftPage = isThirdPage ? null : prevLeftPage;
     }
     return (
         <Box
@@ -166,11 +158,9 @@ export default function BookFeature({
                 position: "relative",
                 userSelect: "none",
                 background: "transparent",
-                // background: "#d4cfc4",
                 borderRadius: 0,
                 overflow: "visible",
                 outline: "none",
-                boxShadow: (isFirstPage || isThirdPage) ? "transparent" : "0 4px 32px 0 rgba(0,0,0,0.10)", //
             }}
         >
             {/*Left Page Stack (thickness visualization - multiple layers)*/}
@@ -183,37 +173,29 @@ export default function BookFeature({
                         top: 8 + i * 0.5,
                         width: width / 2 + 6,
                         height: height - 4,
-                        // background: isFirstPage ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
                         background: pageIndex < 4  ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
                         borderTopLeftRadius: 8,
                         borderBottomLeftRadius: 8,
                         borderBottomRightRadius: 3,
-                        // boxShadow: isFirstPage ? "transparent" : "-1px 0 3px rgba(0,0,0,0.15)",
-                        boxShadow: pageIndex < 4 ? "transparent" : "-1px 0 3px rgba(0,0,0,0.15)",
                         zIndex: -5 + i,
                         opacity: 0.7 - i * 0.1,
-                        // display: "none"
                     }}
                 />
             ))}
             {/*Left Page Stack (thickness visualization - back layer)*/}
             {[...Array(5)].map((_, i) => (
                 <Box
-                    key={`left-stack-${i}`}
-                    // key={`left-stack-back-${i}`}
+                    key={`left-stack-back-${i}`}
                     sx={{
                         position: "absolute",
                         left: -9 - i * 0.8,
                         top: 10 + i * 0.5,
                         width: width / 2 + 4.5,
                         height: height - 3,
-                        // background: isFirstPage ? "transparent" : "#999999",
-                        // background: pageIndex>2 ? "transparent" : "#999999",
                         background: pageIndex < 5 ? "transparent" : "#999999",
                         borderTopLeftRadius: 8,
                         borderBottomLeftRadius: 8,
                         zIndex: -10 + i,
-                        // display: "none"
                     }}
                 />
             ))}
@@ -232,7 +214,6 @@ export default function BookFeature({
                         borderTopRightRadius: 8,
                         borderBottomRightRadius: 8,
                         borderBottomLeftRadius: 3,
-                        boxShadow: "1px 0 3px rgba(0,0,0,0.15)",
                         zIndex: -5 + i,
                         opacity: 0.7 - i * 0.1,
                     }}
@@ -241,7 +222,7 @@ export default function BookFeature({
             {/* Right Page Stack (thickness visualization - back layer) */}
             {[...Array(5)].map((_, i) => (
                 <Box
-                    key={`right-stack-${i}`}
+                    key={`right-stack-back-${i}`}
                     sx={{
                         position: "absolute",
                         right: -9 - i * 0.8,
@@ -263,21 +244,16 @@ export default function BookFeature({
                     width: width / 2,
                     height,
                     background: (isFirstPage || isThirdPage) ? "transparent" : "#fff",
-                    boxShadow: (isFirstPage || isThirdPage)
-                        ? "none"
-                        : "inset -2px 0 8px rgba(0,0,0,0.1), 4px 0 12px rgba(0,0,0,0.15)",
                     zIndex: 1,
                     position: "relative",
                     borderTopLeftRadius: 8,
                     borderBottomLeftRadius: 8,
+                    borderTopRightRadius: 2,
+                    borderBottomRightRadius: 2,
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
                     cursor: canFlipPrev ? "pointer" : "default",
-                    transition: "box-shadow 0.3s",
-                    "&:hover": canFlipPrev
-                        ? { boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)" }
-                        : {},
                     "&::before": (isFirstPage || isThirdPage)
                         ? {}
                         : {
@@ -302,18 +278,16 @@ export default function BookFeature({
                     width: width / 2,
                     height,
                     background: "#fafafa",
-                    boxShadow: "inset 2px 0 8px rgba(0,0,0,0.1), -4px 0 12px rgba(0,0,0,0.15)",
                     zIndex: 1,
                     position: "relative",
                     borderTopRightRadius: 8,
+                    borderTopLeftRadius: 2,
+                    borderBottomLeftRadius: 2,
                     borderBottomRightRadius: 8,
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
                     cursor: canFlipNext ? "pointer" : "default",
-                    transition: "box-shadow 0.3s",
-                    "&:hover": canFlipNext ? {boxShadow: "inset 2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)"} : {},
-                    // Add page edge visibility
                     "&::before": {
                         content: '""',
                         position: "absolute",
@@ -362,9 +336,6 @@ export default function BookFeature({
                             backfaceVisibility: "hidden",
                             display: "flex",
                             flexDirection: "column",
-                            boxShadow: flipDirection === "next"
-                                ? "-8px 0 24px 0 rgba(0,0,0,0.15)"
-                                : "8px 0 24px 0 rgba(0,0,0,0.15)",
                         }}
                     >
                         {flippingFront}
@@ -402,9 +373,6 @@ export default function BookFeature({
                             transform: "rotateY(180deg)",
                             display: "flex",
                             flexDirection: "column",
-                            boxShadow: flipDirection === "next"
-                                ? "8px 0 24px 0 rgba(0,0,0,0.10)"
-                                : "-8px 0 24px 0 rgba(0,0,0,0.10)",
                         }}
                     >
                         {flippingBack}
@@ -430,11 +398,11 @@ export default function BookFeature({
             <Box
                 sx={{
                     position: "absolute",
-                    left: width / 2 - 3,
-                    top: 0,
+                    left: width / 2 - 1.5,
+                    top: 0.5,
                     width: 3,
-                    height,
-                    background: "#e0e0e0",
+                    height: height - 1,
+                    background: isFirstPage ? "transparent" : "#e0e0e0",
                     zIndex: 3,
                     borderRadius: 3,
                 }}
