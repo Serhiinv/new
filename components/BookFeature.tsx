@@ -34,9 +34,6 @@ export default function BookFeature({
     const rightPage = bookPages[pageIndex + 1] ?? null;
     const nextLeftPage = bookPages[pageIndex + 2] ?? null;
     const prevLeftPage = bookPages[pageIndex - 2] ?? null;
-    // const isFirstPage = pageIndex === 0;
-    // const isThirdPage = pageIndex === 2;
-    // const prevLeftPage = isThirdPage ? null : (bookPages[pageIndex - 2] ?? null);
     const nextRightPage = bookPages[pageIndex + 3] ?? null;
     const prevRightPage = bookPages[pageIndex - 1] ?? null;
 
@@ -173,7 +170,7 @@ export default function BookFeature({
                 borderRadius: 0,
                 overflow: "visible",
                 outline: "none",
-                boxShadow: isFirstPage ? "transparent" : "0 4px 32px 0 rgba(0,0,0,0.10)",
+                boxShadow: (isFirstPage || isThirdPage) ? "transparent" : "0 4px 32px 0 rgba(0,0,0,0.10)", //
             }}
         >
             {/*Left Page Stack (thickness visualization - multiple layers)*/}
@@ -187,11 +184,12 @@ export default function BookFeature({
                         width: width / 2 + 6,
                         height: height - 4,
                         // background: isFirstPage ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
-                        background: pageIndex<4  ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
+                        background: pageIndex < 4  ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
                         borderTopLeftRadius: 8,
                         borderBottomLeftRadius: 8,
                         borderBottomRightRadius: 3,
-                        boxShadow: isFirstPage ? "transparent" : "-1px 0 3px rgba(0,0,0,0.15)",
+                        // boxShadow: isFirstPage ? "transparent" : "-1px 0 3px rgba(0,0,0,0.15)",
+                        boxShadow: pageIndex < 4 ? "transparent" : "-1px 0 3px rgba(0,0,0,0.15)",
                         zIndex: -5 + i,
                         opacity: 0.7 - i * 0.1,
                         // display: "none"
@@ -202,6 +200,7 @@ export default function BookFeature({
             {[...Array(5)].map((_, i) => (
                 <Box
                     key={`left-stack-${i}`}
+                    // key={`left-stack-back-${i}`}
                     sx={{
                         position: "absolute",
                         left: -9 - i * 0.8,
@@ -210,7 +209,7 @@ export default function BookFeature({
                         height: height - 3,
                         // background: isFirstPage ? "transparent" : "#999999",
                         // background: pageIndex>2 ? "transparent" : "#999999",
-                        background: pageIndex<5 ? "transparent" : "#999999",
+                        background: pageIndex < 5 ? "transparent" : "#999999",
                         borderTopLeftRadius: 8,
                         borderBottomLeftRadius: 8,
                         zIndex: -10 + i,
@@ -263,8 +262,8 @@ export default function BookFeature({
                 sx={{
                     width: width / 2,
                     height,
-                    background: isFirstPage ? "transparent" : "#fff",
-                    boxShadow: isFirstPage
+                    background: (isFirstPage || isThirdPage) ? "transparent" : "#fff",
+                    boxShadow: (isFirstPage || isThirdPage)
                         ? "none"
                         : "inset -2px 0 8px rgba(0,0,0,0.1), 4px 0 12px rgba(0,0,0,0.15)",
                     zIndex: 1,
@@ -279,7 +278,7 @@ export default function BookFeature({
                     "&:hover": canFlipPrev
                         ? { boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)" }
                         : {},
-                    "&::before": isFirstPage
+                    "&::before": (isFirstPage || isThirdPage)
                         ? {}
                         : {
                             content: '""',
