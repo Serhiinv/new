@@ -5,6 +5,8 @@ export interface BookFeatureProps {
     pages?: React.ReactNode[];
     width?: number;
     height?: number;
+    currentPage?: number; // controlled page index
+    onPageChange?: (page: number) => void; // notify parent on page change
 }
 
 const PAGE_WIDTH = 400;
@@ -15,9 +17,13 @@ export default function BookFeature({
                                         pages,
                                         width = PAGE_WIDTH * 2,
                                         height = PAGE_HEIGHT,
+                                        currentPage, // new prop
+                                        onPageChange, // new prop
                                     }: BookFeatureProps) {
     const bookPages = pages ?? [];
-    const [pageIndex, setPageIndex] = useState(0);
+    const isControlled = typeof currentPage === 'number';
+    const [internalPageIndex, setInternalPageIndex] = useState(0);
+    const pageIndex = isControlled ? currentPage! : internalPageIndex;
     const [isFlipping, setIsFlipping] = useState(false);
     const [flipDirection, setFlipDirection] = useState<"next" | "prev" | null>(null);
     const [flippingProgress, setFlippingProgress] = useState<"idle" | "start" | "end">("idle");
@@ -28,6 +34,9 @@ export default function BookFeature({
     const rightPage = bookPages[pageIndex + 1] ?? null;
     const nextLeftPage = bookPages[pageIndex + 2] ?? null;
     const prevLeftPage = bookPages[pageIndex - 2] ?? null;
+    // const isFirstPage = pageIndex === 0;
+    // const isThirdPage = pageIndex === 2;
+    // const prevLeftPage = isThirdPage ? null : (bookPages[pageIndex - 2] ?? null);
     const nextRightPage = bookPages[pageIndex + 3] ?? null;
     const prevRightPage = bookPages[pageIndex - 1] ?? null;
 
@@ -79,14 +88,20 @@ export default function BookFeature({
     useEffect(() => {
         if (isFlipping && flippingProgress === "end") {
             const id = setTimeout(() => {
-                setPageIndex(idx => flipDirection === "next" ? idx + 2 : idx - 2);
+                const newIndex = flipDirection === "next" ? pageIndex + 2 : pageIndex - 2;
+                if (isControlled) {
+                    onPageChange && onPageChange(newIndex);
+                } else {
+                    setInternalPageIndex(newIndex);
+                    onPageChange && onPageChange(newIndex);
+                }
                 setIsFlipping(false);
                 setFlipDirection(null);
                 setFlippingProgress("idle");
             }, FLIP_DURATION);
             return () => clearTimeout(id);
         }
-    }, [isFlipping, flippingProgress, flipDirection]);
+    }, [isFlipping, flippingProgress, flipDirection, isControlled, pageIndex, onPageChange]);
 
 
     // Flipping page faces
@@ -129,14 +144,18 @@ export default function BookFeature({
     }
 
     // Determine what to render for static left/right pages for smooth flip
-    let staticLeftPage = leftPage;
+    const isFirstPage = pageIndex === 0;
+    const isThirdPage = pageIndex === 2; ////
+    let staticLeftPage = isFirstPage ? null : leftPage;
+    // let staticLeftPage = leftPage;
     let staticRightPage = rightPage;
     if (isFlipping && flipDirection === "next") {
         // Show the next Right page under the flipping page
         staticRightPage = nextRightPage;
     } else if (isFlipping && flipDirection === "prev") {
-        // Show the previous Right page under the flipping page
-        staticLeftPage = prevLeftPage;
+        // Show the previous Left page under the flipping page
+        // staticLeftPage = prevLeftPage;
+        staticLeftPage = isThirdPage ? null : prevLeftPage; //////
     }
     return (
         <Box
@@ -154,7 +173,7 @@ export default function BookFeature({
                 borderRadius: 0,
                 overflow: "visible",
                 outline: "none",
-                boxShadow: "0 4px 32px 0 rgba(0,0,0,0.10)",
+                boxShadow: isFirstPage ? "transparent" : "0 4px 32px 0 rgba(0,0,0,0.10)",
             }}
         >
             {/*Left Page Stack (thickness visualization - multiple layers)*/}
@@ -167,13 +186,15 @@ export default function BookFeature({
                         top: 8 + i * 0.5,
                         width: width / 2 + 6,
                         height: height - 4,
-                        background: `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
+                        // background: isFirstPage ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
+                        background: pageIndex<4  ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
                         borderTopLeftRadius: 8,
                         borderBottomLeftRadius: 8,
                         borderBottomRightRadius: 3,
-                        boxShadow: "-1px 0 3px rgba(0,0,0,0.15)",
+                        boxShadow: isFirstPage ? "transparent" : "-1px 0 3px rgba(0,0,0,0.15)",
                         zIndex: -5 + i,
                         opacity: 0.7 - i * 0.1,
+                        // display: "none"
                     }}
                 />
             ))}
@@ -187,10 +208,13 @@ export default function BookFeature({
                         top: 10 + i * 0.5,
                         width: width / 2 + 4.5,
                         height: height - 3,
-                        background: "#999999",
+                        // background: isFirstPage ? "transparent" : "#999999",
+                        // background: pageIndex>2 ? "transparent" : "#999999",
+                        background: pageIndex<5 ? "transparent" : "#999999",
                         borderTopLeftRadius: 8,
                         borderBottomLeftRadius: 8,
                         zIndex: -10 + i,
+                        // display: "none"
                     }}
                 />
             ))}
@@ -239,8 +263,10 @@ export default function BookFeature({
                 sx={{
                     width: width / 2,
                     height,
-                    background: "#fff",
-                    boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 4px 0 12px rgba(0,0,0,0.15)",
+                    background: isFirstPage ? "transparent" : "#fff",
+                    boxShadow: isFirstPage
+                        ? "none"
+                        : "inset -2px 0 8px rgba(0,0,0,0.1), 4px 0 12px rgba(0,0,0,0.15)",
                     zIndex: 1,
                     position: "relative",
                     borderTopLeftRadius: 8,
@@ -250,19 +276,22 @@ export default function BookFeature({
                     flexDirection: "column",
                     cursor: canFlipPrev ? "pointer" : "default",
                     transition: "box-shadow 0.3s",
-                    "&:hover": canFlipPrev ? {boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)"} : {},
-                    // Add page edge visibility
-                    "&::before": {
-                        content: '""',
-                        position: "absolute",
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        width: "8px",
-                        background: "linear-gradient(to right, #f5f5f5, transparent)",
-                        pointerEvents: "none",
-                        zIndex: 1,
-                    },
+                    "&:hover": canFlipPrev
+                        ? { boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)" }
+                        : {},
+                    "&::before": isFirstPage
+                        ? {}
+                        : {
+                            content: '""',
+                            position: "absolute",
+                            left: 0,
+                            top: 0,
+                            bottom: 0,
+                            width: "8px",
+                            background: "linear-gradient(to right, #f5f5f5, transparent)",
+                            pointerEvents: "none",
+                            zIndex: 1,
+                        },
                 }}
             >
                 {staticLeftPage}
