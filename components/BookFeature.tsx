@@ -29,6 +29,13 @@ export default function BookFeature({
     const [flippingProgress, setFlippingProgress] = useState<"idle" | "start" | "end">("idle");
     const containerRef = useRef<HTMLDivElement>(null);
 
+    // Manual drag state
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragProgress, setDragProgress] = useState(0);
+    const [dragStartX, setDragStartX] = useState(0);
+    const [dragDirection, setDragDirection] = useState<"next" | "prev" | null>(null);
+    const [hasMovedMouse, setHasMovedMouse] = useState(false);
+
     // Show two pages at a time: left and right
     const leftPage = bookPages[pageIndex] ?? null;
     const rightPage = bookPages[pageIndex + 1] ?? null;
@@ -41,12 +48,12 @@ export default function BookFeature({
     const canFlipNext = pageIndex + 2 < bookPages.length;
     const canFlipPrev = pageIndex - 2 >= 0;
 
-    const handleFlip = useCallback((direction: "next" | "prev") => {
-        if (isFlipping) return;
+    const handleFlip = useCallback((direction: "next" | "prev", force = false) => {
+        if (!force && (isFlipping || isDragging)) return;
         setFlipDirection(direction);
         setIsFlipping(true);
         setFlippingProgress("start");
-    }, [isFlipping]);
+    }, [isFlipping, isDragging]);
 
     // const handleLeftPageClick = () => {
     //     if (canFlipPrev) handleFlip("prev");
@@ -73,6 +80,110 @@ export default function BookFeature({
         if (canFlipNext) handleFlip("next");
     };
 
+    // Manual drag handlers
+    const handleMouseDown = (e: React.MouseEvent, direction: "next" | "prev") => {
+        // Check if the click was on a link or inside a link
+        let el = e.target as HTMLElement | null;
+        while (el) {
+            if (el.tagName === "A") return; // Do not drag if a link was clicked
+            el = el.parentElement;
+        }
+
+        if (direction === "next" && !canFlipNext) return;
+        if (direction === "prev" && !canFlipPrev) return;
+
+        e.preventDefault();
+        setDragStartX(e.clientX);
+        setDragDirection(direction);
+        setHasMovedMouse(false);
+        // Don't set isDragging yet - wait for mouse move
+    };
+
+    const handleMouseMove = useCallback((e: MouseEvent) => {
+        if (!dragDirection) return;
+
+        const deltaX = e.clientX - dragStartX;
+        const pageWidth = width / 2;
+
+        // Calculate progress regardless of dragging state
+        let progress = 0;
+        if (dragDirection === "next") {
+            progress = Math.max(-1, Math.min(0, deltaX / pageWidth));
+        } else {
+            progress = Math.max(0, Math.min(1, deltaX / pageWidth));
+        }
+
+        // Only start dragging if moved more than 5 pixels
+        if (!isDragging && Math.abs(deltaX) > 5) {
+            setIsDragging(true);
+            setHasMovedMouse(true);
+        }
+
+        setDragProgress(progress);
+    }, [isDragging, dragStartX, dragDirection, width]);
+
+    const handleMouseUp = useCallback(() => {
+        if (!dragDirection) return;
+
+        const threshold = 0.3;
+        const shouldFlip = Math.abs(dragProgress) > threshold;
+
+        // If we should flip, transition smoothly from current drag position
+        if (shouldFlip) {
+            // Keep isDragging true to maintain the flipping page visualization
+            // But allow the flip to start
+            setIsFlipping(true);
+            setFlipDirection(dragDirection);
+            setFlippingProgress("end"); // Skip to end state immediately
+
+            // Calculate remaining rotation needed
+            const currentRotation = Math.abs(dragProgress * 180);
+            const remainingRotation = 180 - currentRotation;
+            const adjustedDuration = (remainingRotation / 180) * FLIP_DURATION;
+
+            // Complete the page change after the remaining animation time
+            setTimeout(() => {
+                const newIndex = dragDirection === "next" ? pageIndex + 2 : pageIndex - 2;
+                if (isControlled) {
+                    onPageChange && onPageChange(newIndex);
+                } else {
+                    setInternalPageIndex(newIndex);
+                    onPageChange && onPageChange(newIndex);
+                }
+                setIsFlipping(false);
+                setFlipDirection(null);
+                setFlippingProgress("idle");
+                setIsDragging(false);
+                setDragProgress(0);
+                setDragDirection(null);
+                setHasMovedMouse(false);
+            }, adjustedDuration);
+        } else {
+            // Snap back - no flip
+            setIsDragging(false);
+            setDragProgress(0);
+            setDragDirection(null);
+            setHasMovedMouse(false);
+        }
+
+        // Handle click (no mouse movement)
+        if (!hasMovedMouse) {
+            setDragDirection(null);
+            setTimeout(() => handleFlip(dragDirection, true), 0);
+        }
+    }, [isDragging, hasMovedMouse, dragProgress, dragDirection, handleFlip, pageIndex, isControlled, onPageChange]);
+
+    // }, [isDragging, hasMovedMouse, dragProgress, dragDirection, handleFlip]);
+    useEffect(() => {
+        if (dragDirection) {
+            window.addEventListener("mousemove", handleMouseMove);
+            window.addEventListener("mouseup", handleMouseUp);
+            return () => {
+                window.removeEventListener("mousemove", handleMouseMove);
+                window.removeEventListener("mouseup", handleMouseUp);
+            };
+        }
+    }, [dragDirection, handleMouseMove, handleMouseUp]);
 
     // Keyboard navigation
     useEffect(() => {
@@ -127,7 +238,34 @@ export default function BookFeature({
     let flippingTransform = "none";
     let gradientOpacity = 0;
 
-    if (isFlipping && flipDirection === "next") {
+    // Handle manual drag visualization
+    if (isDragging && dragDirection) {
+        const rotation = dragProgress * 180;
+
+        if (dragDirection === "next") {
+            flippingFront = rightPage;
+            flippingBack = nextLeftPage;
+            flippingPageStyle = {
+                left: width / 2,
+                borderTopRightRadius: 8,
+                borderBottomRightRadius: 8,
+                transformOrigin: "left center",
+                zIndex: 10,
+            };
+            flippingTransform = `rotateY(${rotation}deg)`;
+        } else {
+            flippingFront = leftPage;
+            flippingBack = prevRightPage;
+            flippingPageStyle = {
+                left: 0,
+                borderTopLeftRadius: 8,
+                borderBottomLeftRadius: 8,
+                transformOrigin: "right center",
+                zIndex: 10,
+            };
+            flippingTransform = `rotateY(${rotation}deg)`;
+        }
+    } else if (isFlipping && flipDirection === "next") {
         flippingFront = rightPage;
         flippingBack = nextLeftPage;
         gradientOpacity = flippingProgress === "end" ? 0.3 : 0;
@@ -136,9 +274,9 @@ export default function BookFeature({
             borderTopRightRadius: 8,
             borderBottomRightRadius: 8,
             transformOrigin: "left center",
-            boxShadow: flippingProgress === "end"
-                ? "-12px 0 32px 0 rgba(0,0,0,0.25)"
-                : "-8px 0 24px 0 rgba(0,0,0,0.15)",
+            // boxShadow: flippingProgress === "end"
+            //     ? "-12px 0 32px 0 rgba(0,0,0,0.25)"
+            //     : "-8px 0 24px 0 rgba(0,0,0,0.15)",
             zIndex: 10,
         };
         flippingTransform = flippingProgress === "start" ? "rotateY(0deg)" : "rotateY(-180deg)";
@@ -151,9 +289,9 @@ export default function BookFeature({
             borderTopLeftRadius: 8,
             borderBottomLeftRadius: 8,
             transformOrigin: "right center",
-            boxShadow: flippingProgress === "end"
-                ? "12px 0 32px 0 rgba(0,0,0,0.25)"
-                : "8px 0 24px 0 rgba(0,0,0,0.15)",
+            // boxShadow: flippingProgress === "end"
+            //     ? "12px 0 32px 0 rgba(0,0,0,0.25)"
+            //     : "8px 0 24px 0 rgba(0,0,0,0.15)",
             zIndex: 10,
         };
         flippingTransform = flippingProgress === "start" ? "rotateY(0deg)" : "rotateY(180deg)";
@@ -164,7 +302,12 @@ export default function BookFeature({
     const isThirdPage = pageIndex === 2;
     let staticLeftPage = isFirstPage ? null : leftPage;
     let staticRightPage = rightPage;
-    if (isFlipping && flipDirection === "next") {
+
+    if (isDragging && dragDirection === "next") {
+        staticRightPage = nextRightPage;
+    } else if (isDragging && dragDirection === "prev") {
+        staticLeftPage = isThirdPage ? null : prevLeftPage;
+    } else if (isFlipping && flipDirection === "next") {
         // Show the next Right page under the flipping page
         staticRightPage = nextRightPage;
     } else if (isFlipping && flipDirection === "prev") {
@@ -269,6 +412,8 @@ export default function BookFeature({
             {/* Left Page (static, updates after flip) */}
             <Box
                 onClick={handleLeftPageClick}
+                onMouseDown={(e) => handleMouseDown(e, "prev")}
+                onDragStart={(e) => e.preventDefault()}
                 sx={{
                     width: width / 2,
                     height,
@@ -303,6 +448,12 @@ export default function BookFeature({
                             pointerEvents: "none",
                             zIndex: 1,
                         },
+                    "& *": {
+                        pointerEvents: "none",
+                    },
+                    "& a": {
+                        pointerEvents: "auto",
+                    },
                 }}
             >
                 {staticLeftPage}
@@ -310,6 +461,8 @@ export default function BookFeature({
             {/* Right Page (static, updates after flip) */}
             <Box
                 onClick={handleRightPageClick}
+                onMouseDown={(e) => handleMouseDown(e, "next")}
+                onDragStart={(e) => e.preventDefault()}
                 sx={{
                     width: width / 2,
                     height,
@@ -339,12 +492,18 @@ export default function BookFeature({
                         pointerEvents: "none",
                         zIndex: 1,
                     },
+                    "& *": {
+                        pointerEvents: "none",
+                    },
+                    "& a": {
+                        pointerEvents: "auto",
+                    },
                 }}
             >
                 {staticRightPage}
             </Box>
-            {/* Flipping Page (on top, only during animation) */}
-            {isFlipping && (
+            {/* Flipping Page (on top, during animation OR manual drag) */}
+            {(isFlipping || isDragging) && (
                 <Box
                     sx={{
                         width: width / 2,
@@ -354,8 +513,7 @@ export default function BookFeature({
                         ...flippingPageStyle,
                         background: "transparent",
                         transformStyle: "preserve-3d",
-                        // transition: `transform ${FLIP_DURATION}ms cubic-bezier(0.645, 0.045, 0.355, 1)`,
-                        transition: `transform ${FLIP_DURATION}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+                        transition: isDragging ? "none" : `transform ${FLIP_DURATION}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
                         transform: flippingTransform,
                         willChange: "transform",
                     }}
@@ -365,11 +523,11 @@ export default function BookFeature({
                         sx={{
                             width: "100%",
                             height: "100%",
-                            background: flipDirection === "next" ? "#f7f7f7" : "#fff",
-                            borderTopRightRadius: flipDirection === "next" ? 8 : 6,
-                            borderBottomRightRadius: flipDirection === "next" ? 8 : 0,
-                            borderTopLeftRadius: flipDirection === "prev" ? 8 : 6,
-                            borderBottomLeftRadius: flipDirection === "prev" ? 8 : 0,
+                            background: (flipDirection === "next" || dragDirection === "next") ? "#f7f7f7" : "#fff",
+                            borderTopRightRadius: (flipDirection === "next" || dragDirection === "next") ? 8 : 6,
+                            borderBottomRightRadius: (flipDirection === "next" || dragDirection === "next") ? 8 : 0,
+                            borderTopLeftRadius: (flipDirection === "prev" || dragDirection === "prev") ? 8 : 6,
+                            borderBottomLeftRadius: (flipDirection === "prev" || dragDirection === "prev") ? 8 : 0,
                             overflow: "hidden",
                             position: "absolute",
                             top: 0,
@@ -378,12 +536,9 @@ export default function BookFeature({
                             display: "flex",
                             flexDirection: "column",
                             transformStyle: "preserve-3d",
-                            boxShadow: flipDirection === "next"
+                            boxShadow: (flipDirection === "next" || dragDirection === "next")
                                 ? "-2px 0 8px rgba(0,0,0,0.1)"
                                 : "2px 0 8px rgba(0,0,0,0.1)",
-                            // boxShadow: flipDirection === "next"
-                            //     ? "-8px 0 24px 0 rgba(0,0,0,0.15)"
-                            //     : "8px 0 24px 0 rgba(0,0,0,0.15)",
                         }}
                     >
                         {flippingFront}
@@ -395,11 +550,11 @@ export default function BookFeature({
                                 left: 0,
                                 width: "100%",
                                 height: "100%",
-                                background: flipDirection === "next"
+                                background: (flipDirection === "next" || dragDirection === "next")
                                     ? `linear-gradient(to right, rgba(0,0,0,${gradientOpacity}), transparent)`
                                     : `linear-gradient(to left, rgba(0,0,0,${gradientOpacity}), transparent)`,
                                 pointerEvents: "none",
-                                transition: `opacity ${FLIP_DURATION / 2}ms ease`,
+                                transition: isDragging ? "none" : `opacity ${FLIP_DURATION / 2}ms ease`,
                             }}
                         />
                     </Box>
@@ -408,11 +563,11 @@ export default function BookFeature({
                         sx={{
                             width: "100%",
                             height: "100%",
-                            background: flipDirection === "next" ? "#fff" : "#f7f7f7",
-                            borderTopLeftRadius: flipDirection === "next" ? 8 : 6,
-                            borderBottomLeftRadius: flipDirection === "next" ? 8 : 0,
-                            borderTopRightRadius: flipDirection === "prev" ? 8 : 6,
-                            borderBottomRightRadius: flipDirection === "prev" ? 8 : 0,
+                            background: (flipDirection === "next" || dragDirection === "next") ? "#fff" : "#f7f7f7",
+                            borderTopLeftRadius: (flipDirection === "next" || dragDirection === "next") ? 8 : 6,
+                            borderBottomLeftRadius: (flipDirection === "next" || dragDirection === "next") ? 8 : 0,
+                            borderTopRightRadius: (flipDirection === "prev" || dragDirection === "prev") ? 8 : 6,
+                            borderBottomRightRadius: (flipDirection === "prev" || dragDirection === "prev") ? 8 : 0,
                             overflow: "hidden",
                             position: "absolute",
                             top: 0,
@@ -421,7 +576,7 @@ export default function BookFeature({
                             transform: "rotateY(180deg)",
                             display: "flex",
                             flexDirection: "column",
-                            boxShadow: flipDirection === "next"
+                            boxShadow: (flipDirection === "next" || dragDirection === "next")
                                 ? "8px 0 24px 0 rgba(0,0,0,0.10)"
                                 : "-8px 0 24px 0 rgba(0,0,0,0.10)",
                         }}
@@ -435,11 +590,11 @@ export default function BookFeature({
                                 left: 0,
                                 width: "100%",
                                 height: "100%",
-                                background: flipDirection === "next"
+                                background: (flipDirection === "next" || dragDirection === "next")
                                     ? `linear-gradient(to left, rgba(0,0,0,${gradientOpacity}), transparent)`
                                     : `linear-gradient(to right, rgba(0,0,0,${gradientOpacity}), transparent)`,
                                 pointerEvents: "none",
-                                transition: `opacity ${FLIP_DURATION / 2}ms ease`,
+                                transition: isDragging ? "none" : `opacity ${FLIP_DURATION / 2}ms ease`,
                             }}
                         />
                     </Box>
