@@ -48,12 +48,31 @@ export default function BookFeature({
         setFlippingProgress("start");
     }, [isFlipping]);
 
-    const handleLeftPageClick = () => {
+    // const handleLeftPageClick = () => {
+    //     if (canFlipPrev) handleFlip("prev");
+    // };
+    const handleLeftPageClick = (e: React.MouseEvent) => {
+        // Check if the click was on a link or inside a link
+        let el = e.target as HTMLElement | null;
+        while (el) {
+            if (el.tagName === "A") return; // Do not flip if a link was clicked
+            el = el.parentElement;
+        }
         if (canFlipPrev) handleFlip("prev");
     };
-    const handleRightPageClick = () => {
+    // const handleRightPageClick = () => {
+    //     if (canFlipNext) handleFlip("next");
+    // };
+    const handleRightPageClick = (e: React.MouseEvent) => {
+        // Check if the click was on a link or inside a link
+        let el = e.target as HTMLElement | null;
+        while (el) {
+            if (el.tagName === "A") return; // Do not flip if a link was clicked
+            el = el.parentElement;
+        }
         if (canFlipNext) handleFlip("next");
     };
+
 
     // Keyboard navigation
     useEffect(() => {
@@ -261,7 +280,8 @@ export default function BookFeature({
                     position: "relative",
                     borderTopLeftRadius: 8,
                     borderBottomLeftRadius: 8,
-                    borderTopRightRadius: 3,
+                    // borderTopRightRadius: 3,
+                    borderTopRightRadius: 8,
                     borderBottomRightRadius: 2,
                     overflow: "hidden",
                     display: "flex",
@@ -299,7 +319,8 @@ export default function BookFeature({
                     zIndex: 1,
                     position: "relative",
                     borderTopRightRadius: 8,
-                    borderTopLeftRadius: 3,
+                    // borderTopLeftRadius: 3,
+                    borderTopLeftRadius: isFirstPage ? 5: 8,
                     borderBottomLeftRadius: 2,
                     borderBottomRightRadius: 8,
                     overflow: "hidden",
@@ -347,9 +368,9 @@ export default function BookFeature({
                             width: "100%",
                             height: "100%",
                             background: flipDirection === "next" ? "#f7f7f7" : "#fff",
-                            borderTopRightRadius: flipDirection === "next" ? 8 : 2,
+                            borderTopRightRadius: flipDirection === "next" ? 8 : 5,
                             borderBottomRightRadius: flipDirection === "next" ? 8 : 0,
-                            borderTopLeftRadius: flipDirection === "prev" ? 8 : 2,
+                            borderTopLeftRadius: flipDirection === "prev" ? 8 : 5,
                             borderBottomLeftRadius: flipDirection === "prev" ? 8 : 0,
                             overflow: "hidden",
                             position: "absolute",
@@ -390,9 +411,9 @@ export default function BookFeature({
                             width: "100%",
                             height: "100%",
                             background: flipDirection === "next" ? "#fff" : "#f7f7f7",
-                            borderTopLeftRadius: flipDirection === "next" ? 8 : 2,
+                            borderTopLeftRadius: flipDirection === "next" ? 8 : 5,
                             borderBottomLeftRadius: flipDirection === "next" ? 8 : 0,
-                            borderTopRightRadius: flipDirection === "prev" ? 8 : 2,
+                            borderTopRightRadius: flipDirection === "prev" ? 8 : 5,
                             borderBottomRightRadius: flipDirection === "prev" ? 8 : 0,
                             overflow: "hidden",
                             position: "absolute",
@@ -431,9 +452,9 @@ export default function BookFeature({
                 sx={{
                     position: "absolute",
                     left: width / 2 - 1.5,
-                    top: 0.5,
+                    top: 3.5,
                     width: 3,
-                    height: height - 1,
+                    height: height - 4,
                     background: isFirstPage ? "transparent" : "#e0e0e0",
                     zIndex: 3,
                     borderRadius: 3,
