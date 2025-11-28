@@ -96,6 +96,7 @@ export default function FlipPage() {
                                     component="img"
                                     alt="Auction Website Preview"
                                     src={`${bPath}/bookTexture.png`}
+                                    draggable={false}
                                     sx={{
                                         position: "absolute",
                                         top: 0,
@@ -129,6 +130,7 @@ export default function FlipPage() {
                                     component="img"
                                     alt="Auction Website Preview"
                                     src={`${bPath}/bookTexture.png`}
+                                    draggable={false}
                                     sx={{
                                         position: "relative",
                                         width: "200%",
