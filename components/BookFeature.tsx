@@ -343,7 +343,7 @@ export default function BookFeature({
                         top: 8 + i * 0.5,
                         width: width / 2 + 6,
                         height: height - 4,
-                        background: pageIndex < 4  ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
+                        background: pageIndex < 4 ? "transparent" : `linear-gradient(to right, #d8d8d8, #e8e8e8)`,
                         borderTopLeftRadius: 8,
                         borderBottomLeftRadius: 8,
                         borderBottomRightRadius: 3,
@@ -374,7 +374,7 @@ export default function BookFeature({
 
             {/* Right Page Stack (thickness visualization - multiple layers) */}
             {[...Array(5)].map((_, i) => (
-                 <Box
+                <Box
                     key={`right-stack-${i}`}
                     sx={{
                         position: "absolute",
@@ -434,7 +434,7 @@ export default function BookFeature({
                     cursor: canFlipPrev ? "pointer" : "default",
                     transition: "box-shadow 0.3s",
                     "&:hover": canFlipPrev
-                        ? { boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)" }
+                        ? {boxShadow: "inset -2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)"}
                         : {},
                     "&::before": (isFirstPage || isThirdPage)
                         ? {}
