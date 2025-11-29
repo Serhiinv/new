@@ -25,7 +25,7 @@ export default function CaseStudyPage() {
 
       <Layout
         showContactButton={true}
-        prevPage="/flip"
+        prevPage="/slider"
         nextPage="/contact"
         logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
         backgroundColor={themeStyle}
