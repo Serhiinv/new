@@ -60,27 +60,26 @@ export default function FlipPage() {
     // Shared content
     const renderPageContent = () => (
         <Box sx={styles.container}>
-            <Typography sx={styles.heading}>
-                Auction Fusion Book
-            </Typography>
+            {/*<Typography sx={styles.heading}>*/}
+            {/*    Auction Fusion Book*/}
+            {/*</Typography>*/}
             <Box sx={{
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: 3,
+                // gap: 3,
+                pt: 1,
                 minHeight: 300,
             }}>
                 <Box
                     sx={{
                         transition: 'transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1)',
-                        // transform: currentPage === 0 ? 'translateX(-200px)' : 'none',
-                        // transform: {sx: (currentPage === 0 ? 'translateX(-200px) scale(50%)' : 'scale(50%)'), md: (currentPage === 0 ? 'translateX(-200px)' : 'none')},
                         transform: [
                             currentPage === 0 ? 'translateX(-100px) scale(44%)' : 'scale(44%)', // xs
                             null, // sm
-                            currentPage === 0 ? 'translateX(-200px)' : 'none' // md and up
+                            currentPage === 0 ? 'translateX(-190px) scale(90%)' : 'scale(90%)' // md and up
                         ],
 
                 }}
@@ -356,6 +355,7 @@ export default function FlipPage() {
                             fontSize: '14px',
                             transition: 'all 0.3s ease',
                             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                            // transform: 'translateY(-25px)',
                             '&:hover': {
                                 background: theme.palette.primary.main,
                                 color: theme.palette.whites.main,
@@ -378,6 +378,7 @@ export default function FlipPage() {
                         transition: 'all 0.3s ease',
                         boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                         opacity: 0.5,
+                        // transform: 'translateY(-25px)',
                     }}
                 >
                     Reset to Beginning
@@ -395,8 +396,8 @@ export default function FlipPage() {
                 {pageHead}
                 <Layout
                     showContactButton={true}
-                    prevPage="/why-us"
-                    nextPage="/case-study"
+                    prevPage="/flip"
+                    nextPage="/slider"
                     logoVariant={logoVariant}
                     backgroundColor={backgroundColor}
                 >
@@ -416,8 +417,8 @@ export default function FlipPage() {
             {pageHead}
             <Layout
                 showContactButton={true}
-                prevPage="/why-us"
-                nextPage="/case-study"
+                prevPage="/flip"
+                nextPage="/slider"
                 logoVariant={logoVariant}
                 backgroundColor={backgroundColor}
             >
