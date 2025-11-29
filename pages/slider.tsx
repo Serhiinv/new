@@ -2,6 +2,7 @@ import Head from "next/head";
 import {Box, Typography, useMediaQuery} from "@mui/material";
 import Layout from "@/components/Layout";
 import FlipCard from "@/components/FlipCard";
+import SliderCard from "@/components/SliderCard";
 import {useTheme} from "@mui/material/styles";
 import {useMemo} from "react";
 import {useScale} from "@/hooks/useScale";
@@ -35,7 +36,7 @@ export default function FlipPage() {
             },
         },
         heading: {
-            ...theme.typography.heading1,
+            ...theme.typography.heading2,
             color: theme.palette.whites.main,
             textAlign: "center",
             "@media (min-width: 600px) and (max-width: 1140px)": {
@@ -62,10 +63,13 @@ export default function FlipPage() {
                 Binary Vision: creators of Auction Fusion
             </Typography>
             <Box sx={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", minHeight: 300}}>
-                <FlipCard
-                    front={
-                        <Box>
-                            <Typography variant="h5" sx={{mb: 2, textAlign: "center",}}>Affordable excellence</Typography>
+                <SliderCard
+                    // orientation="vertical"
+                    orientation="horizontal"
+                    first={
+                        <Box sx={{padding: 4,
+                        backgroundColor: theme.palette.whites.main,}}>
+                            <Typography variant="h5" sx={{mb: 3, textAlign: "center",}}>Affordable excellence</Typography>
                             <Typography>Auction Fusion provides a dedicated, feature-rich auction experience for a low monthly licence fee. This also includes technical support, cloud hosting and maintenance.
                                 <br/><br/>
                                 There are no per auction, hammer or user costs.
@@ -74,14 +78,13 @@ export default function FlipPage() {
                             </Typography>
                         </Box>
                     }
-                    back={
-                        <Box>
-                            <Typography variant="h5" sx={{mb: 2, textAlign: "center", pt:0.5}}>Auction Fusion</Typography>
+                    second={
+                        <Box sx={{padding: 4,
+                        color: theme.palette.whites.main,}}>
+                            <Typography variant="h5" sx={{mb: 3, textAlign: "center"}}>Auction Fusion</Typography>
                             <Typography>  is built and supported by web and digital experts, Binary Vision.
                                 <br/><br/>
                                 Binary Vision have been trailblazers in digital for 40 years, working with high-profile clients such as: Royal Air Force, Barnardo’s and AstraZeneca.
-                                <br/><br/>
-                                Starting three years ago, Binary Vision moved into the auctions sector, bringing the latest and best in web and digital expertise to a sector trapped in legacy technologies.
                                 <br/><br/>
                                 Binary Vision&apos;s Auction Fusion team have, between them, over a hundred years of digital expertise.</Typography>
                         <br/>
@@ -101,8 +104,8 @@ export default function FlipPage() {
                 {pageHead}
                 <Layout
                     showContactButton={true}
-                    prevPage="/why-us"
-                    nextPage="/book"
+                    prevPage="/book"
+                    nextPage="/case-study"
                     logoVariant={logoVariant}
                     backgroundColor={backgroundColor}
                 >
@@ -122,8 +125,8 @@ export default function FlipPage() {
             {pageHead}
             <Layout
                 showContactButton={true}
-                prevPage="/why-us"
-                nextPage="/book"
+                prevPage="/book"
+                nextPage="/case-study"
                 logoVariant={logoVariant}
                 backgroundColor={backgroundColor}
             >
