@@ -8,7 +8,7 @@ import {useScale} from "@/hooks/useScale";
 import {useScaleStyles} from "@/hooks/useScaleStyles";
 import {bPath} from "@/config/basePath";
 
-export default function FlipPage() {
+export default function BookPage() {
     const theme = useTheme();
     const backgroundColor = theme.palette.primary.light;
     const scale = useScale();
