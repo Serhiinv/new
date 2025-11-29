@@ -1,14 +1,13 @@
 import Head from "next/head";
 import {Box, Typography, useMediaQuery} from "@mui/material";
 import Layout from "@/components/Layout";
-import FlipCard from "@/components/FlipCard";
 import SliderCard from "@/components/SliderCard";
 import {useTheme} from "@mui/material/styles";
 import {useMemo} from "react";
 import {useScale} from "@/hooks/useScale";
 import {useScaleStyles} from "@/hooks/useScaleStyles";
 
-export default function FlipPage() {
+export default function SliderPage() {
     const theme = useTheme();
     const backgroundColor = theme.palette.primary.light;
     const scale = useScale();
