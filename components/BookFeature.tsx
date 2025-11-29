@@ -241,6 +241,7 @@ export default function BookFeature({
     // Handle manual drag visualization
     if (isDragging && dragDirection) {
         const rotation = dragProgress * 180;
+        gradientOpacity = Math.abs(dragProgress) * 0.3;
 
         if (dragDirection === "next") {
             flippingFront = rightPage;
@@ -551,8 +552,8 @@ export default function BookFeature({
                                 width: "100%",
                                 height: "100%",
                                 background: (flipDirection === "next" || dragDirection === "next")
-                                    ? `linear-gradient(to right, rgba(0,0,0,${gradientOpacity}), transparent)`
-                                    : `linear-gradient(to left, rgba(0,0,0,${gradientOpacity}), transparent)`,
+                                    ? `linear-gradient(to left, rgba(0,0,0,${gradientOpacity}), transparent)`
+                                    : `linear-gradient(to right, rgba(0,0,0,${gradientOpacity}), transparent)`,
                                 pointerEvents: "none",
                                 transition: isDragging ? "none" : `opacity ${FLIP_DURATION / 2}ms ease`,
                             }}
