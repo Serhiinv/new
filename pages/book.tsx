@@ -257,12 +257,19 @@ export default function BookPage() {
                                     <br/><br/>
                                     Search is changing fast. Auction Fusion is ready.
                                 </Typography>
-                                <Box
-                                    component="a"
-                                    href="https://production-stanleygibbonsbaldwins.auctionfusion.com/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
+                                {/*<Box*/}
+                                {/*    component="a"*/}
+                                {/*    href="https://production-stanleygibbonsbaldwins.auctionfusion.com/"*/}
+                                {/*    target="_blank"*/}
+                                {/*    rel="noopener noreferrer"*/}
+                                {/*    sx={{*/}
+                                {/*        display: "inline-block",*/}
+                                {/*        textDecoration: "none",*/}
+                                {/*        border: "none",*/}
+                                {/*        outline: "none",*/}
+                                {/*        "&:hover": {opacity: 0.8},*/}
+                                {/*    }}*/}
+                                {/*>*/}
                                     <Box
                                         component="img"
                                         alt="Auction Website Preview"
@@ -277,9 +284,24 @@ export default function BookPage() {
                                             "&:hover": {opacity: 0.8},
                                         }}
                                     />
-                                </Box>
-
-                            </Box>, <Box key="pag12">
+                                {/*</Box>*/}
+                                <Typography
+                                    component="a"
+                                    href="https://production-stanleygibbonsbaldwins.auctionfusion.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    sx={{fontSize: 12,
+                                        position: "absolute",
+                                        left: "57%",
+                                        bottom: 20,
+                                        color: theme.palette.primary.contrastText,
+                                        transform: "translateY(-50px)",
+                                        zIndex: 20,
+                                    }}>
+                                    go to the website {'->'}
+                                </Typography>
+                            </Box>,
+                            <Box key="pag12">
                                 <Typography variant="h6"
                                             sx={{position: "absolute", left: 200, bottom: 0,}}>9</Typography>
                                 <Typography sx={{padding: 3}}>
@@ -298,12 +320,12 @@ export default function BookPage() {
                                     - Built to deliver actionable AI outputs and links -
                                     with a focus on consignment and bidding.
                                 </Typography>
-                                <Box
-                                    component="a"
-                                    href="https://www.lyonandturnbull.com/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
+                                {/*<Box*/}
+                                {/*    component="a"*/}
+                                {/*    href="https://www.lyonandturnbull.com/"*/}
+                                {/*    target="_blank"*/}
+                                {/*    rel="noopener noreferrer"*/}
+                                {/*>*/}
                                     <Box
                                         component="img"
                                         alt="Case Study Background"
@@ -319,7 +341,22 @@ export default function BookPage() {
                                             "&:hover": {opacity: 0.8},
                                         }}
                                     />
-                                </Box>
+                                {/*</Box>*/}
+                                <Typography
+                                    component="a"
+                                    href="https://www.lyonandturnbull.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    sx={{fontSize: 12,
+                                        position: "absolute",
+                                        left: "57%",
+                                        bottom: 55,
+                                        color: theme.palette.primary.light,
+                                        transform: "translateY(-50px)",
+                                        zIndex: 20,
+                                    }}>
+                                    go to the website {'->'}
+                                </Typography>
                             </Box>,
 
                             // -------------- End page --------------
@@ -368,17 +405,13 @@ export default function BookPage() {
                     </Box>
                 ) : <Box
                     sx={{
-                        cursor: 'pointer',
+                        cursor: 'default',
                         padding: '7px 15px',
-                        background: theme.palette.whites.main,
-                        color: theme.palette.primary.main,
+                        background: theme.palette.whites.light,
+                        color: theme.palette.primary.dark,
                         borderRadius: '8px',
                         fontWeight: 600,
                         fontSize: '14px',
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                        opacity: 0.5,
-                        // transform: 'translateY(-25px)',
                     }}
                 >
                     Reset to Beginning
