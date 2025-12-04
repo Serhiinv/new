@@ -431,6 +431,7 @@ export default function BookFeature({
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
+                    pointerEvents: (isFlipping || isDragging) ? "none" : "auto",
                     cursor: canFlipPrev ? "pointer" : "default",
                     transition: "box-shadow 0.3s",
                     "&:hover": canFlipPrev
@@ -478,6 +479,7 @@ export default function BookFeature({
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
+                    pointerEvents: (isFlipping || isDragging) ? "none" : "auto",
                     cursor: canFlipNext ? "pointer" : "default",
                     transition: "box-shadow 0.3s",
                     "&:hover": canFlipNext ? {boxShadow: "inset 2px 0 8px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.2)"} : {},
