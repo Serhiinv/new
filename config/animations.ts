@@ -28,4 +28,10 @@ export const animations = {
             "100%": { right: "10%", opacity: 0 },
         },
     },
+    slideInFromLeft: {
+        "@keyframes slideInFromLeft": {
+            from: {opacity: 0, transform: "translateX(-50px)"},
+            to: { opacity: 1, transform: "translateX(0)" },
+        }
+    },
 };
