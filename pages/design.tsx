@@ -24,15 +24,11 @@ export default function DesignPage() {
             justifyContent: "center",
             gap: {xs: 1, md: 4},
             padding: {xs: "2% 2%", md: "3% 4.5%"},
-            paddingTop: {xs: "100px", md: ""},
+            paddingTop: {xs: "100px", sm: 27, md: ""},
+            pb: {sm: 35},
             maxWidth: {xs: "100%", md: "1600px"},
             margin: "0 auto",
-            "@media (min-width: 600px) and (max-width: 1140px)": {
-                textAlign: "center",
-                pt: 27,
-                pb:35,
-                scale: 0.95,
-            },
+            scale: {sm: 0.95},
         },
         imageSection: {
             flex: 1,
@@ -70,10 +66,6 @@ export default function DesignPage() {
             overflowWrap: "break-word",
             animation: "fadeInUp 0.8s ease-out",
             ...animations.fadeInUp,
-            "@media (min-width: 600px) and (max-width: 1140px)": {
-                fontWeight: 600,
-                fontSize: "30px",
-            },
         },
         bodyText: {
             ...theme.typography.body1,
@@ -81,13 +73,11 @@ export default function DesignPage() {
             color: theme.palette.bg.light,
             animation: "fadeInUp 0.8s ease-out 0.4s backwards",
             ...animations.fadeInUp,
-            "@media (min-width: 600px) and (max-width: 1140px)": {
-                fontSize: "16px",
-            },
         },
     }), [theme]);
 
-    const logoVariant = backgroundColor === theme.palette.primary.light ? "light" : "dark";
+    const logoVariant: "dark" | "light" =
+        backgroundColor === theme.palette.primary.light ? "light" : "dark";
 
     // Shared page head
     const pageHead = (
@@ -137,18 +127,20 @@ export default function DesignPage() {
         </Box>
     );
 
+    const layoutProps = {
+        showContactButton: true,
+        prevPage: "/features",
+        nextPage: "/testimonials",
+        logoVariant,
+        backgroundColor,
+    };
+
     // *********** Mobile version **********
     if (isMobile) {
         return (
             <>
                 {pageHead}
-                <Layout
-                    showContactButton={true}
-                    prevPage="/features"
-                    nextPage="/testimonials"
-                    logoVariant={logoVariant}
-                    backgroundColor={backgroundColor}
-                >
+                <Layout {...layoutProps}>
                     <Box sx={scaleWrapper}>
                         <Box sx={verticalStack}>
                             {renderDesignContent()}
@@ -163,13 +155,7 @@ export default function DesignPage() {
     return (
         <>
             {pageHead}
-            <Layout
-                showContactButton={true}
-                prevPage="/features"
-                nextPage="/testimonials"
-                logoVariant={logoVariant}
-                backgroundColor={backgroundColor}
-            >
+            <Layout {...layoutProps}>
                 {renderDesignContent()}
             </Layout>
         </>
