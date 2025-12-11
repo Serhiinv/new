@@ -22,7 +22,7 @@ export default function DesignPage() {
             flexDirection: {xs: "column", md: "row"},
             alignItems: "center",
             justifyContent: "center",
-            gap: {xs: 1, md: 4},
+            gap: {xs: 1, md: 10},
             padding: {xs: "2% 2%", md: "3% 4.5%"},
             paddingTop: {xs: "100px", sm: 27, md: ""},
             pb: {sm: 35},
@@ -35,18 +35,13 @@ export default function DesignPage() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            order: {xs: 1, md: 1},
-        },
-        imageWrapper: {
             maxWidth: "670px",
             width: "90%",
-            position: "relative",
+            margin: "0 auto",
         },
         image: {
             width: "100%",
             height: "auto",
-            position: "relative",
-            zIndex: 0,
             borderRadius: 2,
         },
         textSection: {
@@ -92,14 +87,12 @@ export default function DesignPage() {
         <Box sx={styles.container}>
             {/* Left half - Image */}
             <Box sx={styles.imageSection}>
-                <Box sx={styles.imageWrapper}>
-                    <Box
-                        component="img"
-                        alt="Design Preview"
-                        src={`${bPath}/design.jpeg`}
-                        sx={styles.image}
-                    />
-                </Box>
+                <Box
+                    component="img"
+                    alt="Design Preview"
+                    src={`${bPath}/design.jpeg`}
+                    sx={styles.image}
+                />
             </Box>
 
             {/* Right half - Text content */}
