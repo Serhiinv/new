@@ -7,7 +7,7 @@ import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
 
-  // Only prevent horizontal scroll, let vertical scroll be handled by CSS in _document.tsx
+  // Only prevent horizontal scroll. Vertical scroll handled by CSS in _document.tsx
   useEffect(() => {
     document.documentElement.style.overflowX = "hidden";
     document.body.style.overflowX = "hidden";

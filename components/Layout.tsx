@@ -246,7 +246,6 @@ export default function Layout({
         {/* Footer with Pagination Dots */}
         <Box
           sx={{
-            // position: "absolute",
             position: "fixed",
               bottom: { xs: "2%", md: 30 },
             left: "50%",
