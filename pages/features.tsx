@@ -19,18 +19,14 @@ export default function FeaturesPage() {
         handAnimation: {
             display: {xs: "block", md: "none"},
             position: "relative",
-            pt: "25px",
+            pt: {xs: "4%", sm : 0},
             pb: "20px",
-            transform: "translateX(80%) scale(0.9)",
+            transform: {xs: "translateX(80%) scale(0.7)", sm: "translateY(-20px) translateX(70%) scale(0.7)"},
             zIndex: 1000,
             pointerEvents: "none",
             animation: "handSwipe 2.5s ease-in-out 4s 2",
             opacity: 0,
             ...animations.handSwipe,
-            "@media (min-width: 600px) and (max-width: 1140px)": {
-                pt: 0,
-                transform: "translateY(-20px) translateX(70%) scale(0.7)",
-            },
             '@media (max-width: 380px)': {
                 pt: "3px",
                 transform: "translateX(80%) scale(0.7)",
@@ -43,38 +39,27 @@ export default function FeaturesPage() {
             background: backgroundColor,
             padding: {xs: "3% 3%", md: "3% 5.5%"},
             flexDirection: "column",
-            gap: {xs: 3, md: 7},
-            paddingTop: {xs: "31%", md: "0%"},
+            gap: {xs: 3, sm: 2, md: 7},
+            paddingTop: {xs: "31%", sm: "70px", md: "0%"},
             paddingBottom: {xs: "0%", md: "0%"},
             maxWidth: {xs: "100%", md: "1600px"},
             justifyContent: {md: "center"},
             margin: "0 auto",
             boxSizing: "border-box",
-            "@media (min-width: 600px) and (max-width: 1140px)": {
-                pt: "70px",
-                gap: 2,
-            },
         },
         heading: {
             ...theme.typography.heading1,
             color: theme.palette.whites.main,
             textAlign: "center",
-            "@media (min-width: 600px) and (max-width: 1140px)": {
-                fontWeight: 600,
-                fontSize: "30px",
-            },
         },
         featuresGrid: {
             display: "grid",
             gridTemplateColumns: {xs: "1fr", md: "repeat(2, 1fr)"},
-            gap: {xs: "5%", md: 7},
+            gap: {xs: "4.5%", sm: 2, md: 7},
             maxWidth: "1100px",
             margin: "0 auto",
-            '@media (min-width: 600px) and (max-width: 1140px)': {
-                minWidth: "350px",
-                gap: 2,
-                transform: "translateX(-12px)",
-            },
+            transform: {sm: "translateX(-12px)"},
+            minWidth: {sm: "350px"},
             "@media (max-width: 380px)": {
                 gap: "3.5%",
             },
@@ -83,17 +68,11 @@ export default function FeaturesPage() {
             display: "flex",
             alignItems: "center",
             gap: {xs: 1.5, md: 3},
-            padding: {xs: 1.5, md: 3},
+            padding: {xs: 1.5, sm: 0.7,  md: 3},
             background: theme.palette.whites.dark,
             borderRadius: 3,
             animation: `flipIn 0.8s ease-out ${index * 0.9}s backwards`,
-            "@keyframes flipIn": {
-                from: {opacity: 0, transform: "perspective(400px) rotateX(-90deg)"},
-                to: {opacity: 1, transform: "perspective(400px) rotateX(0)"},
-            },
-            '@media (min-width: 470px) and (max-width: 1140px)': {
-                padding: 0.7,
-            },
+            ...animations.flipIn,
         }),
         iconContainer: {
             flexShrink: 0,
@@ -103,13 +82,11 @@ export default function FeaturesPage() {
         featureText: {
             ...theme.typography.body1,
             color: theme.palette.primary.main,
-            "@media (min-width: 600px) and (max-width: 1140px)": {
-                fontSize: "16px",
-            },
         },
     }), [theme, backgroundColor]);
 
-    const logoVariant = backgroundColor === theme.palette.primary.light ? "light" : "dark";
+    const logoVariant: "dark" | "light" =
+        backgroundColor === theme.palette.primary.light ? "light" : "dark";
 
     // Shared page head
     const pageHead = (
@@ -153,18 +130,20 @@ export default function FeaturesPage() {
         </Box>
     );
 
+    const layoutProps = {
+        showContactButton: true,
+        prevPage: "/home",
+        nextPage: "/design",
+        logoVariant,
+        backgroundColor,
+    };
+
     // *********** Mobile version **********
     if (isMobile) {
         return (
             <>
                 {pageHead}
-                <Layout
-                    showContactButton={true}
-                    prevPage="/home"
-                    nextPage="/design"
-                    logoVariant={logoVariant}
-                    backgroundColor={backgroundColor}
-                >
+                <Layout {...layoutProps}>
                     <Box sx={scaleWrapper}>
                         <Box sx={verticalStack}>
                             {renderFeaturesContent()}
@@ -179,13 +158,7 @@ export default function FeaturesPage() {
     return (
         <>
             {pageHead}
-            <Layout
-                showContactButton={true}
-                prevPage="/home"
-                nextPage="/design"
-                logoVariant={logoVariant}
-                backgroundColor={backgroundColor}
-            >
+            <Layout {...layoutProps}>
                 {renderFeaturesContent()}
             </Layout>
         </>

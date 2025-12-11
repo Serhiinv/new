@@ -12,6 +12,12 @@ export const animations = {
             to: { opacity: 1, transform: "translateX(0)" },
         },
     },
+    flipIn: {
+        "@keyframes flipIn": {
+            from: { opacity: 0, transform: "perspective(400px) rotateX(-90deg)" },
+            to: { opacity: 1, transform: "perspective(400px) rotateX(0)" },
+        },
+    },
     handSwipe: {
         "@keyframes handSwipe": {
             "0%": { right: "10%", opacity: 0 },
