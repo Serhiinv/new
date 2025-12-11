@@ -22,7 +22,7 @@ export default function WhyUsPage() {
 
       <Layout
           showContactButton={true}
-          prevPage="/reason" nextPage="/flip"
+          prevPage="/reason" nextPage="/contact"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
           backgroundColor={themeStyle}
       >

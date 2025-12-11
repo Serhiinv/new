@@ -16,7 +16,7 @@ export default function ContactPage() {
       </Head>
 
       <Layout
-          showContactButton={false} prevPage="/case-study"
+          showContactButton={false} prevPage="/why-us"
           logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
           backgroundColor={themeStyle}>
         <Box

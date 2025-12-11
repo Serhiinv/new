@@ -19,7 +19,6 @@ export default function DesignPage() {
     const styles = useMemo(() => ({
         container: {
             display: "flex",
-            // height: "100%",
             flexDirection: {xs: "column", md: "row"},
             alignItems: "center",
             justifyContent: "center",
@@ -29,7 +28,6 @@ export default function DesignPage() {
             maxWidth: {xs: "100%", md: "1600px"},
             margin: "0 auto",
             "@media (min-width: 600px) and (max-width: 1140px)": {
-                // transform: "translateY(-5%)",
                 textAlign: "center",
                 pt: 27,
                 pb:35,
