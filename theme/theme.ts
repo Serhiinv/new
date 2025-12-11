@@ -546,7 +546,7 @@ const getTheme = (client: string): any => {
                 values: {
                     xs: 0,
                     sm: 600,
-                    md: 1140,
+                    md: 1141,
                     lg: 1200,
                     xl: 1536,
                 },
@@ -702,7 +702,7 @@ const getTheme = (client: string): any => {
         theme.typography.heading1 = {             // in use as heading on all pages
             ...theme.typography.heading1,
             [theme.breakpoints.down('md')]: {
-                fontSize: 45,
+                fontSize: 30,
             },
             [theme.breakpoints.down('sm')]: {
                 fontSize: 28,
@@ -753,6 +753,9 @@ const getTheme = (client: string): any => {
 
         theme.typography.body1 = {                // in use as main text on all pages
             ...theme.typography.body1,
+            [theme.breakpoints.down('md')]: {
+                fontSize: 16,
+            },
             [theme.breakpoints.down('sm')]: {
                 fontSize: 17,
             },

@@ -21,29 +21,20 @@ export default function HomePage() {
     const styles = useMemo(
         () => ({
             textContent: {
-                textAlign: {xs: "center", md: "left"},
                 display: "flex",
                 flexDirection: "column",
                 gap: {md: 3},
                 padding: {md: "0 10px"},
                 maxWidth: {xs: "100%", md: "670px"},
-                "@media (min-width: 600px) and (max-width: 1140px)": {
-                    textAlign: "center",
-                },
+                textAlign: {xs: "center", sm: "center", md: "left"},
             },
             heading: {
                 ...theme.typography.heading1,
                 color: theme.palette.primary.light,
                 margin: 0,
-                pt: {xs: "51%", md: 0},
+                pt: {xs: "51%", sm: "135px", md: 0},
                 pb: "15px",
-                animation: "fadeInUp 0.8s ease-out",
                 ...animations.fadeInUp,
-                "@media (min-width: 600px) and (max-width: 1140px)": {
-                    fontWeight: 600,
-                    fontSize: "30px",
-                    pt: "135px",
-                },
             },
             description: {
                 ...theme.typography.body1,
@@ -52,25 +43,17 @@ export default function HomePage() {
                 pb: "5px",
                 animation: "fadeInUp 0.8s ease-out 0.4s backwards",
                 ...animations.fadeInUp,
-                "@media (min-width: 600px) and (max-width: 1140px)": {
-                    fontSize: "16px",
-                },
             },
             monitorContainer: {
-                maxWidth: {xs: "300px", md: "530px"},
+                maxWidth: {xs: "290px", md: "530px"},
                 position: "relative",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
                 padding: {md: "0 20px"},
-                "@media (min-width: 600px) and (max-width: 1140px)": {
-                    pb: "18%",
-                },
-                "@media (min-width: 1141px)": {
-                    height: "100%",
-                    transform: "translateY(90px)",
-                },
+                pb: {sm: "18%"},
+                transform: {md: "translateY(90px)"},
             },
             monitorImage: {
                 width: "100%",
@@ -113,20 +96,14 @@ export default function HomePage() {
                 right: 0,
                 justifyContent: "center",
             },
-            mobileSpacer: {
-                height: 0,
-                "@media (min-width: 420px) and (max-width: 810px)": {
-                    height: "110px",
-                },
-            },
         }),
         [theme]
     );
 
-    const logoVariant =
+    const logoVariant: "dark" | "light" =
         backgroundColor === theme.palette.primary.light ? "light" : "dark";
 
-    // Shared page head
+
     const pageHead = (
         <Head>
             <title>Auction Fusion - Creating the Finest Auction Websites</title>
@@ -137,7 +114,6 @@ export default function HomePage() {
         </Head>
     );
 
-    // Shared hero content
     const renderHeroContent = () => (
         <Box sx={styles.textContent}>
             <Typography sx={styles.heading}>
@@ -147,13 +123,12 @@ export default function HomePage() {
                 Auction Fusion is a next-generation auction website platform built
                 for unparalleled AI / search performance and customer experience.
             </Typography>
-            <Box sx={{display: {xs: "none", md: "block"},}}>
+            <Box sx={{display: {xs: "none", md: "block"}}}>
                 <PrimaryButton href="/features">Let&apos;s start</PrimaryButton>
             </Box>
         </Box>
     );
 
-    // Shared monitor display
     const renderMonitor = () => (
         <Box sx={styles.monitorContainer}>
             <Box
@@ -171,22 +146,24 @@ export default function HomePage() {
         </Box>
     );
 
+    const layoutProps = {
+        showContactButton: true,
+        nextPage: "/features",
+        logoVariant,
+        backgroundColor,
+    };
+
     // *********** Mobile version **********
     if (isMobile) {
         return (
             <>
                 {pageHead}
-                <Layout
-                    showContactButton={true}
-                    nextPage="/features"
-                    logoVariant={logoVariant}
-                    backgroundColor={backgroundColor}
-                >
+                <Layout {...layoutProps}>
                     <Box sx={scaleWrapper}>
                         <Box sx={verticalStack}>
                             {renderHeroContent()}
                             {renderMonitor()}
-                            <Box sx={styles.mobileSpacer}/>
+                            <Box/>
                         </Box>
                     </Box>
                     <Box sx={styles.mobileBtn}>
@@ -201,12 +178,7 @@ export default function HomePage() {
     return (
         <>
             {pageHead}
-            <Layout
-                showContactButton={true}
-                nextPage="/features"
-                logoVariant={logoVariant}
-                backgroundColor={backgroundColor}
-            >
+            <Layout {...layoutProps}>
                 <Box sx={styles.desktopContainer}>
                     {renderHeroContent()}
                     <Box sx={styles.desktopImageSection}>{renderMonitor()}</Box>
