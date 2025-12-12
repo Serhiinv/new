@@ -57,7 +57,7 @@ export default function FeaturesPage() {
             gap: {xs: "4.5%", sm: 2, md: 7},
             maxWidth: "1100px",
             margin: "0 auto",
-            transform: {sm: "translateX(-12px)"},
+            transform: {sm: "translateX(-12px)", md: "none"},
             minWidth: {sm: "350px"},
             "@media (max-width: 380px)": {
                 gap: "3.5%",
