@@ -7,7 +7,7 @@ import {animations} from "@/config/animations";
 
 export default function WhyUsPage() {
     const theme = useTheme();
-    const themeStyle = theme.palette.secondary.main;
+    const backgroundColor  = theme.palette.secondary.main;
 
     const stats = [
         { value: "500+", label: "Active Clients", delay: 0 },
@@ -69,12 +69,15 @@ export default function WhyUsPage() {
         },
     }), [theme]);
 
+    const logoVariant: "dark" | "light" =
+        backgroundColor === theme.palette.primary.light ? "light" : "dark";
+
     const layoutProps = {
         showContactButton: true,
         prevPage: "/reason",
         nextPage: "/contact",
-        logoVariant: themeStyle === theme.palette.primary.light ? "light" : "dark",
-        backgroundColor: themeStyle,
+        logoVariant,
+        backgroundColor,
     };
 
     return (

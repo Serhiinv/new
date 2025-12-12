@@ -8,7 +8,7 @@ import {animations} from "@/config/animations";
 
 export default function ContactPage() {
     const theme = useTheme();
-    const themeStyle = theme.palette.secondary.main;
+    const backgroundColor  = theme.palette.secondary.main;
 
     const styles = useMemo(() => ({
         container: {
@@ -42,11 +42,14 @@ export default function ContactPage() {
         },
     }), [theme]);
 
+    const logoVariant: "dark" | "light" =
+        backgroundColor === theme.palette.primary.light ? "light" : "dark";
+
     const layoutProps = {
         showContactButton: false,
         prevPage: "/why-us",
-        logoVariant: themeStyle === theme.palette.primary.light ? "light" : "dark",
-        backgroundColor: themeStyle,
+        logoVariant,
+        backgroundColor,
     };
 
     return (
