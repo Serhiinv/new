@@ -14,22 +14,20 @@ export default function TestimonialsPage() {
     const backgroundColor = theme.palette.primary.light;
     const scale = useScale();
     const {scaleWrapper, verticalStack} = useScaleStyles(scale);
-    const isMobile = useMediaQuery("(max-width:1139px)");
+    const isMobile = useMediaQuery("(max-width:1140px)");
 
     const styles = useMemo(() => ({
         mainContainer: {
             width: "100%",
-            minHeight: {xs: "90vh", md: "100%"},
-            height: {xs: "auto", md: "100%"},
+            minHeight: "auto",
+            height: "auto",
             display: "flex",
             justifyContent: "center",
             padding: {xs: "29px 5px", sm:"0px 0px", md: "0px 50px"},
             flexDirection: "column",
-            gap: {xs: 4, md: 7},
             paddingTop: {xs: "135px", md: "0"},
             maxWidth: {xs: "100%", md: "1600px"},
             margin: "0 auto",
-            transform: {sm:  "scale(1.05)"},
         },
         contentWrapper: {
             maxWidth: {xs: "100%", md: "1320px"},
@@ -46,7 +44,7 @@ export default function TestimonialsPage() {
             zIndex: 2,
             fontWeight: 200,
             padding: {xs: "0 7%", sm: "0 5%", md: "0 9%"},
-            py: {xs: "8%", sm: "8%", md: "80px"},
+            py: {xs: "8%", sm: "8%", md: "50px"},
             backgroundColor: {xs: theme.palette.primary.dark, md: backgroundColor},
             borderRadius: 3,
         },
