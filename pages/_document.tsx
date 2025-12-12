@@ -40,12 +40,6 @@ export default function Document() {
               overflow-y: auto;
             }
           }
-
-          @media (min-width: 1141px) {
-            html, body {
-              position: relative;
-            }
-          }
         `}</style>
       </Head>
       <body>

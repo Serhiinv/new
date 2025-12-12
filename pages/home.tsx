@@ -34,7 +34,6 @@ export default function HomePage() {
                 margin: 0,
                 pt: {xs: "51%", sm: "135px", md: 0},
                 pb: "15px",
-                ...animations.fadeInUp,
             },
             description: {
                 ...theme.typography.body1,

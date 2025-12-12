@@ -34,4 +34,10 @@ export const animations = {
             to: { opacity: 1, transform: "translateX(0)" },
         }
     },
+    slideInFromTop: {
+        "@keyframes slideInFromTop": {
+            from: { opacity: 0, transform: "translateY(-20vh)" },
+            to: { opacity: 1, transform: "translateY(0)" },
+        },
+    },
 };
