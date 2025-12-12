@@ -28,20 +28,14 @@ export default function ContactPage() {
             color: theme.palette.primary.light,
             mb: 2,
             animation: "fadeInUp 0.8s ease-out",
-            "@keyframes fadeInUp": {
-                from: {opacity: 0, transform: "translateY(20px)"},
-                to: {opacity: 1, transform: "translateY(0)"},
-            },
+            ...animations.fadeInUp
         },
         description: {
             ...theme.typography.body1,
             color: theme.palette.bg.light,
             mb: {xs: 3, md: 5},
             animation: "fadeInUp 0.8s ease-out 0.2s backwards",
-            "@keyframes fadeInUp": {
-                from: {opacity: 0, transform: "translateY(20px)"},
-                to: {opacity: 1, transform: "translateY(0)"},
-            },
+            ...animations.fadeInUp
         },
         backHomeBtn: {
             mt: 6, display: "flex", gap: 3, flexWrap: "wrap", justifyContent: "center"
