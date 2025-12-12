@@ -38,7 +38,7 @@ export default function FeaturesPage() {
             display: "flex",
             background: backgroundColor,
             padding: {xs: "3%", md: "3% 5.5%"},
-            paddingTop: {xs: "31%", sm: "70px", md: "0%"},
+            paddingTop: {xs: "31%", sm: "70px", md: "3%"},
             flexDirection: "column",
             gap: {xs: 3, sm: 2, md: 7},
             maxWidth: "1600px",
