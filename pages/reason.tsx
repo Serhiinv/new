@@ -48,7 +48,7 @@ export default function ReasonPage() {
             pl: {xs: 1, md: 1.5},
             pt: {xs: 0.8, md: 2},
             margin: "0 auto",
-            animation: `slideInFromTop 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.9}s backwards`,
+            animation: `slideInFromTop 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.9}s backwards`,
             ...animations.slideInFromTop,
             '@media (min-width: 900px) and (max-width: 1180px)': {
                 width: {xs: "100%", md: 300},
