@@ -1,79 +1,88 @@
 import Head from "next/head";
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import Layout from "@/components/Layout";
 import PrimaryButton from "@/components/PrimaryButton";
-import { useTheme } from "@mui/material/styles";
+import {useTheme} from "@mui/material/styles";
+import {useMemo} from "react";
+import {animations} from "@/config/animations";
 
 export default function ContactPage() {
-  const theme = useTheme();
-  const themeStyle = theme.palette.secondary.main;
+    const theme = useTheme();
+    const themeStyle = theme.palette.secondary.main;
 
-  return (
-    <>
-      <Head>
-        <title>Contact Us - Auction Fusion</title>
-        <meta name="description" content="Get started with Auction Fusion today" />
-      </Head>
-
-      <Layout
-          showContactButton={false} prevPage="/why-us"
-          logoVariant={themeStyle === theme.palette.primary.light ? "light" : "dark"}
-          backgroundColor={themeStyle}>
-        <Box
-          sx={{
-              justifyContent: "center",
+    const styles = useMemo(() => ({
+        container: {
+            justifyContent: "center",
             width: "100%",
             height: "100%",
             display: "flex",
             textAlign: "center",
             flexDirection: "column",
             alignItems: "center",
-            padding: { xs: "250px 25px", md: "20% 70px" },
-            maxWidth: { xs: "100%", md: "1600px"},
+            padding: {xs: "250px 25px", md: "20% 70px"},
+            maxWidth: {xs: "100%", md: "1600px"},
             margin: "0 auto",
-          }}
-        >
-          <Typography
-            sx={{
-                ...theme.typography.heading1,
-              color: theme.palette.primary.light,
-              mb: 2,
-              animation: "fadeInUp 0.8s ease-out",
-              "@keyframes fadeInUp": {
-                from: { opacity: 0, transform: "translateY(20px)" },
-                to: { opacity: 1, transform: "translateY(0)" },
-              },
-            }}
-          >
-            Get Started Today
-          </Typography>
+        },
+        title: {
+            ...theme.typography.heading1,
+            color: theme.palette.primary.light,
+            mb: 2,
+            animation: "fadeInUp 0.8s ease-out",
+            "@keyframes fadeInUp": {
+                from: {opacity: 0, transform: "translateY(20px)"},
+                to: {opacity: 1, transform: "translateY(0)"},
+            },
+        },
+        description: {
+            ...theme.typography.body1,
+            color: theme.palette.bg.light,
+            mb: {xs: 3, md: 5},
+            animation: "fadeInUp 0.8s ease-out 0.2s backwards",
+            "@keyframes fadeInUp": {
+                from: {opacity: 0, transform: "translateY(20px)"},
+                to: {opacity: 1, transform: "translateY(0)"},
+            },
+        },
+        backHomeBtn: {
+            mt: 6, display: "flex", gap: 3, flexWrap: "wrap", justifyContent: "center"
+        },
+    }), [theme]);
 
-          <Typography
-            sx={{
-                ...theme.typography.heading5,
-              color: theme.palette.bg.light,
-              mb: { xs: 3, md: 5 },
-              animation: "fadeInUp 0.8s ease-out 0.2s backwards",
-              "@keyframes fadeInUp": {
-                from: { opacity: 0, transform: "translateY(20px)" },
-                to: { opacity: 1, transform: "translateY(0)" },
-              },
-            }}
-          >
-            Transform your auction business with our comprehensive platform
-          </Typography>
+    const layoutProps = {
+        showContactButton: false,
+        prevPage: "/why-us",
+        logoVariant: themeStyle === theme.palette.primary.light ? "light" : "dark",
+        backgroundColor: themeStyle,
+    };
 
-          <PrimaryButton href="mailto:contact@auctionfusion.com">
-            Send email
-          </PrimaryButton>
+    return (
+        <>
+            <Head>
+                <title>Contact Us - Auction Fusion</title>
+                <meta name="description" content="Get started with Auction Fusion today"/>
+            </Head>
 
-          <Box sx={{ mt: 6, display: "flex", gap: 3, flexWrap: "wrap", justifyContent: "center" }}>
-            <PrimaryButton href="/home" variant="outlined">
-              Back Home
-            </PrimaryButton>
-          </Box>
-        </Box>
-      </Layout>
-    </>
-  );
+            <Layout {...layoutProps}>
+                <Box sx={styles.container}>
+                    <Typography sx={styles.title}>
+                        Get Started Today
+                    </Typography>
+
+                    <Typography sx={styles.description}>
+                        Transform your auction business with our comprehensive platform
+                    </Typography>
+
+                    <PrimaryButton href="mailto:contact@auctionfusion.com">
+                        Send email
+                    </PrimaryButton>
+
+                    <Box sx={{mt: 6, display: "flex", gap: 3, flexWrap: "wrap", justifyContent: "center"}}>
+                        <PrimaryButton href="/home" variant="outlined">
+                            Back Home
+                        </PrimaryButton>
+                    </Box>
+                </Box>
+            </Layout>
+        </>
+    );
 }
