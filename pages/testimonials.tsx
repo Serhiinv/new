@@ -38,7 +38,6 @@ export default function TestimonialsPage() {
             width: "100%",
             boxSizing: "border-box",
             padding: {xs: "28px 0px", sm:"0 0", md: "15px 60px"},
-            // animation: "fadeInUp 0.8s ease-out",
         },
         testimonialBox: {
             textAlign: {xs: "center", md: "left"},
@@ -67,8 +66,6 @@ export default function TestimonialsPage() {
                 ...theme.typography.body1,
             },
             m: 0,
-            animation: "fadeInUp 0.8s ease-out",
-            ...animations.fadeInUp,
         },
         triangleArrow: {
             position: "relative",
@@ -81,16 +78,6 @@ export default function TestimonialsPage() {
                 xs: `28px solid ${theme.palette.primary.dark}`,
                 md: `28px solid ${backgroundColor}`,
             },
-        },
-        authorBox: {
-            textAlign: "center",
-            color: theme.palette.whites.main,
-            ...theme.typography.body2,
-            mt: 2,
-            paddingTop: {xs: "8%", md: "0"},
-            paddingBottom: {xs: "8%", md: "0"},
-            animation: "slideInFromLeft 0.8s ease-out 1s backwards",
-            ...animations.slideInFromLeft,
         },
         authorMobileText: {
             display: {xs: "inline-block", md: "none"},
@@ -156,7 +143,16 @@ export default function TestimonialsPage() {
 
             {/* Author information */}
             <Box>
-                <Typography component="p" sx={styles.authorBox}>
+                <Typography component="p"
+                            sx={{textAlign: "center",
+                                    color: theme.palette.whites.main,
+                                    ...theme.typography.body2,
+                                    mt: 2,
+                                    paddingTop: {xs: "8%", md: "0"},
+                                    paddingBottom: {xs: "8%", md: "0"},
+                                    animation: "slideInFromLeft 0.8s ease-out 1s backwards",
+                                    ...animations.slideInFromLeft,}}
+                >
                     <Box component="span" sx={styles.authorMobileText}>
                         <strong>Edward Barrow</strong>
                         <br/>
